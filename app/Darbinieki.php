@@ -7,9 +7,15 @@ use App\MaksajumuVesture;
 use App\Amats;
 use App\Nodala;
 use App\Depo;
+use App\Adrese;
+use App\User;
 
 class Darbinieki extends Model
 {
+
+    public function pieder() {
+        return $this->belongsTo(Adrese::class, 'adrese');
+    }
 
     public function orders() {
         return $this->hasMany(MaksajumuVesture::class,'pers_kods');
@@ -26,4 +32,9 @@ class Darbinieki extends Model
     public function vadadepo() {
         return $this->hasOne(Depo::class, 'depo_vaditajs');
     }
+
+    public function userIsDarbinieks() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }

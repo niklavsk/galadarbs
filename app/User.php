@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Darbinieki;
 
 class User extends Authenticatable
 {
@@ -37,8 +38,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function userIsDarbinieks()
-    {
-        return $this->hasOne('App\Darbinieki');
+    public function userIsDarbinieks() {
+        return $this->hasOne(Darbinieki::class, 'user_id');
     }
+    
 }

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Transportlidzeklis;
 use App\PienaksanasLaiki;
+use App\Pietura;
 
 class MarsrutaPieturas extends Model
 {
@@ -14,6 +15,10 @@ class MarsrutaPieturas extends Model
 
     public function irNoteikti() {
         return $this->hasMany(PienaksanasLaiki::class,'marsruta_pietura');
+    }
+
+    public function pieder() {
+        return $this->belongsTo(Pietura::class,'pietura');
     }
 
 }
