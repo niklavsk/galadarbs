@@ -16,6 +16,13 @@ class CreateTransportlidzeklisTable extends Migration
         Schema::create('transportlidzeklis', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->date('tehniskas_parbaudes_termins');
+            $table->date('pedeja_remonta_datums');
+            $table->date('razosanas_datums');
+            $table->string('razotajs',50);
+            $table->foreignId('depo_nr');
+            $table->foreignId('marsruta_sakums');
+
         });
     }
 

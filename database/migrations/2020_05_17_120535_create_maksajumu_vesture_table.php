@@ -16,6 +16,11 @@ class CreateMaksajumuVestureTable extends Migration
         Schema::create('maksajumu_vesture', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('pers_kods');
+            $table->foreignId('amats');
+            $table->float('likme');
+            $table->integer('stundu_sk');
+            $table->date('izsniegsanas_datums');
         });
     }
 

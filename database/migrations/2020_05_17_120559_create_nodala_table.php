@@ -16,6 +16,12 @@ class CreateNodalaTable extends Migration
         Schema::create('nodala', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('apraksts',50);
+            $table->foreignId('nodalas_vaditajs');
+            $table->foreignId('atrasanas_vieta');
+            $table->string('epasts',30);
+            $table->string('kontakttalrunis',20);
+
         });
     }
 

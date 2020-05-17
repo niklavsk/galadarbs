@@ -16,6 +16,12 @@ class CreateDepoTable extends Migration
         Schema::create('depo', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('apraksts',200);
+            $table->foreignId('depo_vaditajs');
+            $table->foreignId('atrasanas_vieta');
+            $table->string('epasts',30);
+            $table->string('kontakttalrunis',20);
+
         });
     }
 

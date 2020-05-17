@@ -16,6 +16,8 @@ class CreatePieturaTable extends Migration
         Schema::create('pietura', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('nosaukums',100);
+            $table->foreignId('atrasanas_vieta');
         });
     }
 

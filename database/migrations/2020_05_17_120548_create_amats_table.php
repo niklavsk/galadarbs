@@ -16,6 +16,13 @@ class CreateAmatsTable extends Migration
         Schema::create('amats', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('nosaukums',50);
+            $table->foreignId('nodala');
+            $table->foreignId('depo');
+            $table->float('stundas_likme');
+            $table->foreignId('darba_pilditajs');
+            $table->date('darba_uzsaksanas_datums');
+            $table->date('darba_beigsanas_datums');
         });
     }
 

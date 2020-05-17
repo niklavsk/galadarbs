@@ -16,6 +16,10 @@ class CreateMarsrutaPieturasTable extends Migration
         Schema::create('marsruta_pieturas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('nosaukums',15);
+            $table->integer('pieturas_kartas_nr');
+            $table->foreignId('pietura');
+
         });
     }
 
