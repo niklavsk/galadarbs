@@ -17,10 +17,10 @@ class CreateAmatsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nosaukums',50);
-            $table->foreignId('nodala');
-            $table->foreignId('depo');
+            $table->foreignId('nodala')->references('id')->on('nodala');
+            $table->foreignId('depo')->references('id')->on('depo');
             $table->float('stundas_likme');
-            $table->foreignId('darba_pilditajs');
+            $table->foreignId('darba_pilditajs')->references('id')->on('darbinieki');
             $table->date('darba_uzsaksanas_datums');
             $table->date('darba_beigsanas_datums');
         });

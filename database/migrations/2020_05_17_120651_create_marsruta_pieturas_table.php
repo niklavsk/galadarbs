@@ -18,7 +18,7 @@ class CreateMarsrutaPieturasTable extends Migration
             $table->timestamps();
             $table->string('nosaukums',15);
             $table->integer('pieturas_kartas_nr');
-            $table->foreignId('pietura');
+            $table->foreignId('pietura')->references('id')->on('pietura');
 
         });
     }

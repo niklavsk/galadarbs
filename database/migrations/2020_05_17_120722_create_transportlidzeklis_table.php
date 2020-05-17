@@ -20,8 +20,8 @@ class CreateTransportlidzeklisTable extends Migration
             $table->date('pedeja_remonta_datums');
             $table->date('razosanas_datums');
             $table->string('razotajs',50);
-            $table->foreignId('depo_nr');
-            $table->foreignId('marsruta_sakums');
+            $table->foreignId('depo_nr')->references('id')->on('depo');
+            $table->foreignId('marsruta_sakums')->references('id')->on('marsruta_pieturas');
 
         });
     }

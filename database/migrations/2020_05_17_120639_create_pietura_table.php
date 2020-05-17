@@ -17,7 +17,7 @@ class CreatePieturaTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nosaukums',100);
-            $table->foreignId('atrasanas_vieta');
+            $table->foreignId('atrasanas_vieta')->references('id')->on('adrese');
         });
     }
 

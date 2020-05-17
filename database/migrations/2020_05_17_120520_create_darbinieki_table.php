@@ -20,10 +20,10 @@ class CreateDarbiniekiTable extends Migration
             $table->string('vards',20);
             $table->string('otrais_vards',20);
             $table->string('uzvards',20);
-            $table->foreignId('adrese');
+            $table->foreignId('adrese')->references('id')->on('adrese');
             $table->string('talrunis',20);
             $table->string('epasts',30);
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->references('id')->on('users');
 
         });
     }
