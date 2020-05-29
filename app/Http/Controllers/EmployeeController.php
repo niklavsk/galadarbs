@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
+use App\Darbinieki;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -13,7 +16,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employees = DB::table('darbinieki')->get();
+
+        return view('employees', array('title' => 'Employees', 'employees' => $employees));
     }
 
     /**
@@ -45,7 +50,10 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+        $employee = DB::table('darbinieki')->where('id', $id)->first();
+        $jobs = DB::table('amats')->where('darba_pilditajs', $id)->get();
+
+        return view('employee', array('employee' => $employee, 'jobs' => $jobs));
     }
 
     /**

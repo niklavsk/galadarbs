@@ -7,7 +7,6 @@ use App\MaksajumuVesture;
 use App\Amats;
 use App\Nodala;
 use App\Depo;
-use App\Adrese;
 use App\User;
 
 class Darbinieki extends Model
@@ -15,7 +14,7 @@ class Darbinieki extends Model
     protected $fillable=['pk','vards','otrais_vards','uzvards','adrese','talrunis'];
 
     public function pieder() {
-        return $this->belongsTo(Adrese::class, 'adrese');
+        return $this->belongsTo('App\Adrese', 'adrese');
     }
 
     public function orders() {

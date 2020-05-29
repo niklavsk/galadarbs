@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Amats;
 use App\Transportlidzeklis;
-use App\Adrese;
 use App\Darbinieki;
 
 class Depo extends Model
@@ -13,8 +12,9 @@ class Depo extends Model
     protected $fillable=['apraksts','depo_vaditajs','atrasanas_vieta','epasts','kontakttalrunis'];
 
     public function depoadreses() {
-        return $this->belongsTo(Adrese::class,'atrasanas_vieta');
+        return $this->belongsTo('App\Adrese','atrasanas_vieta');
     }
+
 
     public function atrodasZem() {
         return $this->hasMany(Amats::class,'depo');

@@ -16,7 +16,7 @@ class DarbiniekiSeeder extends Seeder
 
         DB::table('darbinieki')->insert(array(
             array(
-                'id' => '131179-48128',
+                'pk' => '131179-48128',
                 'vards' => 'Parsla',
                 'otrais_vards' => 'Ausma',
                 'uzvards' => 'Abele',
@@ -26,7 +26,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '889336-45964',
+                'pk' => '889336-45964',
                 'vards' => 'Valdis',
                 'otrais_vards' => 'Ainis',
                 'uzvards' => 'Abelis',
@@ -36,7 +36,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '650471-20990',
+                'pk' => '650471-20990',
                 'vards' => 'Raida',
                 'otrais_vards' => 'Maira',
                 'uzvards' => 'Alksne',
@@ -46,7 +46,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '888806-58936',
+                'pk' => '888806-58936',
                 'vards' => 'Markuss',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Alksnis',
@@ -56,7 +56,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '906585-21816',
+                'pk' => '906585-21816',
                 'vards' => 'Rasma',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Avotina',
@@ -66,7 +66,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '501902-44509',
+                'pk' => '501902-44509',
                 'vards' => 'Varis',
                 'otrais_vards' => 'Klavs',
                 'uzvards' => 'Avotins',
@@ -76,7 +76,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '305984-67639',
+                'pk' => '305984-67639',
                 'vards' => 'Joginta',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Balode',
@@ -86,7 +86,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '370285-46685',
+                'pk' => '370285-46685',
                 'vards' => 'Perse',
                 'otrais_vards' => 'Ilze',
                 'uzvards' => 'Balode',
@@ -96,7 +96,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '129147-77688',
+                'pk' => '129147-77688',
                 'vards' => 'Centis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Bergs',
@@ -106,7 +106,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '597297-22680',
+                'pk' => '597297-22680',
                 'vards' => 'Davis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Bergs',
@@ -116,7 +116,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '376603-72178',
+                'pk' => '376603-72178',
                 'vards' => 'Veldze',
                 'otrais_vards' => 'Eisvalda',
                 'uzvards' => 'Berzina',
@@ -126,7 +126,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '796757-84420',
+                'pk' => '796757-84420',
                 'vards' => 'Dzelda',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Bluma',
@@ -136,7 +136,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '596797-26449',
+                'pk' => '596797-26449',
                 'vards' => 'Armins',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Blums',
@@ -146,7 +146,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '928574-17853',
+                'pk' => '928574-17853',
                 'vards' => 'Budris',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Blums',
@@ -156,7 +156,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '225166-84440',
+                'pk' => '225166-84440',
                 'vards' => 'Rosmis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Briedis',
@@ -166,7 +166,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '270416-77290',
+                'pk' => '270416-77290',
                 'vards' => 'Arturs',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Cirulis',
@@ -176,7 +176,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '801088-43601',
+                'pk' => '801088-43601',
                 'vards' => 'Agra',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Dzene',
@@ -186,7 +186,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '964823-69625',
+                'pk' => '964823-69625',
                 'vards' => 'Andris',
                 'otrais_vards' => 'Vairis',
                 'uzvards' => 'Dzenis',
@@ -196,7 +196,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '639916-78163',
+                'pk' => '639916-78163',
                 'vards' => 'Valts',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Dzenis',
@@ -206,7 +206,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '736022-48554',
+                'pk' => '736022-48554',
                 'vards' => 'Astra',
                 'otrais_vards' => 'Agne',
                 'uzvards' => 'Dzintare',
@@ -216,7 +216,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '746403-21359',
+                'pk' => '746403-21359',
                 'vards' => 'Gaida',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Dzintare',
@@ -226,7 +226,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '538677-27315',
+                'pk' => '538677-27315',
                 'vards' => 'Asnis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Dzintars',
@@ -236,7 +236,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '637021-27437',
+                'pk' => '637021-27437',
                 'vards' => 'Zintis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Dzintars',
@@ -246,7 +246,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '267853-86324',
+                'pk' => '267853-86324',
                 'vards' => 'Armins',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Dzintars',
@@ -256,7 +256,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '786278-62027',
+                'pk' => '786278-62027',
                 'vards' => 'Talavs',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Dzintars',
@@ -266,7 +266,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '693955-86333',
+                'pk' => '693955-86333',
                 'vards' => 'Valdemars',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Egle',
@@ -276,7 +276,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '945155-81847',
+                'pk' => '945155-81847',
                 'vards' => 'Ardis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Egle',
@@ -286,7 +286,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '904779-74373',
+                'pk' => '904779-74373',
                 'vards' => 'Davis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Egle',
@@ -296,7 +296,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '225919-60643',
+                'pk' => '225919-60643',
                 'vards' => 'Gundega',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Gaile',
@@ -306,7 +306,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '993622-96899',
+                'pk' => '993622-96899',
                 'vards' => 'Dzilna',
                 'otrais_vards' => 'Ilma',
                 'uzvards' => 'Gaile',
@@ -316,7 +316,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '749536-38384',
+                'pk' => '749536-38384',
                 'vards' => 'Maiga',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Gailite',
@@ -326,7 +326,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '963532-27340',
+                'pk' => '963532-27340',
                 'vards' => 'Roze',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Gailite',
@@ -336,7 +336,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '228897-51768',
+                'pk' => '228897-51768',
                 'vards' => 'Eisvalda',
                 'otrais_vards' => 'Audra',
                 'uzvards' => 'Gailite',
@@ -346,7 +346,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '782620-41149',
+                'pk' => '782620-41149',
                 'vards' => 'Ritma',
                 'otrais_vards' => 'Vesma',
                 'uzvards' => 'Gailite',
@@ -356,7 +356,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '451950-37989',
+                'pk' => '451950-37989',
                 'vards' => 'Aina',
                 'otrais_vards' => 'Gundega',
                 'uzvards' => 'Grinberga',
@@ -366,7 +366,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '870519-39831',
+                'pk' => '870519-39831',
                 'vards' => 'Muidra',
                 'otrais_vards' => 'Dzelda',
                 'uzvards' => 'Grinberga',
@@ -376,7 +376,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '906757-21833',
+                'pk' => '906757-21833',
                 'vards' => 'Dairis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Grinbergs',
@@ -386,7 +386,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '578364-65560',
+                'pk' => '578364-65560',
                 'vards' => 'Laimdota',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Gulbe',
@@ -396,7 +396,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '538500-90187',
+                'pk' => '538500-90187',
                 'vards' => 'Zeltite',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Gulbe',
@@ -406,7 +406,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '648714-21565',
+                'pk' => '648714-21565',
                 'vards' => 'Arvids',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Gulbis',
@@ -416,7 +416,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '913173-73615',
+                'pk' => '913173-73615',
                 'vards' => 'Dainis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Gulbis',
@@ -426,7 +426,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '397813-78069',
+                'pk' => '397813-78069',
                 'vards' => 'Dairis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Gulbis',
@@ -436,7 +436,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '913186-69226',
+                'pk' => '913186-69226',
                 'vards' => 'Arija',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Ivanova',
@@ -446,7 +446,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '355234-14098',
+                'pk' => '355234-14098',
                 'vards' => 'Gundega',
                 'otrais_vards' => 'Usma',
                 'uzvards' => 'Jansone',
@@ -456,7 +456,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '724648-17351',
+                'pk' => '724648-17351',
                 'vards' => 'Zinta',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Jansone',
@@ -466,7 +466,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '835813-61530',
+                'pk' => '835813-61530',
                 'vards' => 'Rudite',
                 'otrais_vards' => 'Teiksma',
                 'uzvards' => 'Karklina',
@@ -476,7 +476,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '918740-46338',
+                'pk' => '918740-46338',
                 'vards' => 'Vairis',
                 'otrais_vards' => 'Vairis',
                 'uzvards' => 'Karklins',
@@ -486,7 +486,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '550394-72646',
+                'pk' => '550394-72646',
                 'vards' => 'Ausma',
                 'otrais_vards' => 'Velga',
                 'uzvards' => 'Kirse',
@@ -496,7 +496,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '802994-49284',
+                'pk' => '802994-49284',
                 'vards' => 'Klavs',
                 'otrais_vards' => 'Talavs',
                 'uzvards' => 'Kirsis',
@@ -506,7 +506,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '683241-92143',
+                'pk' => '683241-92143',
                 'vards' => 'Andris',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Kirsis',
@@ -516,7 +516,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '156036-47240',
+                'pk' => '156036-47240',
                 'vards' => 'Vilnis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Kirsis',
@@ -526,7 +526,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '280970-94955',
+                'pk' => '280970-94955',
                 'vards' => 'Barbala',
                 'otrais_vards' => 'Liga',
                 'uzvards' => 'Klavina',
@@ -536,7 +536,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '192660-12758',
+                'pk' => '192660-12758',
                 'vards' => 'Vizma',
                 'otrais_vards' => 'Selga',
                 'uzvards' => 'Klavina',
@@ -546,7 +546,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '301201-52630',
+                'pk' => '301201-52630',
                 'vards' => 'Joginta',
                 'otrais_vards' => 'Zinta',
                 'uzvards' => 'Klavina',
@@ -556,7 +556,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '524466-27384',
+                'pk' => '524466-27384',
                 'vards' => 'Arvaldis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Klavins',
@@ -566,7 +566,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '726309-40757',
+                'pk' => '726309-40757',
                 'vards' => 'Alvids',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Krauja',
@@ -576,7 +576,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '593312-40461',
+                'pk' => '593312-40461',
                 'vards' => 'Maija',
                 'otrais_vards' => 'Ritma',
                 'uzvards' => 'Krauja',
@@ -586,7 +586,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '759268-64931',
+                'pk' => '759268-64931',
                 'vards' => 'Selga',
                 'otrais_vards' => 'Meldra',
                 'uzvards' => 'Kronberga',
@@ -596,7 +596,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '895878-52937',
+                'pk' => '895878-52937',
                 'vards' => 'Ainis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Kronbergs',
@@ -606,7 +606,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '189293-34110',
+                'pk' => '189293-34110',
                 'vards' => 'Centis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Kronbergs',
@@ -616,7 +616,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '352995-81037',
+                'pk' => '352995-81037',
                 'vards' => 'Kalvis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Kronbergs',
@@ -626,7 +626,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '316637-54068',
+                'pk' => '316637-54068',
                 'vards' => 'Veldze',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Krumina',
@@ -636,7 +636,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '535133-87654',
+                'pk' => '535133-87654',
                 'vards' => 'Ausma',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Krumina',
@@ -646,7 +646,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '307019-74684',
+                'pk' => '307019-74684',
                 'vards' => 'Arija',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Krumina',
@@ -656,7 +656,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '299572-62074',
+                'pk' => '299572-62074',
                 'vards' => 'Andris',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Krumins',
@@ -666,7 +666,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '608606-29054',
+                'pk' => '608606-29054',
                 'vards' => 'Visvaris',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Krumins',
@@ -676,7 +676,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '301639-51263',
+                'pk' => '301639-51263',
                 'vards' => 'Dzintis',
                 'otrais_vards' => 'Virsis',
                 'uzvards' => 'Krumins',
@@ -686,7 +686,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '843188-61964',
+                'pk' => '843188-61964',
                 'vards' => 'Gundega',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Lace',
@@ -696,7 +696,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '710348-85310',
+                'pk' => '710348-85310',
                 'vards' => 'Teiksma',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Lace',
@@ -706,7 +706,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '119207-57895',
+                'pk' => '119207-57895',
                 'vards' => 'Zaiga',
                 'otrais_vards' => 'Maiga',
                 'uzvards' => 'Lace',
@@ -716,7 +716,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '594355-66401',
+                'pk' => '594355-66401',
                 'vards' => 'Ilze',
                 'otrais_vards' => 'Muidra',
                 'uzvards' => 'Lace',
@@ -726,7 +726,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '219914-19046',
+                'pk' => '219914-19046',
                 'vards' => 'Gints',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Lacis',
@@ -736,7 +736,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '520195-65080',
+                'pk' => '520195-65080',
                 'vards' => 'Guntis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Lacis',
@@ -746,7 +746,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '831607-85090',
+                'pk' => '831607-85090',
                 'vards' => 'Astra',
                 'otrais_vards' => 'Roze',
                 'uzvards' => 'Lagzdina',
@@ -756,7 +756,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '214819-22874',
+                'pk' => '214819-22874',
                 'vards' => 'Ilga',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Lagzdina',
@@ -766,7 +766,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '741344-90806',
+                'pk' => '741344-90806',
                 'vards' => 'Lauma',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Lagzdina',
@@ -776,7 +776,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '622033-88636',
+                'pk' => '622033-88636',
                 'vards' => 'Rusma',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Lagzdina',
@@ -786,7 +786,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '890382-97748',
+                'pk' => '890382-97748',
                 'vards' => 'Ilgonis',
                 'otrais_vards' => 'Guntis',
                 'uzvards' => 'Lagzdins',
@@ -796,7 +796,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '549303-10632',
+                'pk' => '549303-10632',
                 'vards' => 'Ilma',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Lazdina',
@@ -806,7 +806,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '252678-72726',
+                'pk' => '252678-72726',
                 'vards' => 'Ardis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Liepa',
@@ -816,7 +816,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '454997-88377',
+                'pk' => '454997-88377',
                 'vards' => 'Arvids',
                 'otrais_vards' => 'Talavs',
                 'uzvards' => 'Liepa',
@@ -826,7 +826,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '385290-27920',
+                'pk' => '385290-27920',
                 'vards' => 'Ardis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Liepa',
@@ -836,7 +836,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '741987-21472',
+                'pk' => '741987-21472',
                 'vards' => 'Antra',
                 'otrais_vards' => 'Parsla',
                 'uzvards' => 'Liepa',
@@ -846,7 +846,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '422908-60863',
+                'pk' => '422908-60863',
                 'vards' => 'Audra',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Liepa',
@@ -856,7 +856,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '785262-45515',
+                'pk' => '785262-45515',
                 'vards' => 'Laisma',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Liepina',
@@ -866,7 +866,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '663231-11893',
+                'pk' => '663231-11893',
                 'vards' => 'Dainis',
                 'otrais_vards' => 'Raitis',
                 'uzvards' => 'Liepins',
@@ -876,7 +876,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '749377-70216',
+                'pk' => '749377-70216',
                 'vards' => 'Gaidis',
                 'otrais_vards' => 'Arturs',
                 'uzvards' => 'Liepins',
@@ -886,7 +886,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '727534-61621',
+                'pk' => '727534-61621',
                 'vards' => 'Aldona',
                 'otrais_vards' => 'Rimante',
                 'uzvards' => 'Luse',
@@ -896,7 +896,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '854576-65794',
+                'pk' => '854576-65794',
                 'vards' => 'Laimute',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Luse',
@@ -906,7 +906,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '166502-14960',
+                'pk' => '166502-14960',
                 'vards' => 'Ranta',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Luse',
@@ -916,7 +916,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '167326-86494',
+                'pk' => '167326-86494',
                 'vards' => 'Asnis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Lusis',
@@ -926,7 +926,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '684956-59168',
+                'pk' => '684956-59168',
                 'vards' => 'Jusma',
                 'otrais_vards' => 'Dagne',
                 'uzvards' => 'Medne',
@@ -936,7 +936,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '715137-45771',
+                'pk' => '715137-45771',
                 'vards' => 'Guntra',
                 'otrais_vards' => 'Liga',
                 'uzvards' => 'Medne',
@@ -946,7 +946,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '515109-83744',
+                'pk' => '515109-83744',
                 'vards' => 'Gaidis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Mednis',
@@ -956,7 +956,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '351151-72900',
+                'pk' => '351151-72900',
                 'vards' => 'Alvids',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Mednis',
@@ -966,7 +966,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '989043-40524',
+                'pk' => '989043-40524',
                 'vards' => 'Talis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Mednis',
@@ -976,7 +976,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '297874-26331',
+                'pk' => '297874-26331',
                 'vards' => 'Raita',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Millere',
@@ -986,7 +986,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '761317-95867',
+                'pk' => '761317-95867',
                 'vards' => 'Ardis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Millers',
@@ -996,7 +996,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '808227-29956',
+                'pk' => '808227-29956',
                 'vards' => 'Valts',
                 'otrais_vards' => 'Armins',
                 'uzvards' => 'Millers',
@@ -1006,7 +1006,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '888713-97814',
+                'pk' => '888713-97814',
                 'vards' => 'Ilgonis',
                 'otrais_vards' => 'Atals',
                 'uzvards' => 'Millers',
@@ -1016,7 +1016,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '569630-27099',
+                'pk' => '569630-27099',
                 'vards' => 'Kalvis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Millers',
@@ -1026,7 +1026,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '224726-16492',
+                'pk' => '224726-16492',
                 'vards' => 'Liega',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Ose',
@@ -1036,7 +1036,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '374102-18081',
+                'pk' => '374102-18081',
                 'vards' => 'Anda',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Ose',
@@ -1046,7 +1046,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '116204-28722',
+                'pk' => '116204-28722',
                 'vards' => 'Muidra',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Ose',
@@ -1056,7 +1056,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '123865-31641',
+                'pk' => '123865-31641',
                 'vards' => 'Audra',
                 'otrais_vards' => 'Rota',
                 'uzvards' => 'Ose',
@@ -1066,7 +1066,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '610811-33123',
+                'pk' => '610811-33123',
                 'vards' => 'Astra',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Ozola',
@@ -1076,7 +1076,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '466712-59657',
+                'pk' => '466712-59657',
                 'vards' => 'Muidra',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Ozola',
@@ -1086,7 +1086,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '179345-64681',
+                'pk' => '179345-64681',
                 'vards' => 'Laisma',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Ozolina',
@@ -1096,7 +1096,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '584502-96154',
+                'pk' => '584502-96154',
                 'vards' => 'Gunta',
                 'otrais_vards' => 'Vizbule',
                 'uzvards' => 'Ozolina',
@@ -1106,7 +1106,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '672874-98586',
+                'pk' => '672874-98586',
                 'vards' => 'Raita',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Ozolina',
@@ -1116,7 +1116,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '913850-21282',
+                'pk' => '913850-21282',
                 'vards' => 'Sarta',
                 'otrais_vards' => 'Dzelda',
                 'uzvards' => 'Ozolina',
@@ -1126,7 +1126,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '267217-12462',
+                'pk' => '267217-12462',
                 'vards' => 'Klavs',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Ozolins',
@@ -1136,7 +1136,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '695542-77179',
+                'pk' => '695542-77179',
                 'vards' => 'Rimants',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Ozolins',
@@ -1146,7 +1146,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '841902-92969',
+                'pk' => '841902-92969',
                 'vards' => 'Daumants',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Ozols',
@@ -1156,7 +1156,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '239743-25119',
+                'pk' => '239743-25119',
                 'vards' => 'Talis',
                 'otrais_vards' => 'Visvaris',
                 'uzvards' => 'Ozols',
@@ -1166,7 +1166,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '440547-33316',
+                'pk' => '440547-33316',
                 'vards' => 'Didzis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Ozols',
@@ -1176,7 +1176,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '258742-24152',
+                'pk' => '258742-24152',
                 'vards' => 'Centis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Paeglis',
@@ -1186,7 +1186,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '327197-60789',
+                'pk' => '327197-60789',
                 'vards' => 'Arvaldis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Priede',
@@ -1196,7 +1196,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '646316-49530',
+                'pk' => '646316-49530',
                 'vards' => 'Dairis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Priede',
@@ -1206,7 +1206,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '481729-98262',
+                'pk' => '481729-98262',
                 'vards' => 'Dagne',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Priede',
@@ -1216,7 +1216,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '101683-80419',
+                'pk' => '101683-80419',
                 'vards' => 'Parsla',
                 'otrais_vards' => 'Modra',
                 'uzvards' => 'Priede',
@@ -1226,7 +1226,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '622928-28555',
+                'pk' => '622928-28555',
                 'vards' => 'Meldra',
                 'otrais_vards' => 'Gundega',
                 'uzvards' => 'Priede',
@@ -1236,7 +1236,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '315308-12716',
+                'pk' => '315308-12716',
                 'vards' => 'Raida',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Priedite',
@@ -1246,7 +1246,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '327299-35498',
+                'pk' => '327299-35498',
                 'vards' => 'Arvids',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Prieditis',
@@ -1256,7 +1256,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '201685-35287',
+                'pk' => '201685-35287',
                 'vards' => 'Talavs',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Putnins',
@@ -1266,7 +1266,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '267546-95758',
+                'pk' => '267546-95758',
                 'vards' => 'Gunvaldis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Putnins',
@@ -1276,7 +1276,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '590648-82591',
+                'pk' => '590648-82591',
                 'vards' => 'Astra',
                 'otrais_vards' => 'Dzelda',
                 'uzvards' => 'Rozenberga',
@@ -1286,7 +1286,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '725149-15474',
+                'pk' => '725149-15474',
                 'vards' => 'Antra',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Rubene',
@@ -1296,7 +1296,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '726018-86703',
+                'pk' => '726018-86703',
                 'vards' => 'Vesma',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Smita',
@@ -1306,7 +1306,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '584630-54869',
+                'pk' => '584630-54869',
                 'vards' => 'Gaida',
                 'otrais_vards' => 'Aldona',
                 'uzvards' => 'Smita',
@@ -1316,7 +1316,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '640434-95614',
+                'pk' => '640434-95614',
                 'vards' => 'Raimonds',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Smits',
@@ -1326,7 +1326,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '831893-99441',
+                'pk' => '831893-99441',
                 'vards' => 'Armins',
                 'otrais_vards' => 'Didzis',
                 'uzvards' => 'Smits',
@@ -1336,7 +1336,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '424101-51158',
+                'pk' => '424101-51158',
                 'vards' => 'Nora',
                 'otrais_vards' => 'Dagne',
                 'uzvards' => 'Sproge',
@@ -1346,7 +1346,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '340125-41604',
+                'pk' => '340125-41604',
                 'vards' => 'Rasma',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Sproge',
@@ -1356,7 +1356,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '810911-27195',
+                'pk' => '810911-27195',
                 'vards' => 'Valdis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Sprogis',
@@ -1366,7 +1366,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '206259-92252',
+                'pk' => '206259-92252',
                 'vards' => 'Dainis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Sprogis',
@@ -1376,7 +1376,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '822208-76800',
+                'pk' => '822208-76800',
                 'vards' => 'Valts',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Sprogis',
@@ -1386,7 +1386,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '262301-51126',
+                'pk' => '262301-51126',
                 'vards' => 'Rota',
                 'otrais_vards' => 'Nora',
                 'uzvards' => 'Steinberga',
@@ -1396,7 +1396,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '228314-51167',
+                'pk' => '228314-51167',
                 'vards' => 'Ainis',
                 'otrais_vards' => 'Talavs',
                 'uzvards' => 'Steinbergs',
@@ -1406,7 +1406,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '714488-21456',
+                'pk' => '714488-21456',
                 'vards' => 'Nora',
                 'otrais_vards' => 'Perse',
                 'uzvards' => 'Strautina',
@@ -1416,7 +1416,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '940838-23741',
+                'pk' => '940838-23741',
                 'vards' => 'Audra',
                 'otrais_vards' => 'Astra',
                 'uzvards' => 'Strautina',
@@ -1426,7 +1426,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '190636-75856',
+                'pk' => '190636-75856',
                 'vards' => 'Dzidra',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Strautina',
@@ -1436,7 +1436,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '442197-93908',
+                'pk' => '442197-93908',
                 'vards' => 'Ardis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Strautins',
@@ -1446,7 +1446,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '165304-95344',
+                'pk' => '165304-95344',
                 'vards' => 'Armins',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Strautins',
@@ -1456,7 +1456,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '320565-50148',
+                'pk' => '320565-50148',
                 'vards' => 'Aldona',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Strazda',
@@ -1466,7 +1466,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '131243-26521',
+                'pk' => '131243-26521',
                 'vards' => 'Dzelda',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Strazda',
@@ -1476,7 +1476,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '153129-68597',
+                'pk' => '153129-68597',
                 'vards' => 'Ilgonis',
                 'otrais_vards' => 'Armins',
                 'uzvards' => 'Strazds',
@@ -1486,7 +1486,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '618671-59100',
+                'pk' => '618671-59100',
                 'vards' => 'Ulvis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Strazds',
@@ -1496,7 +1496,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '372457-84452',
+                'pk' => '372457-84452',
                 'vards' => 'Ausma',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Stroda',
@@ -1506,7 +1506,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '318950-27161',
+                'pk' => '318950-27161',
                 'vards' => 'Aina',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Stroda',
@@ -1516,7 +1516,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '344165-58348',
+                'pk' => '344165-58348',
                 'vards' => 'Vesma',
                 'otrais_vards' => 'Gaida',
                 'uzvards' => 'Stroda',
@@ -1526,7 +1526,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '441520-40434',
+                'pk' => '441520-40434',
                 'vards' => 'Gunvaldis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Strods',
@@ -1536,7 +1536,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '850573-31535',
+                'pk' => '850573-31535',
                 'vards' => 'Dainis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Strods',
@@ -1546,7 +1546,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '306615-90047',
+                'pk' => '306615-90047',
                 'vards' => 'Valdis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Strods',
@@ -1556,7 +1556,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '228468-24111',
+                'pk' => '228468-24111',
                 'vards' => 'Dzidra',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Vanaga',
@@ -1566,7 +1566,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '972323-81499',
+                'pk' => '972323-81499',
                 'vards' => 'Centis',
                 'otrais_vards' => 'Visvaris',
                 'uzvards' => 'Vanags',
@@ -1576,7 +1576,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '437312-35784',
+                'pk' => '437312-35784',
                 'vards' => 'Dzelda',
                 'otrais_vards' => 'Auce',
                 'uzvards' => 'Viksna',
@@ -1586,7 +1586,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '737437-20688',
+                'pk' => '737437-20688',
                 'vards' => 'Dagne',
                 'otrais_vards' => 'Sarta',
                 'uzvards' => 'Vilcane',
@@ -1596,7 +1596,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '422450-16719',
+                'pk' => '422450-16719',
                 'vards' => 'Liega',
                 'otrais_vards' => 'Smuidra',
                 'uzvards' => 'Vilcane',
@@ -1606,7 +1606,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '485394-55074',
+                'pk' => '485394-55074',
                 'vards' => 'Arturs',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Vilcans',
@@ -1616,7 +1616,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '200368-28498',
+                'pk' => '200368-28498',
                 'vards' => 'Asnis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Vilcins',
@@ -1626,7 +1626,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '576776-78262',
+                'pk' => '576776-78262',
                 'vards' => 'Dzelda',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Vilka',
@@ -1636,7 +1636,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '556720-57996',
+                'pk' => '556720-57996',
                 'vards' => 'Gundega',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Vilka',
@@ -1646,7 +1646,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '571715-66227',
+                'pk' => '571715-66227',
                 'vards' => 'Modris',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Vilks',
@@ -1656,7 +1656,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '894064-99571',
+                'pk' => '894064-99571',
                 'vards' => 'Arvaldis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Vilks',
@@ -1666,7 +1666,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '355799-51571',
+                'pk' => '355799-51571',
                 'vards' => 'Eisvalda',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Vitola',
@@ -1676,7 +1676,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '831083-66655',
+                'pk' => '831083-66655',
                 'vards' => 'Andris',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Vitolins',
@@ -1686,7 +1686,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '959235-59148',
+                'pk' => '959235-59148',
                 'vards' => 'Virsis',
                 'otrais_vards' => 'Ulvis',
                 'uzvards' => 'Vitols',
@@ -1696,7 +1696,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '262244-51088',
+                'pk' => '262244-51088',
                 'vards' => 'Aris',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Vitols',
@@ -1706,7 +1706,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '370585-71841',
+                'pk' => '370585-71841',
                 'vards' => 'Davis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Vitols',
@@ -1716,7 +1716,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '686152-29581',
+                'pk' => '686152-29581',
                 'vards' => 'Laisma',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Zake',
@@ -1726,7 +1726,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '408650-28638',
+                'pk' => '408650-28638',
                 'vards' => 'Guntis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Zakis',
@@ -1736,7 +1736,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '828976-62950',
+                'pk' => '828976-62950',
                 'vards' => 'Gints',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Zakis',
@@ -1746,7 +1746,7 @@ class DarbiniekiSeeder extends Seeder
             ),
 
             array(
-                'id' => '222222-28638',
+                'pk' => '222222-28638',
                 'vards' => 'Gatis',
                 'otrais_vards' => NULL,
                 'uzvards' => 'Vitols',
@@ -1758,6 +1758,7 @@ class DarbiniekiSeeder extends Seeder
         ));
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
 
     }
 }
