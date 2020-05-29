@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMarsrutaPieturasTable extends Migration
+class CreateMarsrutiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateMarsrutaPieturasTable extends Migration
      */
     public function up()
     {
-        Schema::create('marsruta_pieturas', function (Blueprint $table) {
+        Schema::create('marsruti', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('pieturas_kartas_nr');
-            $table->foreignId('pietura')->references('id')->on('pietura');
-            $table->foreignId('marsruta_id')->references('id')->on('marsruti');
-
+            $table->string('nosaukums',30);
+            $table->string('apraksts',200);
         });
     }
 
@@ -30,6 +28,6 @@ class CreateMarsrutaPieturasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('marsruta_pieturas');
+        Schema::dropIfExists('marsruti');
     }
 }

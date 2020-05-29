@@ -14,16 +14,17 @@ class CreateDarbiniekiTable extends Migration
     public function up()
     {
         Schema::create('darbinieki', function (Blueprint $table) {
-            $table->id();
+            //$table->id();
+            $table->string('id',20)->primary();
             $table->timestamps();
-            $table->string('pk',20);
+
             $table->string('vards',20);
-            $table->string('otrais_vards',20);
+            $table->string('otrais_vards',20)->nullable();
             $table->string('uzvards',20);
             $table->foreignId('adrese')->references('id')->on('adrese');
-            $table->string('talrunis',20);
-            $table->string('epasts',30);
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->string('talrunis',20)->nullable();
+            $table->string('epasts',30)->nullable();
+            $table->foreignId('user_id')->nullable()->default(NULL)->references('id')->on('users');
 
         });
     }

@@ -10,6 +10,8 @@ use App\Pietura;
 
 class Adrese extends Model
 {
+    protected $fillable=['valsts','novads','pilseta','iela','majas_nr','pagasts','majas_nosaukums','pasta_indekss'];
+
     public function dzivo() {
         return $this->hasMany(Darbinieki::class,'adrese');
     }

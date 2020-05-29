@@ -10,6 +10,7 @@ use App\Darbinieki;
 
 class Depo extends Model
 {
+    protected $fillable=['apraksts','depo_vaditajs','atrasanas_vieta','epasts','kontakttalrunis'];
 
     public function depoadreses() {
         return $this->belongsTo(Adrese::class,'atrasanas_vieta');

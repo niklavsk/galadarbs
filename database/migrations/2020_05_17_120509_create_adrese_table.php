@@ -17,12 +17,12 @@ class CreateAdreseTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('valsts',20);
-            $table->string('novads',20);
-            $table->string('pilseta',30);
-            $table->string('iela',30);
-            $table->string('majas_nr',10);
-            $table->string('pagasts',30);
-            $table->string('majas_nosaukums',20);
+            $table->string('novads',20)->nullable();
+            $table->string('pilseta',30)->nullable();
+            $table->string('iela',30)->nullable();
+            $table->string('majas_nr',10)->nullable();
+            $table->string('pagasts',30)->nullable();
+            $table->string('majas_nosaukums',20)->nullable();
             $table->string('pasta_indekss',10);
 
         });

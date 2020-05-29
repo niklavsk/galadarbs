@@ -41,5 +41,5 @@ class User extends Authenticatable
     public function userIsDarbinieks() {
         return $this->hasOne(Darbinieki::class, 'user_id');
     }
-    
+
 }

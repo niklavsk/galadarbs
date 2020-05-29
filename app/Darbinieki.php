@@ -12,6 +12,7 @@ use App\User;
 
 class Darbinieki extends Model
 {
+    protected $fillable=['pk','vards','otrais_vards','uzvards','adrese','talrunis'];
 
     public function pieder() {
         return $this->belongsTo(Adrese::class, 'adrese');
