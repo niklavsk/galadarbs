@@ -13,13 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/employees', 'EmployeeController@index')->name('allEmployees')->middleware('auth');
+Route::get('/employee/{id}', 'EmployeeController@show')->middleware('auth');
+Route::get('/employee', 'EmployeeController@showProfile')->name('viewProfile')->middleware('auth');
 
-Route::get('/employees', 'EmployeeController@index');
-Route::get('/employee/{id}', 'EmployeeController@show');
+Route::get('/payroll', 'PayController@index')->name('allPayroll')->middleware('auth');
+Route::get('/payroll/view/{id}', 'PayController@show')->name('pay')->middleware('auth');
+
+

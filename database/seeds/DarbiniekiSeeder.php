@@ -1757,6 +1757,10 @@ class DarbiniekiSeeder extends Seeder
 
         ));
 
+        DB::table('darbinieki')
+            ->where('id', 1)
+            ->update(array('user_id' => 1));
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
 

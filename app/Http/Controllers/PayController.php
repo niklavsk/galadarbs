@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PayController extends Controller
 {
@@ -13,7 +14,9 @@ class PayController extends Controller
      */
     public function index()
     {
-        //
+        $payroll = DB::table('maksajumu_vesture')->get();
+
+        return view('payroll', array('payroll' => $payroll));
     }
 
     /**
@@ -45,7 +48,11 @@ class PayController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $pay = DB::table('maksajumu_vesture')->where('id', $id)->first();
+        $employee = DB::table('darbinieki')->where('id', $pay->pers_kods)->first();
+
+        return view('pay', array('employee' => $employee, 'pay' => $pay));
     }
 
     /**

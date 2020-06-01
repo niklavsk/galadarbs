@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use App\Darbinieki;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class EmployeeController extends Controller
     {
         $employees = DB::table('darbinieki')->get();
 
-        return view('employees', array('title' => 'Employees', 'employees' => $employees));
+        return view('employees', array('employees' => $employees));
     }
 
     /**
@@ -89,4 +90,17 @@ class EmployeeController extends Controller
     {
         //
     }
+
+    public function showProfile()
+    {
+        $login_id = Auth::id();
+        $user = DB::table('darbinieki')->where('user_id', $login_id)->first();
+        $id = $user->id;
+
+        $employee = DB::table('darbinieki')->where('id', $id)->first();
+        $jobs = DB::table('amats')->where('darba_pilditajs', $id)->get();
+
+        return view('employee', array('employee' => $employee, 'jobs' => $jobs));
+    }
+
 }
