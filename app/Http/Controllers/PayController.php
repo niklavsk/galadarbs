@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class PayController extends Controller
 {
+    /* testing git
+     *
+     */
     /**
      * Display a listing of the resource.
      *
