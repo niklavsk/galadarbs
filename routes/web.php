@@ -24,4 +24,11 @@ Route::get('/employee', 'EmployeeController@showProfile')->name('viewProfile')->
 Route::get('/payroll', 'PayController@index')->name('allPayroll')->middleware('auth');
 Route::get('/payroll/view/{id}', 'PayController@show')->name('pay')->middleware('auth');
 
+Route::get('/vehicles', 'VehicleController@index')->name('allVehicles')->middleware('auth');
+Route::get('/vehicle/{id}', 'VehicleController@show')->middleware('auth');
 
+Route::get('/depots', 'DepotController@index')->name('allDepots')->middleware('auth');
+Route::get('/depot/{id}', 'DepotController@show')->middleware('auth');
+
+Route::get('/routes', 'RouteController@index')->name('allRoutes')->middleware('auth');
+Route::get('/route/{id}', 'RouteController@show')->middleware('auth');

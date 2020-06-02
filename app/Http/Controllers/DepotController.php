@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class VehicleController extends Controller
+class DepotController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicles = DB::table('transportlidzeklis')->get();
+        $depots = DB::table('depo')->get();
 
-        return view('vehicles', array('vehicles' => $vehicles));
+        return view('depots', array('depots' => $depots));
     }
 
     /**
@@ -48,9 +48,9 @@ class VehicleController extends Controller
      */
     public function show($id)
     {
-        $vehicle = DB::table('transportlidzeklis')->where('id', $id)->first();
+        $depot = DB::table('depo')->where('id', $id)->first();
 
-        return view('vehicle', array('vehicle' => $vehicle));
+        return view('depot', array('depot' => $depot));
     }
 
     /**

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class VehicleController extends Controller
+class RouteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicles = DB::table('transportlidzeklis')->get();
+        $routes = DB::table('marsruti')->get();
 
-        return view('vehicles', array('vehicles' => $vehicles));
+        return view('routes', array('routes' => $routes));
     }
 
     /**
@@ -48,9 +48,10 @@ class VehicleController extends Controller
      */
     public function show($id)
     {
-        $vehicle = DB::table('transportlidzeklis')->where('id', $id)->first();
+        $route = DB::table('marsruti')->where('id', $id)->first();
+        $stops = DB::table('marsruta_pieturas')->where('marsruta_id', $id)->orderBy('pieturas_kartas_nr', 'asc')->get();
 
-        return view('vehicle', array('vehicle' => $vehicle));
+        return view('route', array('route' => $route, 'stops' => $stops));
     }
 
     /**
