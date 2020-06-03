@@ -18,7 +18,7 @@ class DepoSeeder extends Seeder
             array(
                 'apraksts' => 'Apkalpo Zalo liniju. Marsruts Imanta-Jugla. Spej apkalpot 15 vilcienu pilnos sastavus.',
                 'depo_vaditajs' => 16,
-                'atrasanas_vieta' => 1,
+                'atrasanas_vieta' => 34,
                 'epasts' => 'depo1@metro.lv',
                 'kontakttalrunis' => '+37121964122',
             ),
@@ -26,7 +26,7 @@ class DepoSeeder extends Seeder
             array(
                 'apraksts' => 'Apkalpo Zalo liniju. Marsruts Imanta-Jugla. Spej apkalpot 15 vilcienu pilnos sastavus.',
                 'depo_vaditajs' => 18,
-                'atrasanas_vieta' => 2,
+                'atrasanas_vieta' => 35,
                 'epasts' => 'depo2@metro.lv',
                 'kontakttalrunis' => '+37122541526',
             ),
@@ -34,7 +34,7 @@ class DepoSeeder extends Seeder
             array(
                 'apraksts' => 'Apkalpo Zalo liniju. Marsruts Jugla-Imanta. Spej apkalpot 15 vilcienu pilnos sastavus.',
                 'depo_vaditajs' => 19,
-                'atrasanas_vieta' => 3,
+                'atrasanas_vieta' => 36,
                 'epasts' => 'depo3@metro.lv',
                 'kontakttalrunis' => '+37129016199',
             ),
@@ -42,7 +42,7 @@ class DepoSeeder extends Seeder
             array(
                 'apraksts' => 'Apkalpo Zalo liniju. Marsruts Jugla-Imanta. Spej apkalpot 15 vilcienu pilnos sastavus.',
                 'depo_vaditajs' => 22,
-                'atrasanas_vieta' => 4,
+                'atrasanas_vieta' => 37,
                 'epasts' => 'depo4@metro.lv',
                 'kontakttalrunis' => '+37127667958',
             ),
@@ -50,7 +50,7 @@ class DepoSeeder extends Seeder
             array(
                 'apraksts' => 'Apkalpo Oranzo liniju. Marsruts Bullu kapa-Dreilini. Spej apkalpot 15 vilcienu pilnos sastavus.',
                 'depo_vaditajs' => 23,
-                'atrasanas_vieta' => 5,
+                'atrasanas_vieta' => 38,
                 'epasts' => 'depo5@metro.lv',
                 'kontakttalrunis' => '+37129085437',
             ),
@@ -58,7 +58,7 @@ class DepoSeeder extends Seeder
             array(
                 'apraksts' => 'Apkalpo Oranzo liniju. Marsruts Bullu kapa-Dreilini. Spej apkalpot 15 vilcienu pilnos sastavus.',
                 'depo_vaditajs' => 24,
-                'atrasanas_vieta' => 6,
+                'atrasanas_vieta' => 39,
                 'epasts' => 'depo6@metro.lv',
                 'kontakttalrunis' => '+37122383118',
             ),
@@ -66,7 +66,7 @@ class DepoSeeder extends Seeder
             array(
                 'apraksts' => 'Apkalpo Oranzo liniju. Marsruts Dreilini-Bullu kapa. Spej apkalpot 15 vilcienu pilnos sastavus.',
                 'depo_vaditajs' => 26,
-                'atrasanas_vieta' => 7,
+                'atrasanas_vieta' => 40,
                 'epasts' => 'depo7@metro.lv',
                 'kontakttalrunis' => '+37126161086',
             ),
@@ -74,7 +74,7 @@ class DepoSeeder extends Seeder
             array(
                 'apraksts' => 'Apkalpo Oranzo liniju. Marsruts Dreilini-Bullu kapa. Spej apkalpot 15 vilcienu pilnos sastavus.',
                 'depo_vaditajs' => 27,
-                'atrasanas_vieta' => 8,
+                'atrasanas_vieta' => 41,
                 'epasts' => 'depo8@metro.lv',
                 'kontakttalrunis' => '+37125044525',
             ),
@@ -82,7 +82,7 @@ class DepoSeeder extends Seeder
             array(
                 'apraksts' => 'Apkalpo Zilo liniju. Marsruts Sarkandaugava-Ziepniekkalns. Spej apkalpot 15 vilcienu pilnos sastavus.',
                 'depo_vaditajs' => 28,
-                'atrasanas_vieta' => 9,
+                'atrasanas_vieta' => 42,
                 'epasts' => 'depo9@metro.lv',
                 'kontakttalrunis' => '+37121309136',
             ),
@@ -90,7 +90,7 @@ class DepoSeeder extends Seeder
             array(
                 'apraksts' => 'Apkalpo Zilo liniju. Marsruts Sarkandaugava-Ziepniekkalns. Spej apkalpot 15 vilcienu pilnos sastavus.',
                 'depo_vaditajs' => 30,
-                'atrasanas_vieta' => 10,
+                'atrasanas_vieta' => 43,
                 'epasts' => 'depo10@metro.lv',
                 'kontakttalrunis' => '+37127759716',
             ),
@@ -98,7 +98,7 @@ class DepoSeeder extends Seeder
             array(
                 'apraksts' => 'Apkalpo Zilo liniju. Marsruts Ziepniekkalns-Sarkandaugava. Spej apkalpot 15 vilcienu pilnos sastavus.',
                 'depo_vaditajs' => 31,
-                'atrasanas_vieta' => 11,
+                'atrasanas_vieta' => 44,
                 'epasts' => 'depo11@metro.lv',
                 'kontakttalrunis' => '+37124383937',
             ),
@@ -106,7 +106,7 @@ class DepoSeeder extends Seeder
             array(
                 'apraksts' => 'Apkalpo Zilo liniju. Marsruts Ziepniekkalns-Sarkandaugava. Spej apkalpot 15 vilcienu pilnos sastavus.',
                 'depo_vaditajs' => 32,
-                'atrasanas_vieta' => 12,
+                'atrasanas_vieta' => 45,
                 'epasts' => 'depo12@metro.lv',
                 'kontakttalrunis' => '+37127202153',
             ),

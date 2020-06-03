@@ -9,6 +9,7 @@ use App\Darbinieki;
 
 class Depo extends Model
 {
+    public $table = 'depo';
     protected $fillable=['apraksts','depo_vaditajs','atrasanas_vieta','epasts','kontakttalrunis'];
 
     public function depoadreses() {

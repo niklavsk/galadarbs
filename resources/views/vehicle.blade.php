@@ -13,5 +13,8 @@
         <a href="{{ url('route', $vehicle->marsruta_id) }}"><h4>Maršruts: {{ $vehicle->marsruta_id }}</h4></a>
     </div>
 
+    <a href="{{ url('edit/vehicle', $vehicle->id) }}" class="btn">Rediģēt transportlīdzekli</a>
+    <a href="{{ url('destroy/vehicle', $vehicle->id) }}" class="btn">Izdzēst transportlīdzekli</a>
+
 @endsection
 

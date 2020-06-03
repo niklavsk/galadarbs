@@ -15,6 +15,8 @@
         @endforeach
     @endif
 
+    <a href="{{ url('create/depot') }}" class="btn">Pievienot depo</a>
+
 @endsection
 
 
