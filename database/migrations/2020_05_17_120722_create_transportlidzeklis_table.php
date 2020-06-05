@@ -17,7 +17,7 @@ class CreateTransportlidzeklisTable extends Migration
             $table->id();
             $table->timestamps();
             $table->date('tehniskas_parbaudes_termins');
-            $table->date('pedeja_remonta_datums');
+            $table->date('pedeja_remonta_datums')->nullable();
             $table->date('razosanas_datums');
             $table->string('razotajs',50);
             $table->foreignId('depo_nr')->references('id')->on('depo')->constrained();

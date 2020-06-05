@@ -40,6 +40,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('allPayroll') }}">Maksājumi</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('allVehicles') }}">Transportlīdzekļi</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('allDepots') }}">Depo</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('allRoutes') }}">Maršruti</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
