@@ -3,6 +3,8 @@
 
     <h4>Saraksts ar visiem transportlīdzekļiem</h4>
 
+    <a href="{{ url('create/vehicle') }}" class="btn">Pievienot transportlīdzekli</a>
+
     @if(count($vehicles) == 0)
 
         <h5>Transportlīdzekļu nav!</h5>
@@ -14,8 +16,6 @@
             </div>
         @endforeach
     @endif
-
-    <a href="{{ url('create/vehicle') }}" class="btn">Pievienot transportlīdzekli</a>
 
 @endsection
 

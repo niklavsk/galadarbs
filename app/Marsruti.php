@@ -8,6 +8,7 @@ use App\Transportlidzeklis;
 
 class Marsruti extends Model
 {
+    public $table = 'marsruti';
     protected $fillable=['nosaukums','apraksts'];
 
     public function brauc() {

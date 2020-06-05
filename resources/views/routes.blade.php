@@ -3,6 +3,8 @@
 
     <h4>Saraksts ar visiem maršrutiem</h4>
 
+    <a href="{{ url('create/route') }}" class="btn">Pievienot maršrutu</a>
+
     @if(count($routes) == 0)
 
         <h5>Maršrutu nav!</h5>

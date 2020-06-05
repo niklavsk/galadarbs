@@ -4,7 +4,6 @@
     <h4>Maršruts: {{ $route->id }} | {{ $route->nosaukums }}</h4>
 
     <div>
-{{--        <a href="{{ url('employee', $depot->depo_vaditajs) }}"><h4>Depo vadītājs: {{ $depot->depo_vaditajs }}</h4></a>--}}
 
         <h4>Apraksts: {{ $route->apraksts }}</h4>
     </div>
@@ -33,7 +32,8 @@
         </table>
     @endif
 
-
+    <a href="{{ url('edit/route', $route->id) }}" class="btn">Rediģēt maršrutu</a>
+    <a href="{{ url('destroy/route', $route->id) }}" class="btn">Izdzēst maršrutu</a>
 
 @endsection
 

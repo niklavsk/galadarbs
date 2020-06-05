@@ -3,6 +3,8 @@
 
     <h4>Saraksts ar visiem depo</h4>
 
+    <a href="{{ url('create/depot') }}" class="btn">Pievienot depo</a>
+
     @if(count($depots) == 0)
 
         <h5>Depo nav!</h5>
@@ -14,8 +16,6 @@
             </div>
         @endforeach
     @endif
-
-    <a href="{{ url('create/depot') }}" class="btn">Pievienot depo</a>
 
 @endsection
 

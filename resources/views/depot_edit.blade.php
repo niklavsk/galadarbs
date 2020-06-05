@@ -75,7 +75,7 @@
             </div>
         </div>
 
-        <input type="submit" value="Izveidot" class="btn">
+        <input type="submit" value="Veikt izmaiņas" class="btn">
 
     </form>
 
