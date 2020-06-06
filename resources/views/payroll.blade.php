@@ -2,7 +2,7 @@
 @section('content')
 
     <h4>Saraksts ar visiem veiktajiem maksājumiem</h4>
-
+    <h6><a href="{{ action('PayController@create') }}">Jauns maksājums</a></h6>
     @if(count($payroll) == 0)
 
         <h5>Veikto maksājumu nav!</h5>
