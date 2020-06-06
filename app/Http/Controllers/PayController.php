@@ -29,7 +29,13 @@ class PayController extends Controller
      */
     public function create()
     {
-        //
+        $amati = DB::table('amats')->where('darba_beigsanas_datums','NULL');
+
+        $lastPayrollDate = DB::table('maksajumu_vesture')->max('izsniegsanas_datums');
+
+        $beigtieAmati = DB::table('maksajumu_vesture')->where('izsniegsanas_datums','>',$lastPayrollDate);
+
+        return view('payroll_create');
     }
 
     /**
