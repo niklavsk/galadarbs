@@ -36,7 +36,7 @@ class PayController extends Controller
         $beigtieAmati = DB::table('maksajumu_vesture')->where('izsniegsanas_datums','>',$lastPayrollDate)->get();
 
 
-        return view('payroll_create', array('aktualie'=>$amati,'atlaistie'=>$beigtieAmati));
+        return view('payroll_create', array('aktualie' => $amati, 'atlaistie' => $beigtieAmati));
     }
 
     /**
@@ -51,7 +51,11 @@ class PayController extends Controller
             'stundu_sk' => 'required|integer',
         ]);
         if ($validator->fails()) {
-            return view('payroll_create', array('errors' => $validator->messages()));
+            $amati = DB::table('amats')->whereNull('darba_beigsanas_datums')->get();
+            $lastPayrollDate = DB::table('maksajumu_vesture')->max('izsniegsanas_datums');
+            $beigtieAmati = DB::table('maksajumu_vesture')->where('izsniegsanas_datums','>',$lastPayrollDate)->get();
+
+            return view('payroll_create', array('errors' => $validator->messages(), 'aktualie' => $amati, 'atlaistie' => $beigtieAmati));
         }
 
         $maksajums = new MaksajumuVesture();
