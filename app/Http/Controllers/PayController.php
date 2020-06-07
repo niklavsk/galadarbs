@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\MaksajumuVesture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class PayController extends Controller
 {
@@ -45,7 +47,23 @@ class PayController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'stundu_sk' => 'required|integer',
+        ]);
+        if ($validator->fails()) {
+            return view('payroll_create', array('errors' => $validator->messages()));
+        }
+
+        $maksajums = new MaksajumuVesture();
+        $maksajums->pers_kods = $request->pers_kods;
+        $maksajums->amats = $request->amats;
+        $maksajums->likme = $request->likme;
+        $maksajums->stundu_sk = $request->stundu_sk;
+        $maksajums->izsniegsanas_datums = $request->izsniegsanas_datums;
+        $maksajums->save();
+
+
+        return $this->show($maksajums->id);
     }
 
     /**
@@ -56,7 +74,6 @@ class PayController extends Controller
      */
     public function show($id)
     {
-
         $pay = DB::table('maksajumu_vesture')->where('id', $id)->first();
         $employee = DB::table('darbinieki')->where('id', $pay->pers_kods)->first();
 
