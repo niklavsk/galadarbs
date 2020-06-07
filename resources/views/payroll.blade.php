@@ -1,18 +1,37 @@
 @extends('layouts.app')
 @section('content')
 
-    <h4>Saraksts ar visiem veiktajiem maksājumiem</h4>
-    <h6><a href="{{ action('PayController@create') }}">Jauns maksājums</a></h6>
-    @if(count($payroll) == 0)
+    <h4>Maksājums</h4>
 
-        <h5>Veikto maksājumu nav!</h5>
+    <table>
+        <tr>
+            <th>Personas kods</th>
+            <th>Adrese</th>
+            <th>Tālrunis</th>
+            <th>Epasts</th>
+        </tr>
+        <tr>
+            <td>{{$employee->pk}}</td>
+            <td>{{$employee->adrese}}</td>
+            <td>{{$employee->talrunis}}</td>
+            <td>{{$employee->epasts}}</td>
+        </tr>
+    </table>
 
-    @else
-        @foreach ( $payroll as $pay)
-            <div>
-                <a href="{{ url('payroll/view', $pay->id) }}">{{ $pay->pers_kods }} {{ $pay->likme * $pay->stundu_sk }} {{ $pay->izsniegsanas_datums }}</a>
-            </div>
-        @endforeach
-    @endif
+    <table>
+        <tr>
+            <th>Amats</th>
+            <th>Likme</th>
+            <th>Stundu skaits</th>
+            <th>Izsniegšanas datums</th>
+        </tr>
+        <tr>
+            <td>{{$payroll->amats}}</td>
+            <td>{{$payroll->likme}}</td>
+            <td>{{$payroll->stundu_sk}}</td>
+            <td>{{$payroll->izsniegsanas_datums}}</td>
+        </tr>
+    </table>
 
 @endsection
+

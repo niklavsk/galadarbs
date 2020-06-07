@@ -19,9 +19,9 @@ class PayController extends Controller
      */
     public function index()
     {
-        $payroll = DB::table('maksajumu_vesture')->get();
+        $payrolls = DB::table('maksajumu_vesture')->get();
 
-        return view('payroll', array('payroll' => $payroll));
+        return view('payrolls', array('payrolls' => $payrolls));
     }
 
     /**
@@ -62,8 +62,7 @@ class PayController extends Controller
         $maksajums->izsniegsanas_datums = $request->izsniegsanas_datums;
         $maksajums->save();
 
-
-        return $this->show($maksajums->id);
+        return redirect()->route('payroll.show', ['id' => $maksajums->id]);
     }
 
     /**
@@ -74,10 +73,10 @@ class PayController extends Controller
      */
     public function show($id)
     {
-        $pay = DB::table('maksajumu_vesture')->where('id', $id)->first();
-        $employee = DB::table('darbinieki')->where('id', $pay->pers_kods)->first();
+        $payroll = DB::table('maksajumu_vesture')->where('id', $id)->first();
+        $employee = DB::table('darbinieki')->where('id', $payroll->pers_kods)->first();
 
-        return view('pay', array('employee' => $employee, 'pay' => $pay));
+        return view('payroll', array('employee' => $employee, 'payroll' => $payroll));
     }
 
     /**
