@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <h4 class="card-header">Rediģēt transportlīdzekļi</h4>
+                <h4 class="card-header">Rediģēt transportlīdzekli</h4>
 
                 <div class="card-body">
                     <form action="{{action('VehicleController@update', ['id' => $vehicle->id])}}" method="post">

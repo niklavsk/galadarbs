@@ -147,7 +147,7 @@ class RouteController extends Controller
             }
 
         }
-        
+
         return view('route_edit', array('stops' => $stops, 'kartasNr' => $kartasNr, 'empty' => false, 'duplicate' => false, 'route' => $route, 'routeStops' => $routeStops));
     }
 
@@ -203,6 +203,10 @@ class RouteController extends Controller
 
         DB::table('marsruta_pieturas')->where('marsruta_id', $id)->delete();
 
+        DB::table('pienaksanas_laiki')
+            ->whereNotIn('marsruta_pietura', DB::table('marsruta_pieturas')->pluck('id'))
+            ->delete();
+
         for($i = 1; $i <= $kartasNr; $i++){
             $routeStop = new MarsrutaPieturas();
             $routeStop->pieturas_kartas_nr = $i;
@@ -224,8 +228,18 @@ class RouteController extends Controller
      */
     public function destroy($id)
     {
+        DB::table('transportlidzeklis')
+            ->where('marsruta_id', $id)
+            ->update([
+                'marsruta_id' => NULL,
+            ]);
+
         DB::table('marsruti')->where('id', $id)->delete();
         DB::table('marsruta_pieturas')->where('marsruta_id', $id)->delete();
+
+        DB::table('pienaksanas_laiki')
+            ->whereNotIn('marsruta_pietura', DB::table('marsruta_pieturas')->pluck('id'))
+            ->delete();
 
         return redirect()->route('allRoutes');
     }

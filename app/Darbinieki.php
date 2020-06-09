@@ -11,6 +11,7 @@ use App\User;
 
 class Darbinieki extends Model
 {
+    public $table = 'darbinieki';
     protected $fillable=['pk','vards','otrais_vards','uzvards','adrese','talrunis'];
 
     public function pieder() {

@@ -57,3 +57,12 @@ Route::get('/create/route/remove', 'RouteController@removeStop')->middleware('au
 Route::get('/edit/route/add/{id}', 'RouteController@addStop_edit')->middleware('auth');
 Route::get('/edit/route/remove/{id}', 'RouteController@removeStop_edit')->middleware('auth');
 
+Route::resource('departments', 'DepController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete']])->middleware('auth');
+Route::get('/departments', 'DepController@index')->name('allDepartments')->middleware('auth');
+Route::get('/department/{id}', 'DepController@show')->name('department.show')->middleware('auth');
+Route::get('/create/department', 'DepController@create')->name('department.create')->middleware('auth');
+Route::post('/create/department', 'DepController@store')->middleware('auth');
+Route::get('/edit/department/{id}', 'DepController@edit')->name('department.edit')->middleware('auth');
+Route::post('/edit/department/{id}', 'DepController@update')->middleware('auth');
+Route::get('/destroy/department/{id}', 'DepController@destroy')->name('department.destroy')->middleware('auth');
+

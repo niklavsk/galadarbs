@@ -47,7 +47,7 @@ class VehicleController extends Controller
             'pedeja_remonta_datums' => 'nullable|date|date_format:Y-m-d|before:tomorrow|after:razosanas_datums',
             'razosanas_datums' => 'required|date|date_format:Y-m-d|before:tomorrow',
             'razotajs' => 'required|string|min:2|max:50',
-            'depo_nr' => 'required|numeric|min:1',
+            'depo_nr' => 'nullable|numeric|min:1',
             'marsruta_id' => 'nullable|numeric|min:1',
         );
 
@@ -107,7 +107,7 @@ class VehicleController extends Controller
             'pedeja_remonta_datums' => 'nullable|date|date_format:Y-m-d|before:tomorrow|after:razosanas_datums',
             'razosanas_datums' => 'required|date|date_format:Y-m-d|before:tomorrow',
             'razotajs' => 'required|string|min:2|max:50',
-            'depo_nr' => 'required|numeric|min:1',
+            'depo_nr' => 'nullable|numeric|min:1',
             'marsruta_id' => 'nullable|numeric|min:1',
         );
 

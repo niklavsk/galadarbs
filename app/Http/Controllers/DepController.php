@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Nodala;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DepController extends Controller
 {
@@ -13,7 +15,9 @@ class DepController extends Controller
      */
     public function index()
     {
-        //
+        $departments = DB::table('nodala')->get();
+
+        return view('departments', array('departments' => $departments));
     }
 
     /**
@@ -23,7 +27,19 @@ class DepController extends Controller
      */
     public function create()
     {
-        //
+        $addresses = DB::table('adrese')
+            ->whereNotIn('id', DB::table('darbinieki')->pluck('adrese'))
+            ->whereNotIn('id', DB::table('pietura')->pluck('atrasanas_vieta'))
+            ->get();
+
+        $directors = DB::table('darbinieki')
+            ->join('amats', 'darbinieki.id', '=', 'amats.darba_pilditajs')
+            ->where('amats.nosaukums', 'like','%' . 'nodalas vaditajs')
+            ->whereNull('amats.darba_beigsanas_datums')
+            ->select('darbinieki.id as director_id','darbinieki.*')
+            ->get();
+
+        return view('department_create', array('addresses' => $addresses, 'directors' => $directors));
     }
 
     /**
@@ -34,7 +50,27 @@ class DepController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $rules = $rules = array(
+            'apraksts' => 'required|string|min:2|max:50',
+            'nodalas_vaditajs' => 'numeric|min:1|nullable',
+            'atrasanas_vieta' => 'required|numeric|min:1',
+            'epasts' => 'required|string|min:2|max:30',
+            'kontakttalrunis' => 'required|string|min:2|max:20',
+        );
+
+        $this->validate($request, $rules);
+
+        $department = new Nodala();
+        $department->apraksts = $request->apraksts;
+        $department->nodalas_vaditajs = $request->nodalas_vaditajs;
+        $department->atrasanas_vieta = $request->atrasanas_vieta;
+        $department->epasts = $request->epasts;
+        $department->kontakttalrunis = $request->kontakttalrunis;
+        $department->save();
+
+
+        return redirect()->route('department.show', ['id' => $department->id]);
     }
 
     /**
@@ -45,7 +81,9 @@ class DepController extends Controller
      */
     public function show($id)
     {
-        //
+        $department = DB::table('nodala')->where('id', $id)->first();
+
+        return view('department', array('department' => $department));
     }
 
     /**
@@ -56,7 +94,23 @@ class DepController extends Controller
      */
     public function edit($id)
     {
-        //
+        $addresses = DB::table('adrese')
+            ->whereNotIn('id', DB::table('darbinieki')->pluck('adrese'))
+            ->whereNotIn('id', DB::table('pietura')->pluck('atrasanas_vieta'))
+            ->get();
+
+        $directors = DB::table('darbinieki')
+            ->join('amats', 'darbinieki.id', '=', 'amats.darba_pilditajs')
+            ->where('amats.nosaukums', 'like','%' . 'nodalas vaditajs')
+            ->whereNull('amats.darba_beigsanas_datums')
+            ->select('darbinieki.id as director_id','darbinieki.*')
+            ->get();
+
+        $department = DB::table('nodala')
+            ->where('id', $id)
+            ->first();
+
+        return view('department_edit', array('addresses' => $addresses, 'directors' => $directors, 'department' => $department));
     }
 
     /**
@@ -68,7 +122,41 @@ class DepController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        date_default_timezone_set('Europe/Riga');
+
+        $rules = $rules = array(
+            'apraksts' => 'required|string|min:2|max:50',
+            'nodalas_vaditajs' => 'numeric|min:1|nullable',
+            'atrasanas_vieta' => 'required|numeric|min:1',
+            'epasts' => 'required|string|min:2|max:30',
+            'kontakttalrunis' => 'required|string|min:2|max:20',
+        );
+
+        $this->validate($request, $rules);
+
+        $department = DB::table('nodala')->where('id', $id)->first();
+
+        if($department->nodalas_vaditajs != $request->nodalas_vaditajs && $department->nodalas_vaditajs != NULL){
+            DB::table('amats')
+                ->where('nodala', $id)
+                ->whereNull('darba_beigsanas_datums')
+                ->where('nosaukums', 'like','%' . 'nodalas vaditajs')
+                ->update([
+                    'darba_beigsanas_datums' => date('Y-m-d', time()),
+                ]);
+        }
+
+        DB::table('nodala')
+            ->where('id', $id)
+            ->update([
+                'apraksts' => $request->apraksts,
+                'nodalas_vaditajs' => $request->nodalas_vaditajs,
+                'atrasanas_vieta' => $request->atrasanas_vieta,
+                'epasts' => $request->epasts,
+                'kontakttalrunis' => $request->kontakttalrunis,
+            ]);
+
+        return redirect()->route('department.show', ['id' => $id]);
     }
 
     /**
@@ -79,6 +167,19 @@ class DepController extends Controller
      */
     public function destroy($id)
     {
-        //
+        date_default_timezone_set('Europe/Riga');
+
+        $nodala = DB::table('nodala')->where('id', $id)->first();
+
+        DB::table('amats')
+            ->where('nodala', $id)
+            ->whereNull('darba_beigsanas_datums')
+            ->update([
+                'darba_beigsanas_datums' => date('Y-m-d', time()),
+            ]);
+
+        DB::table('nodala')->where('id', $id)->delete();
+
+        return redirect()->route('allDepartments');
     }
 }

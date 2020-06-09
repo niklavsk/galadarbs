@@ -35,6 +35,7 @@ class DepotController extends Controller
         $directors = DB::table('darbinieki')
             ->join('amats', 'darbinieki.id', '=', 'amats.darba_pilditajs')
             ->where('amats.nosaukums', '=','Depo Vaditajs')
+            ->whereNull('amats.depo')
             ->whereNull('amats.darba_beigsanas_datums')
             ->select('darbinieki.id as director_id','darbinieki.*')
             ->get();
@@ -68,6 +69,14 @@ class DepotController extends Controller
         $depot->kontakttalrunis = $request->kontakttalrunis;
         $depot->save();
 
+        DB::table('amats')
+            ->where('darba_pilditajs', $depot->depo_vaditajs)
+            ->whereNull('darba_beigsanas_datums')
+            ->where('nosaukums', '=','Depo Vaditajs')
+            ->update([
+                'depo' => $depot->id,
+            ]);
+
         return redirect()->route('depot.show', ['id' => $depot->id]);
     }
 
@@ -100,16 +109,22 @@ class DepotController extends Controller
 
         $directors = DB::table('darbinieki')
             ->join('amats', 'darbinieki.id', '=', 'amats.darba_pilditajs')
-            ->where('amats.nosaukums', '=','Depo Vaditajs')
+            ->where(function($query){
+                $query->where('amats.nosaukums', '=','Depo Vaditajs')
+                    ->whereNull('amats.depo')
+                    ->whereNull('amats.darba_beigsanas_datums');
+            })
+            ->orWhere('amats.nosaukums', '=','Depo Vaditajs')
+            ->where('amats.depo', $id)
             ->whereNull('amats.darba_beigsanas_datums')
+
             ->select('darbinieki.id as director_id','darbinieki.*')
             ->get();
+
 
         $depot = DB::table('depo')
             ->where('id', $id)
             ->first();
-
-        dump($depot, $addresses);
 
         return view('depot_edit', array('addresses' => $addresses, 'directors' => $directors, 'depot' => $depot));
     }
@@ -123,6 +138,8 @@ class DepotController extends Controller
      */
     public function update(Request $request, $id)
     {
+        date_default_timezone_set('Europe/Riga');
+
         $rules = $rules = array(
             'apraksts' => 'required|string|min:2|max:200',
             'depo_vaditajs' => 'numeric|min:1|nullable',
@@ -133,7 +150,28 @@ class DepotController extends Controller
 
         $this->validate($request, $rules);
 
-        $depot = DB::table('depo')
+        $depot = DB::table('depo')->where('id', $id)->first();
+
+        if($depot->depo_vaditajs != $request->depo_vaditajs && $depot->depo_vaditajs != NULL){
+            DB::table('amats')
+                ->where('depo', $id)
+                ->whereNull('darba_beigsanas_datums')
+                ->where('nosaukums', '=','Depo Vaditajs')
+                ->update([
+                    'darba_beigsanas_datums' => date('Y-m-d', time()),
+            ]);
+        }
+
+        DB::table('amats')
+            ->where('darba_pilditajs', $request->depo_vaditajs)
+            ->whereNull('darba_beigsanas_datums')
+            ->where('nosaukums', '=','Depo Vaditajs')
+            ->whereNull('depo')
+            ->update([
+                'depo' => $depot->id,
+        ]);
+
+        DB::table('depo')
             ->where('id', $id)
             ->update([
                 'apraksts' => $request->apraksts,
@@ -154,6 +192,24 @@ class DepotController extends Controller
      */
     public function destroy($id)
     {
+        date_default_timezone_set('Europe/Riga');
+
+        $depo = DB::table('depo')->where('id', $id)->first();
+
+        DB::table('amats')
+            ->where('depo', $id)
+            ->whereNull('darba_beigsanas_datums')
+            ->update([
+                'darba_beigsanas_datums' => date('Y-m-d', time()),
+        ]);
+
+        DB::table('transportlidzeklis')
+            ->where('depo_nr', $id)
+            ->update([
+                'depo_nr' => NULL,
+                'marsruta_id' => NULL,
+        ]);
+
         DB::table('depo')->where('id', $id)->delete();
 
         return redirect()->route('allDepots');

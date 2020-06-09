@@ -50,6 +50,10 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('allDepartments') }}">Nodaļas</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('allRoutes') }}">Maršruti</a>
                         </li>
                     </ul>
