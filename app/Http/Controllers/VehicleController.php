@@ -16,7 +16,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicles = DB::table('transportlidzeklis')->get();
+        $vehicles = DB::table('transportlidzeklis')->orderBy('id')->get();
 
         return view('vehicles', array('vehicles' => $vehicles));
     }

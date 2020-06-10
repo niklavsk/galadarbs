@@ -15,7 +15,7 @@ class DepController extends Controller
      */
     public function index()
     {
-        $departments = DB::table('nodala')->get();
+        $departments = DB::table('nodala')->orderBy('id')->get();
 
         return view('departments', array('departments' => $departments));
     }
@@ -50,7 +50,6 @@ class DepController extends Controller
      */
     public function store(Request $request)
     {
-
         $rules = $rules = array(
             'apraksts' => 'required|string|min:2|max:50',
             'nodalas_vaditajs' => 'numeric|min:1|nullable',
@@ -68,7 +67,6 @@ class DepController extends Controller
         $department->epasts = $request->epasts;
         $department->kontakttalrunis = $request->kontakttalrunis;
         $department->save();
-
 
         return redirect()->route('department.show', ['id' => $department->id]);
     }

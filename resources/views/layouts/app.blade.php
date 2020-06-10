@@ -56,6 +56,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('allRoutes') }}">Maršruti</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('allStops') }}">Pieturas</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('allExtras') }}">Papildus</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

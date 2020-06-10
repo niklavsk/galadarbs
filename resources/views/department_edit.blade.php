@@ -15,11 +15,9 @@
                             <label for="apraksts" class="control-label text-md-right col-md-4">Apraksts</label>
 
                             <input class="form-control col-md-6 {{$errors->has('apraksts') ? ' is-invalid' : '' }}"
-                                   name="apraksts"
-                                   type="text" id="apraksts" value="{{ $department->apraksts }}">
+                                   name="apraksts" type="text" id="apraksts" value="{{ $department->apraksts }}">
                             @if ($errors->has('apraksts'))
-                                <span
-                                    class="invalid-feedback text-md-center"><strong>{{ $errors->first('apraksts') }}</strong></span>
+                                <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('apraksts') }}</strong></span>
                             @endif
                         </div>
 
@@ -27,11 +25,9 @@
                             <label for="epasts" class="control-label text-md-right col-md-4">E-pasts</label>
 
                             <input class="form-control col-md-6 {{$errors->has('epasts') ? ' is-invalid' : '' }}"
-                                   name="epasts"
-                                   type="text" id="epasts" value="{{ $department->epasts }}">
+                                   name="epasts" type="text" id="epasts" value="{{ $department->epasts }}">
                             @if ($errors->has('epasts'))
-                                <span
-                                    class="invalid-feedback text-md-center"><strong>{{ $errors->first('epasts') }}</strong></span>
+                                <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('epasts') }}</strong></span>
                             @endif
                         </div>
 
@@ -41,8 +37,7 @@
                             <input class="form-control col-md-6 {{$errors->has('kontakttalrunis') ? ' is-invalid' : '' }}"
                                    name="kontakttalrunis" type="text" id="kontakttalrunis" value="{{ $department->kontakttalrunis }}">
                             @if ($errors->has('kontakttalrunis'))
-                                <span
-                                    class="invalid-feedback text-md-center"><strong>{{ $errors->first('kontakttalrunis') }}</strong></span>
+                                <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('kontakttalrunis') }}</strong></span>
                             @endif
                         </div>
 
@@ -55,15 +50,13 @@
                                     id="nodalas_vaditajs">
                                 <option value=""></option>
                                 @foreach($directors as $director)
-                                    <option
-                                        value="{{ $director->director_id }}"
+                                    <option value="{{ $director->director_id }}"
                                         @if($department->nodalas_vaditajs == $director->director_id) selected @endif>{{ $director->vards }} {{ $director->uzvards }}</option>
                                 @endforeach
                             </select>
 
                             @if ($errors->has('nodalas_vaditajs'))
-                                <span
-                                    class="invalid-feedback text-md-center"><strong>{{ $errors->first('nodalas_vaditajs') }}</strong></span>
+                                <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('nodalas_vaditajs') }}</strong></span>
                             @endif
                         </div>
 
@@ -90,8 +83,7 @@
                             </select>
 
                             @if ($errors->has('atrasanas_vieta'))
-                                <span
-                                    class="invalid-feedback text-md-center"><strong>{{ $errors->first('atrasanas_vieta') }}</strong></span>
+                                <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('atrasanas_vieta') }}</strong></span>
                             @endif
                         </div>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\MarsrutaPieturas;
 use App\Marsruti;
+use App\PienaksanasLaiki;
 use Session;
 
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class RouteController extends Controller
     {
         session()->forget('kartasNr');
 
-        $routes = DB::table('marsruti')->get();
+        $routes = DB::table('marsruti')->orderBy('id')->get();
 
         return view('routes', array('routes' => $routes));
     }
@@ -84,7 +85,7 @@ class RouteController extends Controller
         }
 
         $route = new Marsruti();
-        $route->nosaukums = $request->nosaukums;
+        $route->nosaukums = $request->nosaukums." (turp)";
         $route->apraksts = $request->apraksts;
         $route->save();
 
@@ -96,8 +97,21 @@ class RouteController extends Controller
             $routeStop->save();
         }
 
+        $route = new Marsruti();
+        $route->nosaukums = $request->nosaukums." (atpakaļ)";
+        $route->apraksts = $request->apraksts;
+        $route->save();
+
+        for($i = 1; $i <= $kartasNr; $i++){
+            $routeStop = new MarsrutaPieturas();
+            $routeStop->pieturas_kartas_nr = $kartasNr - $i + 1;
+            $routeStop->pietura = $request->$i;
+            $routeStop->marsruta_id = $route->id;
+            $routeStop->save();
+        }
+
         session()->forget('kartasNr');
-        return redirect()->route('route.show', ['id' => $route->id]);
+        return redirect()->route('route.edit', ['id' => $route->id]);
     }
 
     /**
@@ -113,7 +127,20 @@ class RouteController extends Controller
         $route = DB::table('marsruti')->where('id', $id)->first();
         $stops = DB::table('marsruta_pieturas')->where('marsruta_id', $id)->orderBy('pieturas_kartas_nr', 'asc')->get();
 
-        return view('route', array('route' => $route, 'stops' => $stops));
+        $times = DB::table('pienaksanas_laiki')
+            ->whereIn('marsruta_pietura', DB::table('marsruta_pieturas')->where('marsruta_id', $id)->pluck('id'))
+            ->orderBy('laiks')
+            ->get();
+
+        $delete = DB::table('pienaksanas_laiki')
+            ->join('marsruta_pieturas', 'pienaksanas_laiki.marsruta_pietura', '=', 'marsruta_pieturas.id')
+            ->select('*', 'pienaksanas_laiki.id as time_id')
+            ->whereIn('pienaksanas_laiki.marsruta_pietura', DB::table('marsruta_pieturas')->where('marsruta_id', $id)->pluck('id'))
+            ->where('marsruta_pieturas.pieturas_kartas_nr', '=', 1)
+            ->orderBy('laiks')
+            ->get();
+
+        return view('route', array('route' => $route, 'stops' => $stops, 'times' => $times, 'delete' => $delete));
     }
 
     /**
@@ -320,5 +347,97 @@ class RouteController extends Controller
         }
 
         return redirect()->route('route.edit', ['id' => $id]);
+    }
+
+    /**
+     *
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function createTimetable($id)
+    {
+        $stops = DB::table('marsruta_pieturas')->where('marsruta_id', $id)->orderBy('pieturas_kartas_nr', 'asc')->get();
+
+        return view('timetable_create', array('stops' => $stops, 'empty' => false, 'duplicate' => false, 'wrongOrder' => false));
+    }
+
+    /**
+     *
+     *
+     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeTimetable(Request $request, $id)
+    {
+        $stopCount = DB::table('marsruta_pieturas')->where('marsruta_id', $id)->count();
+        $stops = DB::table('marsruta_pieturas')->where('marsruta_id', $id)->orderBy('pieturas_kartas_nr', 'asc')->get();
+
+        $empty = false;
+        $duplicate = false;
+        $wrongOrder = false;
+
+        for($i = 0; $i < $stopCount; $i++){
+            if($request->$i == NULL){
+                $empty = true;
+            }
+        }
+
+        for($i = 0; $i < $stopCount; $i++){
+            for($j = $i+1; $j < $stopCount; $j++){
+                if($request->$i == $request->$j && $request->$i != NULL){
+                    $duplicate = true;
+                }
+            }
+        }
+
+        for($i = 1; $i < $stopCount; $i++){
+            $j = $i - 1;
+
+            if($request->$i < $request->$j){
+                $wrongOrder = true;
+            }
+        }
+
+        if ($empty == true || $duplicate == true || $wrongOrder == true) {
+            return view('timetable_create', array('stops' => $stops, 'empty' => $empty, 'duplicate' => $duplicate, 'wrongOrder' => $wrongOrder));
+        }
+
+        for($i = 0; $i < $stopCount; $i++){
+            $pietura = DB::table('marsruta_pieturas')
+                ->where('marsruta_id', $id)
+                ->where('pieturas_kartas_nr', '=', $i+1)
+                ->first();
+
+            $time = new PienaksanasLaiki();
+            $time->laiks = $request->$i;
+            $time->marsruta_pietura = $pietura->id;
+            $time->save();
+        }
+
+        return redirect()->route('route.show', ['id' => $id]);
+    }
+
+    /**
+     *
+     *
+     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyTimetable(Request $request, $id)
+    {
+        $stopCount = DB::table('marsruta_pieturas')->where('marsruta_id', $id)->count();
+        $start_id = $request->toDelete;
+        $end_id = $start_id + $stopCount;
+
+        for($i = $start_id; $i < $end_id; $i++){
+            $a = DB::table('pienaksanas_laiki')
+                ->where('id', $i)
+                ->delete();
+        }
+
+        return redirect()->route('route.show', ['id' => $id]);
     }
 }

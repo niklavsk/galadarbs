@@ -17,7 +17,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = DB::table('darbinieki')->get();
+        $employees = DB::table('darbinieki')->orderBy('id')->get();
 
         return view('employees', array('employees' => $employees));
     }

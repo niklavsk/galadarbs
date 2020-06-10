@@ -15,7 +15,7 @@ class DepotController extends Controller
      */
     public function index()
     {
-        $depots = DB::table('depo')->get();
+        $depots = DB::table('depo')->orderBy('id')->get();
 
         return view('depots', array('depots' => $depots));
     }
