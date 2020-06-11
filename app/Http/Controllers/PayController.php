@@ -105,7 +105,21 @@ class PayController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'stundu_sk' => 'required|integer',
+        ]);
+        if ($validator->fails()) {
+            $payroll = DB::table('maksajumu_vesture')->where('id', $id)->first();
+
+            return view('payroll_edit', array('errors' => $validator->messages(), 'payroll'=>$payroll));
+        }
+
+        DB::table('maksajumu_vesture')->where('id', $id)
+            ->update([
+                'stundu_sk' => $request->stundu_sk,
+            ]);
+
+        return $this->show($id);
     }
 
     /**
