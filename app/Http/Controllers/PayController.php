@@ -91,7 +91,9 @@ class PayController extends Controller
      */
     public function edit($id)
     {
+        $payroll = DB::table('maksajumu_vesture')->where('id', $id)->first();
 
+        return view('payroll_edit', array('payroll'=>$payroll));
     }
 
     /**
