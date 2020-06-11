@@ -28,6 +28,8 @@ Route::get('/payroll', 'PayController@index')->name('allPayrolls')->middleware('
 Route::get('/payroll/{id}', 'PayController@show')->name('payroll.show')->middleware('auth');
 Route::get('/create/payroll', 'PayController@create')->name('payroll.create')->middleware('auth');
 Route::post('/create/payroll', 'PayController@store')->name('payroll.store')->middleware('auth');
+Route::get('/edit/payroll/{id}','PayController@edit')->name('payroll.edit')->middleware('auth');
+Route::post('/edit/payroll/{id}', 'PayController@update')->middleware('auth');
 
 Route::resource('vehicles', 'VehicleController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete']])->middleware('auth');
 Route::get('/vehicles', 'VehicleController@index')->name('allVehicles')->middleware('auth');

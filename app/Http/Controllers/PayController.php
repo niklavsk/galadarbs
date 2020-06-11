@@ -53,7 +53,7 @@ class PayController extends Controller
         if ($validator->fails()) {
             $amati = DB::table('amats')->whereNull('darba_beigsanas_datums')->get();
             $lastPayrollDate = DB::table('maksajumu_vesture')->max('izsniegsanas_datums');
-            $beigtieAmati = DB::table('maksajumu_vesture')->where('izsniegsanas_datums','>',$lastPayrollDate)->get();
+            $beigtieAmati = DB::table('maksajumu_vesture')->has('izsniegsanas_datums','>',$lastPayrollDate)->get();
 
             return view('payroll_create', array('errors' => $validator->messages(), 'aktualie' => $amati, 'atlaistie' => $beigtieAmati));
         }
@@ -91,7 +91,7 @@ class PayController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
