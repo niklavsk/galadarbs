@@ -4,19 +4,19 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <h4 class="card-header">Maršruts: {{ $route->id }} | <strong>{{ $route->nosaukums }}</strong></h4>
+                <h4 class="card-header">{{ __('messages.Route') }}: {{ $route->id }} | <strong>{{ $route->nosaukums }}</strong></h4>
 
                 <div class="card-body">
-                    <h4 class="text-md-left">Apraksts: {{ $route->apraksts }}</h4>
+                    <h4 class="text-md-left">{{ __('messages.Description') }}: {{ $route->apraksts }}</h4>
                     <hr/>
                     @if(count($stops) == 0)
-                        <h5 class="text-md-center alert alert-warning">Pieturu nav!</h5>
+                        <h5 class="text-md-center alert alert-warning">{{ __('alerts.No_stations') }}</h5>
                     @else
                         <table class="table table-borderless table-hover table-striped col-md">
 
                             <tr>
-                                <th>Pietura</th>
-                                <th>Pienākšanas laiki</th>
+                                <th>{{ trans_choice('messages.Station', 0) }}</th>
+                                <th>{{ __('messages.Arrival_times') }}</th>
                                 <th></th>
                             </tr>
 
@@ -39,7 +39,7 @@
                     <div class="text-md-left col-md-8">
 
                         <div class="col-sm-6 float-left">
-                            <a class="btn btn-primary" href="{{ url('create/timetable', $route->id) }}">Pievienot pienākšanas laikus</a>
+                            <a class="btn btn-primary" href="{{ url('create/timetable', $route->id) }}">{{ __('messages.Add_arrival_times') }}</a>
                         </div>
 
                         <div class="col-sm-6 float-right">
@@ -55,7 +55,7 @@
                                         @endforeach
                                     </select>
 
-                                    <input type="submit" value="Izdzēst no" class="btn btn-secondary">
+                                    <input type="submit" value="{{ __('messages.Delete_from') }}" class="btn btn-secondary">
                                 </div>
                             </form>
                         </div>
@@ -63,8 +63,8 @@
                     </div>
 
                     <div class="text-md-right col">
-                        <a class="btn btn-primary" href="{{ url('edit/route', $route->id) }}">Rediģēt maršrutu</a>
-                        <a class="btn btn-secondary" href="{{ url('destroy/route', $route->id) }}">Izdzēst maršrutu</a>
+                        <a class="btn btn-primary" href="{{ url('edit/route', $route->id) }}">{{ __('messages.Edit_route') }}</a>
+                        <a class="btn btn-secondary" href="{{ url('destroy/route', $route->id) }}">{{ __('messages.Delete_route') }}</a>
                     </div>
                 </div>
 

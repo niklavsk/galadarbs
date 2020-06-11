@@ -5,34 +5,34 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="d-inline-block">Saraksts ar visām papildus iespējām</h4>
+                    <h4 class="d-inline-block">{{ __('messages.All_extras_list') }}</h4>
                 </div>
 
                 <div class="card-body">
 
                     <div class="btn-group-vertical mx-md-auto d-md-block h4">
 
-                        <h4 class="d-inline-block">Neizmantotās adreses</h4>
+                        <h4 class="d-inline-block">{{ __('messages.Unused_addresses') }}</h4>
 
-                        <a href="{{ url('create/address') }}" class="btn btn-primary float-right col-md-3">Pievienot adresi</a>
+                        <a href="{{ url('create/address') }}" class="btn btn-primary float-right col-md-3">{{ __('messages.Add_address') }}</a>
 
                     </div>
 
                     @if(count($addresses) == 0)
-                        <h5 class="text-md-center alert alert-warning">Neaizpildīto adrešu nav!</h5>
+                        <h5 class="text-md-center alert alert-warning">{{ __('alerts.No_filled_addresses') }}</h5>
                     @else
                         <div class="row">
                             <div class="col-md">
                                 <table class="table table-hover" width="100%">
                                     <tr>
-                                        <th>Valsts</th>
-                                        <th>Novads</th>
-                                        <th>Pilseta</th>
-                                        <th>Iela</th>
-                                        <th>Mājas numurs</th>
-                                        <th>Pagasts</th>
-                                        <th>Mājas nosaukums</th>
-                                        <th>Pasta indekss</th>
+                                        <th>{{ __('messages.Country') }}</th>
+                                        <th>{{ __('messages.Municipality') }}</th>
+                                        <th>{{ __('messages.City') }}</th>
+                                        <th>{{ __('messages.Street') }}</th>
+                                        <th>{{ __('messages.House') }}</th>
+                                        <th>{{ __('messages.Parish') }}</th>
+                                        <th>{{ __('messages.House_name') }}</th>
+                                        <th>{{ __('messages.Postal_code') }}</th>
                                         <th></th>
                                     </tr>
 
@@ -46,7 +46,7 @@
                                             <td>{{$address->pagasts}}</td>
                                             <td>{{$address->majas_nosaukums}}</td>
                                             <td>{{$address->pasta_indekss}}</td>
-                                            <td><a href="{{ url('destroy/address', ['id' => $address->id]) }}" class="btn btn-primary float-center">Izdzēst adresi</a></td>
+                                            <td><a href="{{ url('destroy/address', ['id' => $address->id]) }}" class="btn btn-primary float-center">{{ __('messages.Delete_address') }}</a></td>
                                         </tr>
                                     @endforeach
 
@@ -58,23 +58,23 @@
 
                     <div class="btn-group-vertical mx-md-auto d-md-block h4">
 
-                        <h4 class="d-inline-block">Brīvie amati</h4>
+                        <h4 class="d-inline-block">{{ __('messages.Vacancies') }}</h4>
 
-                        <a href="{{ url('create/job') }}" class="btn btn-primary float-right col-md-3">Pievienot amatu</a>
+                        <a href="{{ url('create/job') }}" class="btn btn-primary float-right col-md-3">{{ __('messages.Add_position') }}</a>
 
                     </div>
 
                     @if(count($jobs) == 0)
-                        <h5 class="text-md-center alert alert-warning">Brīvo amatu nav!</h5>
+                        <h5 class="text-md-center alert alert-warning">{{ __('alerts.No_vacancies') }}</h5>
                     @else
                     <div class="row">
                         <div class="col-md">
                             <table class="table table-hover" width="100%">
                                 <tr>
-                                    <th>Amata nosaukums</th>
-                                    <th>Nodaļa</th>
-                                    <th>Depo</th>
-                                    <th>Stundas likme</th>
+                                    <th>{{ __('messages.Position') }}</th>
+                                    <th>{{ __('messages.Department') }}</th>
+                                    <th>{{ __('messages.Depot') }}</th>
+                                    <th>{{ __('messages.Hourly_rate') }}</th>
                                     <th></th>
                                 </tr>
 
@@ -84,7 +84,7 @@
                                         <td>{{$job->nodala}}</td>
                                         <td>{{$job->depo}}</td>
                                         <td>{{$job->stundas_likme}}</td>
-                                        <td><a href="{{ url('destroy/job', ['id' => $job->id]) }}" class="btn btn-primary float-center">Izdzēst amatu</a></td>
+                                        <td><a href="{{ url('destroy/job', ['id' => $job->id]) }}" class="btn btn-primary float-center">{{ __('messages.Delete_position') }}</a></td>
                                     </tr>
                                 @endforeach
 

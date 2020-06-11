@@ -5,15 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <h4 class="card-header">Rediģēt transportlīdzekli</h4>
+                <h4 class="card-header">{{ __('messages.Edit_vehicle') }}</h4>
 
                 <div class="card-body">
                     <form action="{{action('VehicleController@update', ['id' => $vehicle->id])}}" method="post">
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 
                         <div class="form-group row {{ $errors->has('razosanas_datums') ? 'has-error' : ''}}">
-                            <label for="razosanas_datums" class="control-label text-md-right col-md-4">Ražošanas
-                                datums</label>
+                            <label for="razosanas_datums" class="control-label text-md-right col-md-4">{{ __('messages.Production_date') }}</label>
 
                             <input
                                 class="form-control col-md-6 {{$errors->has('razosanas_datums') ? ' is-invalid' : '' }}"
@@ -26,9 +25,8 @@
                         </div>
 
                         <div class="form-group row {{ $errors->has('pedeja_remonta_datums') ? 'has-error' : ''}}">
-                            <label for="pedeja_remonta_datums" class="control-label text-md-right col-md-4">Pēdējā
-                                remonta
-                                datums</label>
+                            <label for="pedeja_remonta_datums" class="control-label text-md-right col-md-4">
+                                {{ __('messages.Last_repair_date') }}</label>
 
                             <input
                                 class="form-control col-md-6 {{$errors->has('pedeja_remonta_datums') ? ' is-invalid' : '' }}"
@@ -41,9 +39,8 @@
                         </div>
 
                         <div class="form-group row {{ $errors->has('tehniskas_parbaudes_termins') ? 'has-error' : ''}}">
-                            <label for="tehniskas_parbaudes_termins" class="control-label text-md-right col-md-4">Tehniskās
-                                pārbaudes
-                                termiņš</label>
+                            <label for="tehniskas_parbaudes_termins" class="control-label text-md-right col-md-4">
+                                {{ __('messages.Technical_inspection_valid_till') }}</label>
 
                             <input
                                 class="form-control col-md-6 {{$errors->has('tehniskas_parbaudes_termins') ? ' is-invalid' : '' }}"
@@ -56,7 +53,7 @@
                         </div>
 
                         <div class="form-group row {{ $errors->has('razotajs') ? 'has-error' : ''}}">
-                            <label for="razotajs" class="control-label text-md-right col-md-4">Ražotājs</label>
+                            <label for="razotajs" class="control-label text-md-right col-md-4">{{ __('messages.Manufacturer') }}</label>
 
                             <input class="form-control col-md-6 {{$errors->has('razotajs') ? ' is-invalid' : '' }}"
                                    name="razotajs"
@@ -68,7 +65,7 @@
                         </div>
 
                         <div class="form-group row {{ $errors->has('depo_nr') ? 'has-error' : ''}}">
-                            <label for="depo_nr" class="control-label text-md-right col-md-4">Depo</label>
+                            <label for="depo_nr" class="control-label text-md-right col-md-4">{{ __('messages.Depot') }}</label>
 
                             <select name="depo_nr" size="1"
                                     class="form-control col-md-6 {{$errors->has('depo_nr') ? ' is-invalid' : '' }}"
@@ -88,7 +85,7 @@
 
 
                         <div class="form-group row {{ $errors->has('marsruta_id') ? 'has-error' : ''}}">
-                            <label for="marsruta_id" class="control-label text-md-right col-md-4">Maršruts</label>
+                            <label for="marsruta_id" class="control-label text-md-right col-md-4">{{ __('messages.Route') }}</label>
 
                             <select name="marsruta_id" size="1"
                                     class="form-control col-md-6 {{$errors->has('marsruta_id') ? ' is-invalid' : '' }}"
@@ -106,7 +103,7 @@
                             @endif
                         </div>
 
-                        <input type="submit" value="Veikt izmaiņas"
+                        <input type="submit" value="{{ __('messages.Confirm_changes') }}"
                                class="btn btn-primary btn-block col-md-8 mx-md-auto">
 
                     </form>

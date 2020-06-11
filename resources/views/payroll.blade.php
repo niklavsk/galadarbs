@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('content')
 
-    <h4>Maksājums</h4>
+    <h4>{{ __('messages.Payment') }}</h4>
 
     <table>
         <tr>
-            <th>Personas kods</th>
-            <th>Adrese</th>
-            <th>Tālrunis</th>
-            <th>Epasts</th>
+            <th>{{ __('messages.pers_ID') }}</th>
+            <th>{{ __('messages.Address') }}</th>
+            <th>{{ __('messages.Telephone_number') }}</th>
+            <th>{{ __('messages.Email') }}</th>
         </tr>
         <tr>
             <td>{{$payroll->pk}}</td>
@@ -20,10 +20,10 @@
 
     <table>
         <tr>
-            <th>Amats</th>
-            <th>Likme</th>
-            <th>Stundu skaits</th>
-            <th>Izsniegšanas datums</th>
+            <th>{{ __('messages.Position') }}</th>
+            <th>{{ __('messages.Hourly_rate') }}</th>
+            <th>{{ __('messages.Hours_worked') }}</th>
+            <th>{{ __('messages.Issue_date') }}</th>
         </tr>
         <tr>
             <td>{{$payroll->amats}}</td>
@@ -33,7 +33,7 @@
         </tr>
     </table>
 
-    <a href="{{ url('edit/payroll', $payroll->id) }}" class="btn">Rediģēt maksājumu</a>
-    <a href="{{ url('destroy/payroll', $payroll->id) }}" class="btn">Izdzēst maksājumu</a>
+    <a href="{{ url('edit/payroll', $payroll->id) }}" class="btn">{{ __('messages.Edit_payment') }}</a>
+    <a href="{{ url('destroy/payroll', $payroll->id) }}" class="btn">{{ __('messages.Delete_payment') }}</a>
 @endsection
 

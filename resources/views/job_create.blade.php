@@ -5,14 +5,14 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4>Pievienot amatu</h4>
+                    <h4>{{ __('messages.Add_position') }}</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{action('ExtraController@storeJob')}}" method="post">
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 
                         <div class="form-group row {{ $errors->has('nosaukums') ? 'has-error' : ''}}">
-                            <label for="nosaukums" class="control-label text-md-right col-md-4">Nosaukums</label>
+                            <label for="nosaukums" class="control-label text-md-right col-md-4">{{ __('messages.Name') }}</label>
 
                             <input class="form-control col-md-6 {{$errors->has('nosaukums') ? ' is-invalid' : '' }}"
                                    name="nosaukums" type="text" id="nosaukums">
@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="form-group row {{ $errors->has('nodala') ? 'has-error' : ''}}">
-                            <label for="nodala" class="control-label text-md-right col-md-4">Nodaļa</label>
+                            <label for="nodala" class="control-label text-md-right col-md-4">{{ __('messages.Department') }}</label>
 
                             <select name="nodala" size="1"
                                     class="form-control col-md-6 {{$errors->has('nodala') ? ' is-invalid' : '' }}"
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group row {{ $errors->has('depo') ? 'has-error' : ''}}">
-                            <label for="depo" class="control-label text-md-right col-md-4">Depo</label>
+                            <label for="depo" class="control-label text-md-right col-md-4">{{ __('messages.Depot') }}</label>
 
                             <select name="depo" size="1"
                                     class="form-control col-md-6 {{$errors->has('depo') ? ' is-invalid' : '' }}"
@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="form-group row {{ $errors->has('stundas_likme') ? 'has-error' : ''}}">
-                            <label for="stundas_likme" class="control-label text-md-right col-md-4">Stundas likme</label>
+                            <label for="stundas_likme" class="control-label text-md-right col-md-4">{{ __('messages.Hourly_rate') }}</label>
 
                             <input class="form-control col-md-6 {{$errors->has('stundas_likme') ? ' is-invalid' : '' }}"
                                    name="stundas_likme" type="text" id="stundas_likme">
@@ -65,7 +65,7 @@
                             @endif
                         </div>
 
-                        <input type="submit" value="Izveidot" class="btn btn-primary btn-block mx-md-auto col-md-8">
+                        <input type="submit" value="{{ __('messages.Create') }}" class="btn btn-primary btn-block mx-md-auto col-md-8">
 
                     </form>
                 </div>

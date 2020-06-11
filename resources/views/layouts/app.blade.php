@@ -36,45 +36,47 @@
                         @guest
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allEmployees') }}">Darbinieki</a>
+                                <a class="nav-link" href="{{ route('allEmployees') }}">{{ __('messages.Employees') }}</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allPayrolls') }}">Maksājumi</a>
+                                <a class="nav-link" href="{{ route('allPayrolls') }}">{{ __('messages.Payroll') }}</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allVehicles') }}">Transportlīdzekļi</a>
+                                <a class="nav-link" href="{{ route('allVehicles') }}">{{ __('messages.Vehicles') }}</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allDepots') }}">Depo</a>
+                                <a class="nav-link" href="{{ route('allDepots') }}">{{ __('messages.Depots') }}</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allDepartments') }}">Nodaļas</a>
+                                <a class="nav-link" href="{{ route('allDepartments') }}">{{ __('messages.Departments') }}</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allRoutes') }}">Maršruti</a>
+                                <a class="nav-link" href="{{ route('allRoutes') }}">{{ __('messages.Routes') }}</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allStops') }}">Pieturas</a>
+                                <a class="nav-link" href="{{ route('allStops') }}">{{ __('messages.Stations') }}</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allUsers') }}">Lietotāji</a>
+                                <a class="nav-link" href="{{ route('allUsers') }}">{{ __('messages.Users') }}</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allExtras') }}">Papildus</a>
+                                <a class="nav-link" href="{{ route('allExtras') }}">{{ __('messages.Extras') }}</a>
                             </li>
                         @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li><a class="nav-link" href="/lang/lv">LV</a></li>
+                        <li><a class="nav-link" href="/lang/en">EN</a></li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -88,12 +90,12 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Nosauksim šo citādāk <span class="caret"></span>
+                                    {{ __('messages.Dropdown_info') }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                    <a class="dropdown-item" href="{{ route('viewProfile') }}">Profils</a>
+                                    <a class="dropdown-item" href="{{ route('viewProfile') }}">{{ __('messages.Profile') }}</a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

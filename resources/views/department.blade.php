@@ -4,7 +4,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4>Nodaļa: {{ $department->id }}</h4>
+                    <h4>{{ __('messages.Department') }}: {{ $department->id }}</h4>
                 </div>
                 <div class="card-body">
 
@@ -12,19 +12,19 @@
                         @if($department->nodalas_vaditajs != "")
                             <a class="list-group-item list-group-item-primary list-group-item-action text-uppercase"
                                href="{{ url('employee', $department->nodalas_vaditajs) }}">
-                                <strong>Nodaļas vadītājs</strong>: {{ $department->nodalas_vaditajs }}</a>
-                        @else <li class="list-group-item list-group-item-primary"><strong>Nodaļas vadītājs</strong>:</li>
+                                <strong>{{ __('messages.Department_director') }}</strong>: {{ $department->nodalas_vaditajs }}</a>
+                        @else <li class="list-group-item list-group-item-primary"><strong>{{ __('messages.Department_director') }}</strong>:</li>
                         @endif
-                        <li class="list-group-item"><strong>Apraksts</strong>: {{ $department->apraksts }}</li>
-                        <li class="list-group-item"><strong>Atrašanās vieta</strong>: {{ $department->atrasanas_vieta }}</li>
-                        <li class="list-group-item"><strong>Epasts</strong>: {{ $department->epasts }}</li>
-                        <li class="list-group-item"><strong>Kontakttālrunis</strong>: {{ $department->kontakttalrunis }}</li>
+                        <li class="list-group-item"><strong>{{ __('messages.Description') }}</strong>: {{ $department->apraksts }}</li>
+                        <li class="list-group-item"><strong>{{ __('messages.Location') }}</strong>: {{ $department->atrasanas_vieta }}</li>
+                        <li class="list-group-item"><strong>{{ __('messages.Email') }}</strong>: {{ $department->epasts }}</li>
+                        <li class="list-group-item"><strong>{{ __('messages.Telephone_number') }}</strong>: {{ $department->kontakttalrunis }}</li>
                     </ul>
 
                 </div>
                 <div class="card-footer text-center p-md-3">
-                    <a href="{{ url('edit/department', $department->id) }}" class=" btn btn-primary">Rediģēt nodaļu</a>
-                    <a href="{{ url('destroy/department', $department->id) }}" class="btn btn-secondary">Izdzēst nodaļu</a>
+                    <a href="{{ url('edit/department', $department->id) }}" class=" btn btn-primary">{{ __('messages.Edit_department') }}</a>
+                    <a href="{{ url('destroy/department', $department->id) }}" class="btn btn-secondary">{{ __('messages.Delete_department') }}</a>
                 </div>
             </div>
         </div>
