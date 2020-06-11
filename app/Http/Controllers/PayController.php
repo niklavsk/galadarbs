@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\MaksajumuVesture;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,9 +17,34 @@ class PayController extends Controller
      */
     public function index()
     {
-        $payrolls = DB::table('maksajumu_vesture')->get();
+        $login_id = Auth::id();
+        $user = DB::table('darbinieki')->where('user_id', $login_id)->first();
+        $lietotajs = DB::table('users')->where('id', $login_id)->first();
 
-        return view('payrolls', array('payrolls' => $payrolls));
+        if ($lietotajs->role == 1) //admin
+        {
+            $payrolls = DB::table('maksajumu_vesture')->get();
+        }
+        elseif ($lietotajs->role == 0) //regular
+        {
+            $payrolls = DB::table('maksajumu_vesture')->where('pers_kods', '=', $user->id)->get();
+        }
+        elseif ($lietotajs->role == 2 || $lietotajs->role == 4) //depot main or accountaint
+        {
+            $depoNum = DB::table('amats')->where('pers_kods', '=', $user->id)->pluck('depo');
+            $usersUnder = DB::table('darbinieki')->where('depo', '=', $depoNum)->pluck('id')->toArray();
+
+            $payrolls = DB::table('maksajumu_vesture')->whereIn('pers_kods', $usersUnder)->get();
+        }
+        elseif ($lietotajs->role == 3) //department main
+        {
+            $nodNum = DB::table('amats')->where('pers_kods', '=', $user->id)->pluck('nodala');;
+            $usersUnder = DB::table('darbinieki')->where('depo', '=', $nodNum)->pluck('id')->toArray();
+
+            $payrolls = DB::table('maksajumu_vesture')->whereIn('pers_kods', $usersUnder)->get();
+        }
+
+        return view('payrolls', array('payrolls' => $payrolls, 'role' => $lietotajs->role));
     }
 
     /**
