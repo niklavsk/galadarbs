@@ -17,8 +17,12 @@ class CreateNodalaTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('apraksts',50);
-            $table->foreignId('nodalas_vaditajs')->nullable()->references('id')->on('darbinieki')->constrained();
-            $table->foreignId('atrasanas_vieta')->references('id')->on('adrese')->constrained();
+
+            $table->unsignedBigInteger('nodalas_vaditajs')->nullable();
+            $table->foreign('nodalas_vaditajs')->references('id')->on('darbinieki');
+            $table->unsignedBigInteger('atrasanas_vieta');
+            $table->foreign('atrasanas_vieta')->references('id')->on('adrese');
+
             $table->string('epasts',30);
             $table->string('kontakttalrunis',20);
 

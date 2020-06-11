@@ -13,19 +13,19 @@ class Amats extends Model
     protected $fillable=['nosaukums','nodala', 'depo', 'stundas_likme', 'darba_pilditajs', 'darba_uzsaksanas_datums', 'darba_beigsanas_datums'];
 
     public function tiekIzmaksats() {
-        return $this->hasMany(MaksajumuVesture::class,'amats');
+        return $this->hasMany('App\MaksajumuVesture','amats');
     }
 
     public function manyJobs() {
-        return $this->belongsTo(Darbinieki::class,'darba_pilditajs');
+        return $this->belongsTo('App\Darbinieki','darba_pilditajs');
     }
 
     public function atrodasZem() {
-        return $this->belongsTo(Depo::class,'depo');
+        return $this->belongsTo('App\Depo','depo');
     }
 
     public function nodalas() {
-        return $this->belongsTo(Nodala::class,'nodala');
+        return $this->belongsTo('App\Nodala','nodala');
     }
 
 }

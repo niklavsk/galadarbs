@@ -11,11 +11,11 @@ class Pietura extends Model
     protected $fillable=['nosaukums','atrasanas_vieta'];
 
     public function atrodas() {
-        return $this->belongsTo(Adrese::class,'atrasanas_vieta');
+        return $this->belongsTo('App\Adrese','atrasanas_vieta');
     }
 
     public function pieder() {
-        return $this->hasMany(MarsrutaPieturas::class,'pietura');
+        return $this->hasMany('App\MarsrutaPieturas','pietura');
     }
 
 }

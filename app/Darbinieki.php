@@ -18,23 +18,23 @@ class Darbinieki extends Model
     }
 
     public function orders() {
-        return $this->hasMany(MaksajumuVesture::class,'pers_kods');
+        return $this->hasMany('App\MaksajumuVesture','pers_kods');
     }
 
     public function manyJobs() {
-        return $this->hasMany(Amats::class,'darba_pilditajs');
+        return $this->hasMany('App\Amats','darba_pilditajs');
     }
 
     public function vadanodalu() {
-        return $this->hasOne(Nodala::class, 'nodalas_vaditajs');
+        return $this->hasOne('App\Nodala', 'nodalas_vaditajs');
     }
 
     public function vadadepo() {
-        return $this->hasOne(Depo::class, 'depo_vaditajs');
+        return $this->hasOne('App\Depo', 'depo_vaditajs');
     }
 
     public function userIsDarbinieks() {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo('App\User', 'user_id');
     }
 
 }
