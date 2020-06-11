@@ -33,7 +33,7 @@ class PayController extends Controller
     {
         $amati = DB::table('amats')->whereNull('darba_beigsanas_datums')->get();
         $lastPayrollDate = DB::table('maksajumu_vesture')->max('izsniegsanas_datums');
-        $beigtieAmati = DB::table('maksajumu_vesture')->where('izsniegsanas_datums','>',$lastPayrollDate)->get();
+        $beigtieAmati = DB::table('amats')->where('darba_beigsanas_datums','>',$lastPayrollDate)->get();
 
 
         return view('payroll_create', array('aktualie' => $amati, 'atlaistie' => $beigtieAmati));
@@ -132,5 +132,14 @@ class PayController extends Controller
     {
         DB::table('maksajumu_vesture')->where('id', $id)->delete();
         return $this->index();
+    }
+
+    //for submitting multiple payments
+    public function submitMany(Request $request)
+    {
+        foreach ($request as $form)
+        {
+            $this->store($form);
+        }
     }
 }

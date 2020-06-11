@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <h4>Saraksts ar visiem šobrīd aktuālajiem darbiniekiem</h4>
+    <h4>Visi darbinieki, kuri strādā uzņēmumā</h4>
     @if(count($aktualie) == 0)
         <h5>Šobrīd uzņēmumā neviens nestrādā!</h5>
     @else
@@ -33,12 +33,12 @@
                 </tr>
             @endforeach
         </table>
-        
+
     @endif
 
-    <h4>Saraksts ar visiem šajā mēnesī aizgājušajiem darbiniekiem</h4>
+    <h4>Visi darbinieki, kuri ir aizgājuši no amatiem kopš pēdējās maksājuma reizes</h4>
     @if(count($atlaistie) == 0)
-        <h5>Pēdējā mēneša laikā neviens nav aizgājis!</h5>
+        <h5>Neviens nav aizgājis!</h5>
     @else
         <table>
             <tr>

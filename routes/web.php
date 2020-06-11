@@ -28,6 +28,7 @@ Route::get('/payroll', 'PayController@index')->name('allPayrolls')->middleware('
 Route::get('/payroll/{id}', 'PayController@show')->name('payroll.show')->middleware('auth');
 Route::get('/create/payroll', 'PayController@create')->name('payroll.create')->middleware('auth');
 Route::post('/create/payroll', 'PayController@store')->name('payroll.store')->middleware('auth');
+//Route::post('/create/payrolls', 'PayController@submitMany')->name('payrolls.store')->middleware('auth');
 Route::get('/edit/payroll/{id}','PayController@edit')->name('payroll.edit')->middleware('auth');
 Route::post('/edit/payroll/{id}', 'PayController@update')->middleware('auth');
 Route::get('/destroy/route/{id}', 'PayController@destroy')->name('payroll.destroy')->middleware('auth');
