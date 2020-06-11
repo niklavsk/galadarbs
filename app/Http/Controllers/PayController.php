@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Validator;
 
 class PayController extends Controller
 {
-    /* testing git
-     *
-     */
     /**
      * Display a listing of the resource.
      *
@@ -131,7 +128,7 @@ class PayController extends Controller
     public function destroy($id)
     {
         DB::table('maksajumu_vesture')->where('id', $id)->delete();
-        return $this->index();
+        return redirect()->route('allPayrolls');
     }
 
     //for submitting multiple payments
