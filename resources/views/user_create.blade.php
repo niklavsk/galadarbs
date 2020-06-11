@@ -11,31 +11,57 @@
                     <form action="{{action('UserController@store')}}" method="post">
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 
-                        <div class="form-group row {{ $errors->has('epasts') ? 'has-error' : ''}}">
-                            <label for="epasts" class="control-label text-md-right col-md-4">E-pasts</label>
+                        <div class="form-group row {{ $errors->has('darbinieks') ? 'has-error' : ''}}">
+                            <label for="darbinieks" class="control-label text-md-right col-md-4">Darbinieks</label>
 
-                            <input class="form-control col-md-6 {{$errors->has('epasts') ? ' is-invalid' : '' }}"
-                                   name="epasts" type="text" id="epasts" value="{{ $user->epasts }}">
-                            @if ($errors->has('epasts'))
-                                <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('epasts') }}</strong></span>
-                            @endif
-                        </div>
-
-
-                        <div class="form-group row {{ $errors->has('nodalas_vaditajs') ? 'has-error' : ''}}">
-                            <label for="nodalas_vaditajs" class="control-label text-md-right col-md-4">Nodaļas vadītājs</label>
-
-                            <select name="nodalas_vaditajs" size="1"
-                                    class="form-control col-md-6 {{$errors->has('nodalas_vaditajs') ? ' is-invalid' : '' }}"
-                                    id="depo_vaditajs">
+                            <select name="darbinieks" size="1"
+                                    class="form-control col-md-6 {{$errors->has('darbinieks') ? ' is-invalid' : '' }}"
+                                    id="darbinieks">
                                 <option value=""></option>
-                                @foreach($roles as $role)
-                                    <option value="{{ $director->director_id }}">{{ $director->vards }} {{ $director->uzvards }}</option>
+                                @foreach($employees as $employee)
+                                    <option value="{{ $employee->id }}">{{ $employee->vards }} {{ $employee->uzvards }}</option>
                                 @endforeach
                             </select>
 
-                            @if ($errors->has('nodalas_vaditajs'))
-                                <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('nodalas_vaditajs') }}</strong></span>
+                            @if ($errors->has('darbinieks'))
+                                <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('darbinieks') }}</strong></span>
+                            @endif
+                        </div>
+
+                        <div class="form-group row {{ $errors->has('email') ? 'has-error' : ''}}">
+                            <label for="email" class="control-label text-md-right col-md-4">E-pasts</label>
+
+                            <input class="form-control col-md-6 {{$errors->has('email') ? ' is-invalid' : '' }}"
+                                   name="email" type="email" id="email">
+                            @if ($errors->has('email'))
+                                <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('email') }}</strong></span>
+                            @endif
+                        </div>
+
+                        <div class="form-group row {{ $errors->has('password') ? 'has-error' : ''}}">
+                            <label for="password" class="control-label text-md-right col-md-4">Parole</label>
+
+                            <input class="form-control col-md-6 {{$errors->has('password') ? ' is-invalid' : '' }}"
+                                   name="password" type="password" id="password">
+                            @if ($errors->has('password'))
+                                <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('password') }}</strong></span>
+                            @endif
+                        </div>
+
+                        <div class="form-group row {{ $errors->has('role') ? 'has-error' : ''}}">
+                            <label for="role" class="control-label text-md-right col-md-4">Loma</label>
+
+                            <select name="role" size="1"
+                                    class="form-control col-md-6 {{$errors->has('role') ? ' is-invalid' : '' }}"
+                                    id="role">
+                                <option value=""></option>
+                                @foreach($roles as $role => $value)
+                                    <option value="{{ $role }}">{{ $value }}</option>
+                                @endforeach
+                            </select>
+
+                            @if ($errors->has('role'))
+                                <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('role') }}</strong></span>
                             @endif
                         </div>
 

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -30,7 +32,18 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $employees = DB::table('darbinieki')
+            ->whereNull('user_id')
+            ->orderBy('id')
+            ->get();
+
+        $roles = [ 0 => 'Parastais lietotājs',
+            1 => 'Administrators',
+            2 => 'Depo vadītājs',
+            3 => 'Nodaļas vadītājs',
+            4 => 'Grāmatvedis'];
+
+        return view('user_create', array('employees' => $employees, 'roles' => $roles));
     }
 
     /**
@@ -41,7 +54,33 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = $rules = array(
+            'darbinieks' => 'required|numeric|min:1',
+            'email' => 'required|string|min:2|max:50',
+            'password' => 'required|string|min:2|max:50',
+            'role' => 'required|numeric|min:0|max:4',
+        );
+
+        $this->validate($request, $rules);
+
+        $employee = DB::table('darbinieki')
+            ->where('id', $request->darbinieks)
+            ->first();
+
+        $user = new User();
+        $user->name = $employee->vards;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role = $request->role;
+        $user->save();
+
+        DB::table('darbinieki')
+            ->where('id', $request->darbinieks)
+            ->update([
+                'user_id' => $user->id
+            ]);
+
+        return redirect()->route('user.show', ['id' => $user->id]);
     }
 
     /**
@@ -70,12 +109,29 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $employee = DB::table('darbinieki')
+            ->where('user_id', $id)
+            ->first();
+
+        $request->session()->put('name', $employee->vards);
+
+        $roles = [ 0 => 'Parastais lietotājs',
+            1 => 'Administrators',
+            2 => 'Depo vadītājs',
+            3 => 'Nodaļas vadītājs',
+            4 => 'Grāmatvedis'];
+
+        $user = DB::table('users')
+            ->where('id', $id)
+            ->first();
+
+        return view('user_edit', array('employee' => $employee, 'roles' => $roles, 'user' => $user));
     }
 
     /**
@@ -87,7 +143,26 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = $rules = array(
+            'email' => 'required|string|min:2|max:50',
+            'password' => 'required|string|min:2|max:50',
+            'role' => 'required|numeric|min:0|max:4',
+        );
+
+        $this->validate($request, $rules);
+
+        $name = $request->session()->get('name');
+
+        DB::table('users')
+            ->where('id', $id)
+            ->update([
+                'name' => $name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => $request->role,
+            ]);
+
+        return redirect()->route('user.show', ['id' => $id]);
     }
 
     /**
@@ -98,6 +173,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('darbinieki')
+            ->where('user_id', $id)
+            ->update([
+                'user_id' => NULL,
+            ]);
+
+        DB::table('users')->where('id', $id)->delete();
+
+        return redirect()->route('allUsers');
     }
 }
