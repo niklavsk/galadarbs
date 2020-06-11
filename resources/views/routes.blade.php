@@ -4,13 +4,13 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="d-inline-block">Saraksts ar visiem maršrutiem</h4>
-                    <a href="{{ url('create/route') }}" class="btn btn-primary float-right">Pievienot maršrutu</a>
+                    <h4 class="d-inline-block">{{ __('messages.All_routes_list') }}</h4>
+                    <a href="{{ url('create/route') }}" class="btn btn-primary float-right">{{ __('messages.Add_route') }}</a>
                 </div>
 
                     @if(count($routes) == 0)
 
-                        <h3 class="text-center alert alert-warning">Maršrutu nav!</h3>
+                        <h3 class="text-center alert alert-warning">{{ __('alerts.No_routes') }}</h3>
 
                     @else
 

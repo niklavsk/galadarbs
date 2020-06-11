@@ -6,13 +6,13 @@
             <div class="card">
 
                 <div class="card-header">
-                    <h4 class="d-inline-block">Saraksts ar visiem darbiniekiem</h4>
-                    <a href="{{ url('create/employee') }}" class="btn btn-primary float-right">Pievienot darbinieku</a>
+                    <h4 class="d-inline-block">{{ __('messages.All_employee_list') }}</h4>
+                    <a href="{{ url('create/employee') }}" class="btn btn-primary float-right">{{ __('messages.Add_employee') }}</a>
                 </div>
 
                     @if(count($employees) == 0)
 
-                        <h5 class="text-md-center alert alert-warning">Darbinieku nav!</h5>
+                        <h5 class="text-md-center alert alert-warning">{{ __('alerts.No_employees') }}</h5>
 
                     @else
                         <div class="list-group list-group-flush">

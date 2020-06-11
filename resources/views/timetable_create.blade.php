@@ -5,7 +5,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4>Pievienot pienākšanas laikus</h4>
+                    <h4>{{ __('messages.Add_arrival_times') }}</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{action('RouteController@storeTimetable', ['id' => $stops[0]->marsruta_id])}}" method="post">
@@ -13,19 +13,19 @@
 
                         @if($empty == true)
                             <div class="container-md text-md-center col-md-10">
-                                <p class="alert alert-danger"><strong>Nedrīkst atstāt tukšus laikus!</strong></p>
+                                <p class="alert alert-danger"><strong>{{ __('alerts.Do_not_leave_empty_times') }}</strong></p>
                             </div>
                         @endif
 
                         @if($duplicate == true)
                             <div class="col-md-10 container-md text-md-center">
-                                <p class="alert alert-danger"><strong>Ievadītie laiki nedrīkst atkārtoties!</strong></p>
+                                <p class="alert alert-danger"><strong>{{ __('alerts.Arrival_times_cannot_repeat_themselves') }}</strong></p>
                             </div>
                         @endif
 
                         @if($wrongOrder == true)
                             <div class="col-md-10 container-md text-md-center">
-                                <p class="alert alert-danger"><strong>Ievadīto laiku secība ir nepareiza!</strong></p>
+                                <p class="alert alert-danger"><strong>{{ __('alerts.Sequence_of_times_entered_is_not_correct') }}</strong></p>
                             </div>
                         @endif
 
@@ -40,7 +40,7 @@
 
                         @endfor
 
-                        <input type="submit" value="Izveidot" class="btn btn-primary btn-block mx-md-auto col-md-8">
+                        <input type="submit" value="{{ __('messages.Create') }}" class="btn btn-primary btn-block mx-md-auto col-md-8">
 
                     </form>
                 </div>

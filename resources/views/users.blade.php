@@ -5,8 +5,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="d-inline-block">Saraksts ar visiem lietotājiem</h4>
-                    <a href="{{ url('create/user') }}" class="btn btn-primary float-right">Pievienot lietotāju</a>
+                    <h4 class="d-inline-block">{{ __('messages.All_users_list') }}</h4>
+                    <a href="{{ url('create/user') }}" class="btn btn-primary float-right">{{ __('messages.Add_user') }}</a>
                 </div>
 
                 <div class="card-body">
@@ -14,7 +14,7 @@
 
                     @if(count($users) == 0)
 
-                        <h5 class="text-md-center alert alert-warning">Lietotāju nav!</h5>
+                        <h5 class="text-md-center alert alert-warning">{{ __('alerts.No_users') }}</h5>
 
                     @else
                         <div class="btn-group-vertical mx-md-auto d-md-block col-md-8 h4">
