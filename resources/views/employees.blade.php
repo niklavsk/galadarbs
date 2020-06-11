@@ -4,7 +4,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <h4 class="card-header">Saraksts ar visiem darbiniekiem</h4>
+
+                <div class="card-header">
+                    <h4 class="d-inline-block">Saraksts ar visiem darbiniekiem</h4>
+                    <a href="{{ url('create/employee') }}" class="btn btn-primary float-right">Pievienot darbinieku</a>
+                </div>
 
                     @if(count($employees) == 0)
 
