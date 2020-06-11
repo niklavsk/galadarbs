@@ -62,6 +62,10 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('allUsers') }}">Lietotāji</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('allExtras') }}">Papildus</a>
                         </li>
                     </ul>

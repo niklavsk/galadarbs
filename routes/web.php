@@ -95,3 +95,13 @@ Route::get('/edit/stop/{id}', 'StopController@edit')->name('stop.edit')->middlew
 Route::post('/edit/stop/{id}', 'StopController@update')->middleware('auth');
 Route::get('/destroy/stop/{id}', 'StopController@destroy')->name('stop.destroy')->middleware('auth');
 
+
+Route::resource('users', 'UserController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete']])->middleware('auth');
+Route::get('/users', 'UserController@index')->name('allUsers')->middleware('auth');
+Route::get('/user/{id}', 'UserController@show')->name('user.show')->middleware('auth');
+Route::get('/create/user', 'UserController@create')->name('user.create')->middleware('auth');
+Route::post('/create/user', 'UserController@store')->middleware('auth');
+Route::get('/edit/user/{id}', 'UserController@edit')->name('user.edit')->middleware('auth');
+Route::post('/edit/user/{id}', 'UserController@update')->middleware('auth');
+Route::get('/destroy/user/{id}', 'UserController@destroy')->name('user.destroy')->middleware('auth');
+
