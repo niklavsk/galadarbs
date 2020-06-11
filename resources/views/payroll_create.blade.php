@@ -33,6 +33,7 @@
                 </tr>
             @endforeach
         </table>
+        
     @endif
 
     <h4>Saraksts ar visiem šajā mēnesī aizgājušajiem darbiniekiem</h4>
@@ -50,7 +51,20 @@
                     <td>{{ $amat->nosaukums }}</td>
                     <td>{{ $amat->darba_pilditajs }}</td>
                     <td>{{ $amat->stundas_likme }}</td>
-                    <td><input type="text"></td>
+                    <td>
+                        <form action="{{action('PayController@store')}}" method="post">
+                            <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+                            <input type="hidden" id="pers_kods" name="pers_kods" value="{{ $amat->darba_pilditajs }}">
+                            <input type="hidden" id="amats" name="amats" value="{{ $amat->id }}">
+                            <input type="hidden" id="likme" name="likme" value="{{ $amat->stundas_likme }}">
+                            <input type="text" id="stundu_sk" name="stundu_sk">
+                            @if ($errors->has('stundu_sk'))
+                                <span class="invalid-feedback"><strong>{{ $errors->first('stundu_sk') }}</strong></span>
+                            @endif
+                            <input type="hidden" id="izsniegsanas_datums" name="izsniegsanas_datums" value="{{ date("Y-m-d") }}">
+                            <input type="submit" value="Apstiprināt" class="btn">
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </table>
