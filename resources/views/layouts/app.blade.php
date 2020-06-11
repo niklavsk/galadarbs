@@ -75,6 +75,8 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li><a class="nav-link" href="/lang/lv">LV</a></li>
+                        <li><a class="nav-link" href="/lang/en">EN</a></li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">

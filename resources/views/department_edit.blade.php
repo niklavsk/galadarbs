@@ -5,14 +5,14 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4>Rediģēt nodaļu</h4>
+                    <h4>{{ __('messages.Edit_department') }}</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{action('DepController@update', ['id' => $department->id])}}" method="post">
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 
                         <div class="form-group row {{ $errors->has('apraksts') ? 'has-error' : ''}}">
-                            <label for="apraksts" class="control-label text-md-right col-md-4">Apraksts</label>
+                            <label for="apraksts" class="control-label text-md-right col-md-4">{{ __('messages.Description') }}</label>
 
                             <input class="form-control col-md-6 {{$errors->has('apraksts') ? ' is-invalid' : '' }}"
                                    name="apraksts" type="text" id="apraksts" value="{{ $department->apraksts }}">
@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="form-group row {{ $errors->has('epasts') ? 'has-error' : ''}}">
-                            <label for="epasts" class="control-label text-md-right col-md-4">E-pasts</label>
+                            <label for="epasts" class="control-label text-md-right col-md-4">{{ __('messages.Email') }}</label>
 
                             <input class="form-control col-md-6 {{$errors->has('epasts') ? ' is-invalid' : '' }}"
                                    name="epasts" type="email" id="epasts" value="{{ $department->epasts }}">
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="form-group row {{ $errors->has('kontakttalrunis') ? 'has-error' : ''}}">
-                            <label for="kontakttalrunis" class="control-label text-md-right col-md-4">Kontakttālrunis</label>
+                            <label for="kontakttalrunis" class="control-label text-md-right col-md-4">{{ __('messages.Telephone_number') }}</label>
 
                             <input class="form-control col-md-6 {{$errors->has('kontakttalrunis') ? ' is-invalid' : '' }}"
                                    name="kontakttalrunis" type="text" id="kontakttalrunis" value="{{ $department->kontakttalrunis }}">
@@ -43,7 +43,7 @@
 
 
                         <div class="form-group row {{ $errors->has('nodalas_vaditajs') ? 'has-error' : ''}}">
-                            <label for="nodalas_vaditajs" class="control-label text-md-right col-md-4">Nodaļas vadītājs</label>
+                            <label for="nodalas_vaditajs" class="control-label text-md-right col-md-4">{{ __('messages.Department_director') }}</label>
 
                             <select name="nodalas_vaditajs" size="1"
                                     class="form-control col-md-6 {{$errors->has('nodalas_vaditajs') ? ' is-invalid' : '' }}"
@@ -62,7 +62,7 @@
 
 
                         <div class="form-group row {{ $errors->has('atrasanas_vieta') ? 'has-error' : ''}}">
-                            <label for="atrasanas_vieta" class="control-label text-md-right col-md-4">Atrašanās vieta</label>
+                            <label for="atrasanas_vieta" class="control-label text-md-right col-md-4">{{ __('messages.Location') }}</label>
 
                             <select name="atrasanas_vieta" size="1"
                                     class="form-control col-md-6 {{$errors->has('atrasanas_vieta') ? ' is-invalid' : '' }}"
@@ -87,7 +87,7 @@
                             @endif
                         </div>
 
-                        <input type="submit" value="Rediģēt" class="btn btn-primary btn-block mx-md-auto col-md-8">
+                        <input type="submit" value="{{ __('messages.Edit') }}" class="btn btn-primary btn-block mx-md-auto col-md-8">
 
                     </form>
                 </div>

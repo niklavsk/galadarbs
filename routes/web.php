@@ -119,3 +119,5 @@ Route::get('/edit/user/{id}', 'UserController@edit')->name('user.edit')->middlew
 Route::post('/edit/user/{id}', 'UserController@update')->middleware('auth');
 Route::get('/destroy/user/{id}', 'UserController@destroy')->name('user.destroy')->middleware('auth');
 
+Route::get('lang/{locale}', 'LanguageController');
+

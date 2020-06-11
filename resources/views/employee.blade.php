@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <h4 class="card-header">Darbinieka informācija</h4>
+                <h4 class="card-header">{{ __('messages.Employee_info') }}</h4>
                 <div class="card-body">
 
                     <div class="container-md">
@@ -17,19 +17,19 @@
                                 <h5 class="font-weight-bold text-md-center">{{ $employee->vards }} {{ $employee->otrais_vards}} {{ $employee->uzvards }}</h5>
                                 <table class="table table-borderless" width="100%">
                                     <tr>
-                                        <th class="text-md-right mr-1">Personas kods</th>
+                                        <th class="text-md-right mr-1">{{ __('messages.pers_ID') }}</th>
                                         <td>{{$employee->pk}}</td>
                                     </tr>
                                     <tr>
-                                        <th class="text-md-right mr-1">Adrese</th>
+                                        <th class="text-md-right mr-1">{{ __('messages.Address') }}</th>
                                         <td>{{$employee->adrese}}</td>
                                     </tr>
                                     <tr>
-                                        <th class="text-md-right mr-1">Tālrunis</th>
+                                        <th class="text-md-right mr-1">{{ __('messages.Telephone_number') }}</th>
                                         <td>{{$employee->talrunis}}</td>
                                     </tr>
                                     <tr>
-                                        <th class="text-md-right mr-1">Epasts</th>
+                                        <th class="text-md-right mr-1">{{ __('messages.Email') }}</th>
                                         <td>{{$employee->epasts}}</td>
                                     </tr>
                                 </table>
@@ -42,12 +42,12 @@
                             <div class="col-md">
                                 <table class="table table-hover" width="100%">
                                     <tr>
-                                        <th>Amata nosaukums</th>
-                                        <th>Nodaļa</th>
-                                        <th>Depo</th>
-                                        <th>Stundas likme</th>
-                                        <th>Darba uzsākšanas datums</th>
-                                        <th>Darba beigšanas datums</th>
+                                        <th>{{ __('messages.Position') }}</th>
+                                        <th>{{ __('messages.Department') }}</th>
+                                        <th>{{ __('messages.Depot') }}</th>
+                                        <th>{{ __('messages.Hourly_rate') }}</th>
+                                        <th>{{ __('messages.Job_start_date') }}</th>
+                                        <th>{{ __('messages.Job_end_date') }}</th>
                                     </tr>
 
                                     @foreach($jobs as $job)

@@ -5,14 +5,14 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4>Rediģet depo {{ $depot->id }}</h4>
+                    <h4>{{ __('messages.Edit_depot') }} {{ $depot->id }}</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{action('DepotController@update', ['id' => $depot->id])}}" method="post">
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 
                             <div class="form-group row {{ $errors->has('apraksts') ? 'has-error' : ''}}">
-                                <label for="apraksts" class="control-label text-md-right col-md-4">Apraksts</label>
+                                <label for="apraksts" class="control-label text-md-right col-md-4">{{ __('messages.Description') }}</label>
 
                                 <input class="form-control col-md-6 {{$errors->has('apraksts') ? ' is-invalid' : '' }}"
                                        name="apraksts" type="text" id="apraksts" value="{{ $depot->apraksts }}">
@@ -22,7 +22,7 @@
                             </div>
 
                             <div class="form-group row {{ $errors->has('epasts') ? 'has-error' : ''}}">
-                                <label for="epasts" class="control-label text-md-right col-md-4">E-pasts</label>
+                                <label for="epasts" class="control-label text-md-right col-md-4">{{ __('messages.Email') }}</label>
 
                                 <input class="form-control col-md-6 {{$errors->has('epasts') ? ' is-invalid' : '' }}"
                                        name="epasts" type="email" id="epasts" value="{{ $depot->epasts }}">
@@ -32,7 +32,7 @@
                             </div>
 
                             <div class="form-group row {{ $errors->has('kontakttalrunis') ? 'has-error' : ''}}">
-                                <label for="kontakttalrunis" class="control-label text-md-right col-md-4">Kontakttālrunis</label>
+                                <label for="kontakttalrunis" class="control-label text-md-right col-md-4">{{ __('messages.Telephone_number') }}</label>
 
                                 <input class="form-control col-md-6 {{$errors->has('kontakttalrunis') ? ' is-invalid' : '' }}"
                                        name="kontakttalrunis" type="text" id="kontakttalrunis"
@@ -44,7 +44,7 @@
 
 
                             <div class="form-group row {{ $errors->has('depo_vaditajs') ? 'has-error' : ''}}">
-                                <label for="depo_vaditajs" class="control-label text-md-right col-md-4">Depo vadītājs</label>
+                                <label for="depo_vaditajs" class="control-label text-md-right col-md-4">{{ __('messages.Depot_director') }}</label>
 
                                 <select name="depo_vaditajs" size="1"
                                         class="form-control col-md-6 {{$errors->has('depo_vaditajs') ? ' is-invalid' : '' }}"
@@ -63,7 +63,7 @@
 
 
                             <div class="form-group row {{ $errors->has('atrasanas_vieta') ? 'has-error' : ''}}">
-                                <label for="atrasanas_vieta" class="control-label text-md-right col-md-4">Atrašanās vieta</label>
+                                <label for="atrasanas_vieta" class="control-label text-md-right col-md-4">{{ __('messages.Location') }}</label>
 
                                 <select name="atrasanas_vieta" size="1"
                                         class="form-control col-md-6 {{$errors->has('atrasanas_vieta') ? ' is-invalid' : '' }}"
@@ -88,7 +88,7 @@
                                 @endif
                             </div>
 
-                        <input type="submit" value="Veikt izmaiņas"
+                        <input type="submit" value="{{ __('messages.Confirm_changes') }}"
                                class="btn btn-primary btn-block mx-md-auto col-md-8">
 
                     </form>
