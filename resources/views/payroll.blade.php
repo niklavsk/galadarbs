@@ -34,6 +34,6 @@
     </table>
 
     <a href="{{ url('edit/payroll', $payroll->id) }}" class="btn">Rediģēt maksājumu</a>
-    <a href="{{ url('remove/payroll', $payroll->id) }}" class="btn">Rediģēt maksājumu</a>
+    <a href="{{ url('destroy/payroll', $payroll->id) }}" class="btn">Izdzēst maksājumu</a>
 @endsection
 

@@ -130,6 +130,7 @@ class PayController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('maksajumu_vesture')->where('id', $id)->delete();
+        return $this->index();
     }
 }
