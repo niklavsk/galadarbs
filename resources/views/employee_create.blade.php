@@ -64,7 +64,7 @@
                         <div class="form-group row {{ $errors->has('epasts') ? 'has-error' : ''}}">
                             <label for="epasts" class="control-label text-md-right col-md-4">E-pasts</label>
 
-                            <input class="form-control col-md-6 {{$errors->has('uzvards') ? ' is-invalid' : '' }}"
+                            <input class="form-control col-md-6 {{$errors->has('epasts') ? ' is-invalid' : '' }}"
                                    name="epasts" type="email" id="epasts">
                             @if ($errors->has('epasts'))
                                 <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('epasts') }}</strong></span>
@@ -72,7 +72,9 @@
                         </div>
 
 
-                        <h4>Dzīvesvieta:</h4>
+                        <div class="row col-md-11 mx-md-auto">
+                            <h5>Dzīvesvieta:</h5>
+                        </div>
 
                         <div class="form-group row {{ $errors->has('valsts') ? 'has-error' : ''}}">
                             <label for="valsts" class="control-label text-md-right col-md-4">Valsts</label>
