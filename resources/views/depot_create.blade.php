@@ -15,8 +15,7 @@
                                 <label for="apraksts" class="control-label text-md-right col-md-4">Apraksts</label>
 
                                 <input class="form-control col-md-6 {{$errors->has('apraksts') ? ' is-invalid' : '' }}"
-                                       name="apraksts"
-                                       type="text" id="apraksts">
+                                       name="apraksts" type="text" id="apraksts">
                                 @if ($errors->has('apraksts'))
                                     <span
                                         class="invalid-feedback text-md-center"><strong>{{ $errors->first('apraksts') }}</strong></span>
@@ -27,8 +26,7 @@
                                 <label for="epasts" class="control-label text-md-right col-md-4">E-pasts</label>
 
                                 <input class="form-control col-md-6 {{$errors->has('epasts') ? ' is-invalid' : '' }}"
-                                       name="epasts"
-                                       type="text" id="epasts">
+                                       name="epasts" type="email" id="epasts">
                                 @if ($errors->has('epasts'))
                                     <span
                                         class="invalid-feedback text-md-center"><strong>{{ $errors->first('epasts') }}</strong></span>

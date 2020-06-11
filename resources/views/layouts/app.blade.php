@@ -33,25 +33,44 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('allEmployees') }}">Darbinieki</a>
-                        </li>
+                        @guest
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('allEmployees') }}">Darbinieki</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('allPayroll') }}">Maksājumi</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('allPayrolls') }}">Maksājumi</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('allVehicles') }}">Transportlīdzekļi</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('allVehicles') }}">Transportlīdzekļi</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('allDepots') }}">Depo</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('allDepots') }}">Depo</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('allRoutes') }}">Maršruti</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('allDepartments') }}">Nodaļas</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('allRoutes') }}">Maršruti</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('allStops') }}">Pieturas</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('allUsers') }}">Lietotāji</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('allExtras') }}">Papildus</a>
+                            </li>
+                        @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -9,6 +9,7 @@ use App\Darbinieki;
 
 class Nodala extends Model
 {
+    public $table = 'nodala';
     protected $fillable=['apraksts','nodalas_vaditajs','atrasanas_vieta','epasts','kontakttalrunis'];
 
     public function nodadreses() {

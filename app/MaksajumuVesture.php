@@ -8,6 +8,7 @@ use App\Darbinieki;
 
 class MaksajumuVesture extends Model
 {
+    public $table = 'maksajumu_vesture';
     protected $fillable=['pers_kods','amats','likme','stundu_sk','izsniegsanas_datums','alga'];
 
     public function tiekIzmaksats() {

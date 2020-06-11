@@ -21,11 +21,10 @@ class CreateTransportlidzeklisTable extends Migration
             $table->date('razosanas_datums');
             $table->string('razotajs',50);
 
-            $table->unsignedBigInteger('depo_nr');
+            $table->unsignedBigInteger('depo_nr')->nullable();
             $table->foreign('depo_nr')->references('id')->on('depo');
-            $table->unsignedBigInteger('marsruta_id');
+            $table->unsignedBigInteger('marsruta_id')->nullable();
             $table->foreign('marsruta_id')->references('id')->on('marsruti');
-
         });
     }
 

@@ -1,30 +1,39 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <h4 class="card-header">Saraksts ar visiem veiktajiem maksājumiem</h4>
+    <h4>Maksājums</h4>
 
-                    @if(count($payroll) == 0)
+    <table>
+        <tr>
+            <th>Personas kods</th>
+            <th>Adrese</th>
+            <th>Tālrunis</th>
+            <th>Epasts</th>
+        </tr>
+        <tr>
+            <td>{{$employee->pk}}</td>
+            <td>{{$employee->adrese}}</td>
+            <td>{{$employee->talrunis}}</td>
+            <td>{{$employee->epasts}}</td>
+        </tr>
+    </table>
 
-                        <h5 class="text-md-center alert alert-warning">Veikto maksājumu nav!</h5>
+    <table>
+        <tr>
+            <th>Amats</th>
+            <th>Likme</th>
+            <th>Stundu skaits</th>
+            <th>Izsniegšanas datums</th>
+        </tr>
+        <tr>
+            <td>{{$payroll->amats}}</td>
+            <td>{{$payroll->likme}}</td>
+            <td>{{$payroll->stundu_sk}}</td>
+            <td>{{$payroll->izsniegsanas_datums}}</td>
+        </tr>
+    </table>
 
-                    @else
-                        <div class="list-group list-group-flush">
-                            @foreach ( $payroll as $pay)
-                                <a class="list-group-item list-group-item-action" href="{{ url('payroll/view', $pay->id) }}">
-                                    <div class="list-group list-group-horizontal justify-content-center">
-                                        <div class="list-group-item list-group-item-primary col-md-3 text-md-center">{{ $pay->pers_kods }}</div>
-                                        <div class="list-group-item col-md-3 text-md-center">€{{ $pay->likme * $pay->stundu_sk }}</div>
-                                        <div class="list-group-item col-md-3 text-md-center">{{ $pay->izsniegsanas_datums }}</div>
-                                    </div>
-                                </a>
-                            @endforeach
-                        </div>
-                    @endif
-            </div>
-        </div>
-    </div>
-
+    <a href="{{ url('edit/payroll', $payroll->id) }}" class="btn">Rediģēt maksājumu</a>
+    <a href="{{ url('destroy/payroll', $payroll->id) }}" class="btn">Izdzēst maksājumu</a>
 @endsection
+

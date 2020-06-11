@@ -8,6 +8,7 @@ use App\Adrese;
 
 class Pietura extends Model
 {
+    public $table = 'pietura';
     protected $fillable=['nosaukums','atrasanas_vieta'];
 
     public function atrodas() {

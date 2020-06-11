@@ -9,6 +9,7 @@ use App\Pietura;
 
 class MarsrutaPieturas extends Model
 {
+    public $table = 'marsruta_pieturas';
     protected $fillable=['pieturas_kartas_nr','pietura','marsruta_id'];
 
     public function irNoteikti() {

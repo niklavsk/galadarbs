@@ -15,11 +15,9 @@
                                 <label for="apraksts" class="control-label text-md-right col-md-4">Apraksts</label>
 
                                 <input class="form-control col-md-6 {{$errors->has('apraksts') ? ' is-invalid' : '' }}"
-                                       name="apraksts"
-                                       type="text" id="apraksts" value="{{ $depot->apraksts }}">
+                                       name="apraksts" type="text" id="apraksts" value="{{ $depot->apraksts }}">
                                 @if ($errors->has('apraksts'))
-                                    <span
-                                        class="invalid-feedback text-md-center"><strong>{{ $errors->first('apraksts') }}</strong></span>
+                                    <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('apraksts') }}</strong></span>
                                 @endif
                             </div>
 
@@ -27,11 +25,9 @@
                                 <label for="epasts" class="control-label text-md-right col-md-4">E-pasts</label>
 
                                 <input class="form-control col-md-6 {{$errors->has('epasts') ? ' is-invalid' : '' }}"
-                                       name="epasts"
-                                       type="text" id="epasts" value="{{ $depot->epasts }}">
+                                       name="epasts" type="email" id="epasts" value="{{ $depot->epasts }}">
                                 @if ($errors->has('epasts'))
-                                    <span
-                                        class="invalid-feedback text-md-center"><strong>{{ $errors->first('epasts') }}</strong></span>
+                                    <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('epasts') }}</strong></span>
                                 @endif
                             </div>
 
@@ -42,8 +38,7 @@
                                        name="kontakttalrunis" type="text" id="kontakttalrunis"
                                        value="{{ $depot->kontakttalrunis }}">
                                 @if ($errors->has('kontakttalrunis'))
-                                    <span
-                                        class="invalid-feedback text-md-center"><strong>{{ $errors->first('kontakttalrunis') }}</strong></span>
+                                    <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('kontakttalrunis') }}</strong></span>
                                 @endif
                             </div>
 
@@ -62,8 +57,7 @@
                                 </select>
 
                                 @if ($errors->has('depo_vaditajs'))
-                                    <span
-                                        class="invalid-feedback text-md-center"><strong>{{ $errors->first('depo_vaditajs') }}</strong></span>
+                                    <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('depo_vaditajs') }}</strong></span>
                                 @endif
                             </div>
 
@@ -90,8 +84,7 @@
                                 </select>
 
                                 @if ($errors->has('atrasanas_vieta'))
-                                    <span
-                                        class="invalid-feedback text-md-center"><strong>{{ $errors->first('atrasanas_vieta') }}</strong></span>
+                                    <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('atrasanas_vieta') }}</strong></span>
                                 @endif
                             </div>
 

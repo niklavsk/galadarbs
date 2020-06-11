@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PienaksanasLaiki extends Model
 {
+    public $table = 'pienaksanas_laiki';
     protected $fillable=['marsruta_pieturas','laiks'];
 
     public function irNoteikti() {

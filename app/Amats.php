@@ -10,6 +10,7 @@ use App\Nodala;
 
 class Amats extends Model
 {
+    public $table = 'amats';
     protected $fillable=['nosaukums','nodala', 'depo', 'stundas_likme', 'darba_pilditajs', 'darba_uzsaksanas_datums', 'darba_beigsanas_datums'];
 
     public function tiekIzmaksats() {
