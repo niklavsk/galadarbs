@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 use App\Adrese;
 use App\Http\Controllers\Controller;
-use App\Mail\testMail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-use Mail;
 use App\Darbinieki;
 use Illuminate\Http\Request;
 
@@ -281,30 +279,4 @@ class EmployeeController extends Controller
 
         return redirect()->route('employee.show', ['id' => $id]);
     }
-
-
-//    public function sendMail()
-//    {
-//        $login_id = Auth::id();
-//        $user = DB::table('darbinieki')->where('user_id', $login_id)->first();
-//
-//        if($user->otrais_vards != NULL)
-//        {
-//            $to_name = $user->vards . ' ' . $user->otrais_vards . ' ' . $user->uzvards;
-//        } else {
-//            $to_name = $user->vards . ' ' . $user->uzvards;
-//        }
-//
-////        $to_email = $user->epasts; //izkomentēts, lai varētu pārbaudīt, ka strādā, izmantojot nākošo līniju
-//        $to_email = 'anitra.beinare@gmail.com';
-//        $data = array('name'=> $to_name, 'body' => "Test mail");
-//
-//        Mail::send('emails/testMail', $data, function($message) use ($to_name, $to_email) {
-//            $message->to($to_email, $to_name)
-//                ->subject('RiMSIS pieslēguma izveidošana');
-//            $message->from('rimsislv@gmail.com','RiMSIS Administrators');
-//        });
-//
-//        return redirect()->route('user.show', ['id' => $user->id]);
-//    }
 }

@@ -2,7 +2,9 @@
 @section('content')
 
     <h4>Saraksts ar visiem veiktajiem maksājumiem</h4>
-    <h6><a href="{{ url('create/payroll') }}">Jauns maksājums</a></h6>
+    @if($role == 4 || $role == 1)
+        <h6><a href="{{ url('create/payroll') }}">Jauns maksājums</a></h6>
+    @endif
     @if(count($payrolls) == 0)
 
         <h5>Veikto maksājumu nav!</h5>
