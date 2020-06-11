@@ -44,8 +44,10 @@ Route::post('/add/job/employee/{id}', 'EmployeeController@addJob_store')->middle
 Route::get('/remove/job/employee/{id}/{job}', 'EmployeeController@removeJob')->middleware('auth');
 
 
+Route::get('/mail','EmployeeController@sendMail')->middleware('auth');
+
 //Route::resource('payroll', 'PayController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete']])->middleware('auth');
-Route::get('/payroll', 'PayController@index')->name('allPayrolls')->middleware('auth');
+Route::get('/payroll', 'PayController@index')->name('allPayroll')->middleware('auth');
 Route::get('/payroll/{id}', 'PayController@show')->name('payroll.show')->middleware('auth');
 Route::get('/create/payroll', 'PayController@create')->name('payroll.create')->middleware('auth');
 Route::post('/create/payroll', 'PayController@store')->name('payroll.store')->middleware('auth');
