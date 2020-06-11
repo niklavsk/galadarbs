@@ -40,7 +40,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allPayroll') }}">Maksājumi</a>
+                                <a class="nav-link" href="{{ route('allPayrolls') }}">Maksājumi</a>
                             </li>
 
                             <li class="nav-item">
