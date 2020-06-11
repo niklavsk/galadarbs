@@ -12,11 +12,11 @@ class MaksajumuVesture extends Model
     protected $fillable=['pers_kods','amats','likme','stundu_sk','izsniegsanas_datums','alga'];
 
     public function tiekIzmaksats() {
-        return $this->belongsTo(Amats::class,'amats');
+        return $this->belongsTo('App\Amats','amats');
     }
 
     public function orders() {
-        return $this->belongsTo(Darbinieki::class,'pers_kods');
+        return $this->belongsTo('App\Darbinieki','pers_kods');
     }
 
 }

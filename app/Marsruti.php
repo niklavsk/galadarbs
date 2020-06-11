@@ -12,10 +12,10 @@ class Marsruti extends Model
     protected $fillable=['nosaukums','apraksts'];
 
     public function brauc() {
-        return $this->hasMany(Transportlidzeklis::class,'marsruta_id');
+        return $this->hasMany('App\Transportlidzeklis','marsruta_id');
     }
 
     public function irNoteikti() {
-        return $this->hasMany(MarsrutaPieturas::class,'marsruta_id');
+        return $this->hasMany('App\MarsrutaPieturas','marsruta_id');
     }
 }

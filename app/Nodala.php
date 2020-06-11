@@ -13,15 +13,15 @@ class Nodala extends Model
     protected $fillable=['apraksts','nodalas_vaditajs','atrasanas_vieta','epasts','kontakttalrunis'];
 
     public function nodadreses() {
-        return $this->belongsTo(Adrese::class,'atrasanas_vieta');
+        return $this->belongsTo('App\Adrese','atrasanas_vieta');
     }
 
     public function nodalas() {
-        return $this->hasMany(Amats::class,'nodala');
+        return $this->hasMany('App\Amats','nodala');
     }
 
     public function vadanodalu() {
-        return $this->belongsTo(Darbinieki::class, 'nodalas_vaditajs');
+        return $this->belongsTo('App\Darbinieki', 'nodalas_vaditajs');
     }
 
 }

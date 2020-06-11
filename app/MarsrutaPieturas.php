@@ -13,15 +13,15 @@ class MarsrutaPieturas extends Model
     protected $fillable=['pieturas_kartas_nr','pietura','marsruta_id'];
 
     public function irNoteikti() {
-        return $this->hasMany(PienaksanasLaiki::class,'marsruta_pietura');
+        return $this->hasMany('App\PienaksanasLaiki','marsruta_pietura');
     }
 
     public function pieder() {
-        return $this->belongsTo(Pietura::class,'pietura');
+        return $this->belongsTo('App\Pietura','pietura');
     }
 
     public function brauc() {
-        return $this->belongsTo(Marsruti::class,'marsruta_id');
+        return $this->belongsTo('App\Marsruti','marsruta_id');
     }
 
 }

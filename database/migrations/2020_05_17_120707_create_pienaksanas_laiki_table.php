@@ -16,7 +16,10 @@ class CreatePienaksanasLaikiTable extends Migration
         Schema::create('pienaksanas_laiki', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('marsruta_pietura')->references('id')->on('marsruta_pieturas')->constrained();
+
+            $table->unsignedBigInteger('marsruta_pietura');
+            $table->foreign('marsruta_pietura')->references('id')->on('marsruta_pieturas');
+
             $table->time('laiks');
         });
     }

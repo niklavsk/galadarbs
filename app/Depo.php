@@ -18,15 +18,15 @@ class Depo extends Model
 
 
     public function atrodasZem() {
-        return $this->hasMany(Amats::class,'depo');
+        return $this->hasMany('App\Amats','depo');
     }
 
     public function tiekApkalpots() {
-        return $this->hasMany(Transportlidzeklis::class,'depo_nr');
+        return $this->hasMany('App\Transportlidzeklis','depo_nr');
     }
 
     public function vadadepo() {
-        return $this->belongsTo(Darbinieki::class, 'depo_vaditajs');
+        return $this->belongsTo('App\Darbinieki', 'depo_vaditajs');
     }
 
 }
