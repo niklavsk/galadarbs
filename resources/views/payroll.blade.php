@@ -11,10 +11,10 @@
             <th>Epasts</th>
         </tr>
         <tr>
-            <td>{{$employee->pk}}</td>
-            <td>{{$employee->adrese}}</td>
-            <td>{{$employee->talrunis}}</td>
-            <td>{{$employee->epasts}}</td>
+            <td>{{$payroll->pk}}</td>
+            <td>{{$payroll->adrese}}</td>
+            <td>{{$payroll->talrunis}}</td>
+            <td>{{$payroll->epasts}}</td>
         </tr>
     </table>
 
