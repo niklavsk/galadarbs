@@ -28,7 +28,6 @@
                 <div class="card-footer text-center p-md-3">
                     <a href="{{ url('edit/user', $user->id) }}" class=" btn btn-primary">Rediģēt lietotāju</a>
                     <a href="{{ url('destroy/user', $user->id) }}" class="btn btn-secondary">Izdzēst lietotāju</a>
-                    <a href="{{ action('EmployeeController@sendMail') }}" class="btn btn-secondary"> Izsūtīt epastu</a>
                 </div>
             </div>
         </div>
