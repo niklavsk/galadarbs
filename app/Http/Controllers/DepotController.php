@@ -140,7 +140,7 @@ class DepotController extends Controller
     {
         date_default_timezone_set('Europe/Riga');
 
-        $rules = $rules = array(
+        $rules = array(
             'apraksts' => 'required|string|min:2|max:200',
             'depo_vaditajs' => 'numeric|min:1|nullable',
             'atrasanas_vieta' => 'required|numeric|min:1',

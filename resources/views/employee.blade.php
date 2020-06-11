@@ -4,7 +4,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <h4 class="card-header">{{ __('messages.Employee_info') }}</h4>
+
+                <h4 class="card-header">{{ __('messages.Employee') }}</h4>
+
                 <div class="card-body">
 
                     <div class="container-md">
@@ -21,8 +23,16 @@
                                         <td>{{$employee->pk}}</td>
                                     </tr>
                                     <tr>
+
                                         <th class="text-md-right mr-1">{{ __('messages.Address') }}</th>
-                                        <td>{{$employee->adrese}}</td>
+                                        <td>@if($employee->iela != "" && $employee-> majas_nr != ""){{ $employee->iela }} {{ $employee-> majas_nr }}, @endif
+                                            @if($employee->majas_nosaukums != ""){{ $employee->majas_nosaukums }}, @endif
+                                            @if($employee->pilseta != ""){{ $employee->pilseta }}, @endif
+                                            @if($employee->novads != ""){{ $employee->novads }}, @endif
+                                            @if($employee->pagasts != ""){{ $employee->pagasts }}, @endif
+                                            {{ $employee->valsts }},
+                                            {{ $employee->pasta_indekss }}</td>
+
                                     </tr>
                                     <tr>
                                         <th class="text-md-right mr-1">{{ __('messages.Telephone_number') }}</th>
@@ -42,12 +52,15 @@
                             <div class="col-md">
                                 <table class="table table-hover" width="100%">
                                     <tr>
+
                                         <th>{{ __('messages.Position') }}</th>
                                         <th>{{ __('messages.Department') }}</th>
                                         <th>{{ __('messages.Depot') }}</th>
                                         <th>{{ __('messages.Hourly_rate') }}</th>
                                         <th>{{ __('messages.Job_start_date') }}</th>
                                         <th>{{ __('messages.Job_end_date') }}</th>
+                                        <th><a href="{{ url('add/job/employee', $employee->empid) }}" class="btn btn-primary">{{ __('messages.Add_position') }}</a></th>
+
                                     </tr>
 
                                     @foreach($jobs as $job)
@@ -58,6 +71,11 @@
                                             <td>{{$job->stundas_likme}}</td>
                                             <td>{{$job->darba_uzsaksanas_datums}}</td>
                                             <td>{{$job->darba_beigsanas_datums}}</td>
+                                            <td>@if($job->darba_beigsanas_datums == "")
+                                                <a href="{{ url('remove/job/employee', [$employee->empid, $job->id]) }}" class="btn btn-secondary">Atskaitīt no amata</a>
+                                                    @else <button type="button" class="btn btn-secondary" disabled>Atskaitīt no amata</button>
+                                                @endif
+                                            </td>
                                         </tr>
                                     @endforeach
 
@@ -65,6 +83,15 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="card-footer text-center p-md-3">
+                    <a href="{{ url('edit/employee', $employee->empid) }}" class=" btn btn-primary">Rediģēt darbinieku</a>
+                    @if($jobCount != 0)
+                        <a href="{{ url('destroy/employee', $employee->empid) }}" class="btn btn-secondary">Atskaitīt darbinieku no amatiem</a>
+                    @else <button type="button" class="btn btn-secondary" disabled>Atskaitīt darbinieku no amatiem</button>
+                    @endif
+
                 </div>
             </div></div></div>
 

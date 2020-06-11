@@ -32,21 +32,25 @@ Route::get('/destroy/job/{id}', 'ExtraController@destroyJob')->name('job.destroy
 
 Route::resource('employees', 'EmployeeController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete', 'showProfile']])->middleware('auth');
 Route::get('/employees', 'EmployeeController@index')->name('allEmployees')->middleware('auth');
-Route::get('/employee/{id}', 'EmployeeController@show')->middleware('auth');
+Route::get('/employee/{id}', 'EmployeeController@show')->name('employee.show')->middleware('auth');
 Route::get('/employee', 'EmployeeController@showProfile')->name('viewProfile')->middleware('auth');
 Route::get('/create/employee', 'EmployeeController@create')->name('employee.create')->middleware('auth');
 Route::post('/create/employee', 'EmployeeController@store')->middleware('auth');
 Route::get('/edit/employee/{id}', 'EmployeeController@edit')->name('employee.edit')->middleware('auth');
 Route::post('/edit/employee/{id}', 'EmployeeController@update')->middleware('auth');
 Route::get('/destroy/employee/{id}', 'EmployeeController@destroy')->name('employee.destroy')->middleware('auth');
+Route::get('/add/job/employee/{id}', 'EmployeeController@addJob_add')->middleware('auth');
+Route::post('/add/job/employee/{id}', 'EmployeeController@addJob_store')->middleware('auth');
+Route::get('/remove/job/employee/{id}/{job}', 'EmployeeController@removeJob')->middleware('auth');
 
 
-//Route::resource('payroll', 'PayController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete']])->middleware('auth');
+Route::get('/mail','EmployeeController@sendMail')->middleware('auth');
+
+Route::resource('payroll', 'PayController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete']])->middleware('auth');
 Route::get('/payroll', 'PayController@index')->name('allPayrolls')->middleware('auth');
 Route::get('/payroll/{id}', 'PayController@show')->name('payroll.show')->middleware('auth');
 Route::get('/create/payroll', 'PayController@create')->name('payroll.create')->middleware('auth');
 Route::post('/create/payroll', 'PayController@store')->name('payroll.store')->middleware('auth');
-//Route::post('/create/payrolls', 'PayController@submitMany')->name('payrolls.store')->middleware('auth');
 Route::get('/edit/payroll/{id}','PayController@edit')->name('payroll.edit')->middleware('auth');
 Route::post('/edit/payroll/{id}', 'PayController@update')->middleware('auth');
 Route::get('/destroy/payroll/{id}', 'PayController@destroy')->name('payroll.destroy')->middleware('auth');
