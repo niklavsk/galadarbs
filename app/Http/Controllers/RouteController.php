@@ -74,7 +74,7 @@ class RouteController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'nosaukums' => 'required|string|min:2|max:30',
+            'nosaukums' => 'required|string|min:2|max:50',
             'apraksts' => 'required|string|min:2|max:200',
         ]);
 
@@ -210,7 +210,7 @@ class RouteController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'nosaukums' => 'required|string|min:2|max:30',
+            'nosaukums' => 'required|string|min:2|max:50',
             'apraksts' => 'required|string|min:2|max:200',
         ]);
 

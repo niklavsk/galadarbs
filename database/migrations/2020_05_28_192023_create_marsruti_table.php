@@ -16,7 +16,7 @@ class CreateMarsrutiTable extends Migration
         Schema::create('marsruti', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('nosaukums',30);
+            $table->string('nosaukums',50);
             $table->string('apraksts',200);
         });
     }

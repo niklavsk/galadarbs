@@ -1757,9 +1757,30 @@ class DarbiniekiSeeder extends Seeder
 
         ));
 
-        DB::table('darbinieki')
-            ->where('id', 1)
-            ->update(array('user_id' => 1));
+        DB::table('darbinieki')->where('pk', '737437-20688')
+            ->update([
+                'user_id' => 1,
+            ]);
+
+        DB::table('darbinieki')->where('pk', '131179-48128')
+            ->update([
+                'user_id' => 2,
+            ]);
+
+        DB::table('darbinieki')->where('pk', '964823-69625')
+            ->update([
+                'user_id' => 3,
+            ]);
+
+        DB::table('darbinieki')->where('pk', '596797-26449')
+            ->update([
+                'user_id' => 4,
+            ]);
+
+        DB::table('darbinieki')->where('pk', '578364-65560')
+            ->update([
+                'user_id' => 5,
+            ]);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
