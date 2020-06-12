@@ -81,9 +81,19 @@
                                 @foreach($jobs as $job)
                                     <tr>
                                         <td>{{$job->nosaukums}}</td>
-                                        <td>{{$job->nodala}}</td>
+                                        <td>
+                                            @foreach($nodalas as $nodala)
+                                                @if($nodala->id == $job->nodala){{ $nodala->apraksts }}@endif
+                                            @endforeach
+                                        </td>
                                         <td>{{$job->depo}}</td>
-                                        <td>{{$job->stundas_likme}}</td>
+                                        <td>
+                                            @if ( App::getLocale() == 'lv')
+                                            &euro;{{ number_format ($job->stundas_likme, 2, ',', ' ') }}
+                                            @elseif ( App::getLocale() == 'en')
+                                            &euro;{{ number_format ($job->stundas_likme, 2, '.', ',') }}
+                                            @endif
+                                        </td>
                                         <td><a href="{{ url('destroy/job', ['id' => $job->id]) }}" class="btn btn-primary float-center">{{ __('messages.Delete_position') }}</a></td>
                                     </tr>
                                 @endforeach

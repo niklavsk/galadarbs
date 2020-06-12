@@ -17,7 +17,7 @@
                     @else
                         <div class="list-group list-group-flush">
                             @foreach ( $employees as $employee)
-                                <a class="list-group-item list-group-item-action" href="{{ url('employee', $employee->id) }}">{{ $employee->vards }} {{ $employee->uzvards }}</a>
+                                <a class="list-group-item list-group-item-action" href="{{ url('employee', $employee->id) }}"><strong>{{ $employee->vards }} {{ $employee->uzvards }}</strong> &nbsp; {{ $employee->pk }}</a>
                             @endforeach
                         </div>
                     @endif

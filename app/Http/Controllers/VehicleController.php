@@ -18,7 +18,9 @@ class VehicleController extends Controller
     {
         $vehicles = DB::table('transportlidzeklis')->orderBy('id')->get();
 
-        return view('vehicles', array('vehicles' => $vehicles));
+        $marsruti = DB::table('marsruti')->get();
+
+        return view('vehicles', array('vehicles' => $vehicles, 'marsruti' => $marsruti));
     }
 
     /**
@@ -75,7 +77,9 @@ class VehicleController extends Controller
     {
         $vehicle = DB::table('transportlidzeklis')->where('id', $id)->first();
 
-        return view('vehicle', array('vehicle' => $vehicle));
+        $marsruti = DB::table('marsruti')->get();
+
+        return view('vehicle', array('vehicle' => $vehicle, 'marsruti' => $marsruti));
     }
 
     /**

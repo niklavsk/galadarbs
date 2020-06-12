@@ -4,7 +4,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4>{{ __('messages.User') }}: {{ $user->epasts }}</h4>
+                    <h4>{{ __('messages.User') }}: {{ $user->email }}</h4>
                 </div>
                 <div class="card-body">
 
@@ -26,8 +26,8 @@
 
                 </div>
                 <div class="card-footer text-center p-md-3">
-                    <a href="{{ url('edit/user', $user->id) }}" class=" btn btn-primary">{{ __('messages.Edit_user') }}</a>
-                    <a href="{{ url('destroy/user', $user->id) }}" class="btn btn-secondary">{{ __('messages.Delete_user') }}</a>
+                    <a href="{{ url('edit/user', $user->u_id) }}" class=" btn btn-primary">{{ __('messages.Edit_user') }}</a>
+                    <a href="{{ url('destroy/user', $user->u_id) }}" class="btn btn-secondary">{{ __('messages.Delete_user') }}</a>
                 </div>
             </div>
         </div>

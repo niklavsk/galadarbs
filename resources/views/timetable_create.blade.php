@@ -32,7 +32,11 @@
                         @for($i = 0; $i < count($stops); $i++)
 
                             <div class="form-group row {{ $empty == true || $duplicate == true || $wrongOrder == true ? 'has-error' : ''}}">
-                                <label for="{{ $i }}" class="control-label text-md-right col-md-4">{{ $stops[$i]->pietura }}</label>
+                                <label for="{{ $i }}" class="control-label text-md-right col-md-4">
+                                    @foreach($pieturas as $pietura)
+                                        @if($pietura->id == $stops[$i]->pietura){{ $pietura->nosaukums }}@endif
+                                    @endforeach
+                                </label>
 
                                     <input class="form-control col-md-6 {{ $empty == true || $duplicate == true || $wrongOrder == true ? 'has-error' : ''}}"
                                            name="{{ $i }}" type="time" id="{{ $i }}">

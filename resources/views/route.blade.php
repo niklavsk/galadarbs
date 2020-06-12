@@ -22,7 +22,11 @@
 
                             @foreach ($stops as $stop)
                                 <tr>
-                                    <td>{{ $stop->pietura }}</td>
+                                    <td>
+                                        @foreach($pieturas as $pietura)
+                                            @if($pietura->id == $stop->pietura){{ $pietura->nosaukums }}@endif
+                                        @endforeach
+                                    </td>
                                     <td>
                                         @foreach($times as $time)
                                             @if($time->marsruta_pietura == $stop->id) {{ date('H:i', strtotime($time->laiks)) }} |@endif

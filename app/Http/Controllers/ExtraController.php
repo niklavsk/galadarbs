@@ -30,7 +30,9 @@ class ExtraController extends Controller
             ->orderBy('id')
             ->get();
 
-        return view('extras', array('addresses' => $addresses, 'jobs' => $jobs));
+        $nodalas = DB::table('nodala')->get();
+
+        return view('extras', array('addresses' => $addresses, 'jobs' => $jobs, 'nodalas' => $nodalas));
     }
 
     /**

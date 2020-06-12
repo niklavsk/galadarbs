@@ -91,10 +91,12 @@ class PayController extends Controller
             ->orWhereBetween('amats.darba_beigsanas_datums', [$start_date, $end_date])
             ->count();
 
+        $nodalas = DB::table('nodala')->get();
+
         $request->session()->put('employees', $employees);
         $request->session()->put('employeesCount', $employeesCount);
 
-        return view('payroll_create', array('employees' => $employees, 'error' => false));
+        return view('payroll_create', array('employees' => $employees, 'error' => false, 'nodalas' => $nodalas));
     }
 
     /**
@@ -108,6 +110,7 @@ class PayController extends Controller
         date_default_timezone_set('Europe/Riga');
         $employees = $request->session()->get('employees');
         $employeesCount = $request->session()->get('employeesCount');
+        $nodalas = DB::table('nodala')->get();
 
         $error = false;
 
@@ -126,7 +129,7 @@ class PayController extends Controller
         }
 
         if ($error) {
-            return view('payroll_create', array('employees' => $employees,'error' => $error));
+            return view('payroll_create', array('employees' => $employees,'error' => $error, 'nodalas' => $nodalas));
         }
 
         $request->session()->forget('employees');
@@ -156,6 +159,8 @@ class PayController extends Controller
     {
         $payroll = DB::table('maksajumu_vesture')
             ->join('darbinieki', 'maksajumu_vesture.pers_kods', '=', 'darbinieki.id')
+            ->join('amats', 'maksajumu_vesture.amats', '=', 'amats.id')
+            ->select('*', 'maksajumu_vesture.id as pay_id', 'darbinieki.id as emp_id')
             ->where('maksajumu_vesture.id', $id)
             ->first();
 
@@ -170,9 +175,13 @@ class PayController extends Controller
      */
     public function edit($id)
     {
-//        $payroll = DB::table('maksajumu_vesture')->where('id', $id)->first();
-//
-//        return view('payroll_edit', array('payroll'=>$payroll));
+        $payroll = DB::table('maksajumu_vesture')
+            ->join('darbinieki', 'maksajumu_vesture.pers_kods', '=', 'darbinieki.id')
+            ->join('amats', 'maksajumu_vesture.amats', '=', 'amats.id')
+            ->where('maksajumu_vesture.id', $id)
+            ->first();
+
+        return view('payroll_edit', array('payroll' => $payroll));
     }
 
     /**
@@ -184,21 +193,18 @@ class PayController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        $validator = Validator::make($request->all(), [
-//            'stundu_sk' => 'required|integer',
-//        ]);
-//        if ($validator->fails()) {
-//            $payroll = DB::table('maksajumu_vesture')->where('id', $id)->first();
-//
-//            return view('payroll_edit', array('errors' => $validator->messages(), 'payroll'=>$payroll));
-//        }
-//
-//        DB::table('maksajumu_vesture')->where('id', $id)
-//            ->update([
-//                'stundu_sk' => $request->stundu_sk,
-//            ]);
-//
-//        return $this->show($id);
+        $rules = $rules = array(
+            'stundu_sk' => 'required|numeric|min:0',
+        );
+
+        $this->validate($request, $rules);
+
+        DB::table('maksajumu_vesture')->where('id', $id)
+            ->update([
+                'stundu_sk' => $request->stundu_sk,
+            ]);
+
+        return redirect()->route('payroll.show', ['id' => $id]);
     }
 
     /**
@@ -209,7 +215,7 @@ class PayController extends Controller
      */
     public function destroy($id)
     {
-//        DB::table('maksajumu_vesture')->where('id', $id)->delete();
-//        return redirect()->route('allPayrolls');
+        DB::table('maksajumu_vesture')->where('id', $id)->delete();
+        return redirect()->route('allPayrolls');
     }
 }

@@ -79,9 +79,19 @@ class DepController extends Controller
      */
     public function show($id)
     {
-        $department = DB::table('nodala')->where('id', $id)->first();
+        $department = DB::table('nodala')
+            ->join('darbinieki', 'nodala.nodalas_vaditajs', '=', 'darbinieki.id')
+            ->select('*', 'nodala.epasts as nod_epasts', 'nodala.id as dep_id')
+            ->where('nodala.id', $id)
+            ->first();
 
-        return view('department', array('department' => $department));
+        $address = DB::table('nodala')
+            ->join('adrese', 'nodala.atrasanas_vieta', '=', 'adrese.id')
+            ->select('adrese.*')
+            ->where('nodala.id', $id)
+            ->first();
+
+        return view('department', array('department' => $department, 'address' => $address));
     }
 
     /**

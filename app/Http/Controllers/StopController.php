@@ -15,7 +15,11 @@ class StopController extends Controller
      */
     public function index()
     {
-        $stops = DB::table('pietura')->orderBy('id')->get();
+        $stops = DB::table('pietura')
+            ->join('adrese', 'pietura.atrasanas_vieta', '=', 'adrese.id')
+            ->select('pietura.*', 'adrese.iela', 'adrese.majas_nr')
+            ->orderBy('id')
+            ->get();
 
         return view('stops', array('stops' => $stops));
     }
@@ -71,7 +75,13 @@ class StopController extends Controller
     {
         $stop = DB::table('pietura')->where('id', $id)->first();
 
-        return view('stop', array('stop' => $stop));
+        $address = DB::table('pietura')
+            ->join('adrese', 'pietura.atrasanas_vieta', '=', 'adrese.id')
+            ->select('adrese.*')
+            ->where('pietura.id', $id)
+            ->first();
+
+        return view('stop', array('stop' => $stop, 'address' => $address));
     }
 
     /**

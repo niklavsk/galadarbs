@@ -27,10 +27,38 @@ class DatabaseSeeder extends Seeder
         User::truncate();
 
         DB::table('users')->insert([
-            'name' => 'Administrator',
+            'name' => 'Lietotajs',
+            'email' => 'lietotajs@lietotajs.com',
+            'password' => bcrypt('lietotajslietotajs'),
+            'role' => 0
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Administrators',
             'email' => 'admin@admin.com',
             'password' => bcrypt('adminadmin'),
             'role' => 1
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Depo vadītājs',
+            'email' => 'depo@depo.com',
+            'password' => bcrypt('depodepo'),
+            'role' => 2
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Nodaļas vadītājs',
+            'email' => 'nodala@nodala.com',
+            'password' => bcrypt('nodalanodala'),
+            'role' => 3
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Grāmatvedis',
+            'email' => 'gramatvedis@gramatvedis.com',
+            'password' => bcrypt('gramatvedisgramatvedis'),
+            'role' => 4
         ]);
 
         $this->call([

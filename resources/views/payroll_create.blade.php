@@ -30,10 +30,20 @@
 
                                 <tr>
                                     <td>{{ $employees[$i]->nosaukums }}</td>
-                                    <td>{{ $employees[$i]->nodala }}</td>
+                                    <td>
+                                        @foreach($nodalas as $nodala)
+                                            @if($nodala->id == $employees[$i]->nodala){{ $nodala->apraksts }}@endif
+                                        @endforeach
+                                    </td>
                                     <td>{{ $employees[$i]->depo }}</td>
                                     <td>{{ $employees[$i]->vards }} {{ $employees[$i]->uzvards }}</td>
-                                    <td>{{ $employees[$i]->stundas_likme }}</td>
+                                    <td>
+                                        @if ( App::getLocale() == 'lv')&euro;{{ number_format ($employees[$i]->stundas_likme, 2, ',', ' ') }}
+                                        @elseif ( App::getLocale() == 'en')&euro;{{ number_format ($employees[$i]->stundas_likme, 2, '.', ',') }}
+                                        @endif
+                                    </td>
+
+
                                     <td>
                                         <div class="form-group {{ $errors->has($i) ? 'has-error' : ''}}">
                                             <input class="form-control col {{$errors->has($i) ? ' is-invalid' : '' }}"

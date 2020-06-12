@@ -93,7 +93,7 @@
                                 <option value=""></option>
                                 @foreach($routes as $route)
                                     <option value="{{ $route->id }}"
-                                            @if($route->id == $vehicle->marsruta_id) selected @endif>{{ $route->nosaukums }}</option>
+                                            @if($route->id == $vehicle->marsruta_id) selected @endif>{{ $route->id }} | {{ $route->nosaukums }}</option>
                                 @endforeach
                             </select>
 

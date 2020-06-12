@@ -120,7 +120,7 @@
                             <label for="majas_nr" class="control-label text-md-right col-md-4">{{ __('messages.House') }}</label>
 
                             <input class="form-control col-md-6 {{$errors->has('majas_nr') ? ' is-invalid' : '' }}"
-                                   name="majas_nr" type="text" id="majas_nr" value="{{ $employee->iela }}">
+                                   name="majas_nr" type="text" id="majas_nr" value="{{ $employee->majas_nr }}">
                             @if ($errors->has('majas_nr'))
                                 <span class="invalid-feedback text-md-center"><strong>{{ $errors->first('majas_nr') }}</strong></span>
                             @endif

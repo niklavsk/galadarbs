@@ -33,6 +33,7 @@ return [
     'Address' => 'Adrese',
     'Position' => 'Amats',
     'Hourly_rate' => 'Stundas likme',
+    'Salary' => 'Alga',
     'Job_start_date' => 'Darba uzsākšanas datums',
     'Job_end_date' => 'Darba beigšanas datums',
     'Add_employee' => 'Pievienot darbinieku',
