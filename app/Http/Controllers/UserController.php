@@ -40,11 +40,11 @@ class UserController extends Controller
             ->orderBy('id')
             ->get();
 
-        $roles = [ 0 => 'Parastais lietotājs',
-            1 => 'Administrators',
-            2 => 'Depo vadītājs',
-            3 => 'Nodaļas vadītājs',
-            4 => 'Grāmatvedis'];
+        $roles = [ 0 => __('messages.Ordinary_user'),
+            1 => __('messages.Admin'),
+            2 => __('messages.Depot_director'),
+            3 => __('messages.Department_director'),
+            4 => __('messages.Accountant')];
 
         return view('user_create', array('employees' => $employees, 'roles' => $roles));
     }
@@ -101,11 +101,11 @@ class UserController extends Controller
             ->orderBy('users.id')
             ->first();
 
-        $roles = [ 0 => 'Parastais lietotājs',
-            1 => 'Administrators',
-            2 => 'Depo vadītājs',
-            3 => 'Nodaļas vadītājs',
-            4 => 'Grāmatvedis'];
+        $roles = [ 0 => __('messages.Ordinary_user'),
+            1 => __('messages.Admin'),
+            2 => __('messages.Depot_director'),
+            3 => __('messages.Department_director'),
+            4 => __('messages.Accountant')];
 
         return view('user', array('user' => $user, 'roles' => $roles));
     }
@@ -125,11 +125,11 @@ class UserController extends Controller
 
         $request->session()->put('name', $employee->vards);
 
-        $roles = [ 0 => 'Parastais lietotājs',
-            1 => 'Administrators',
-            2 => 'Depo vadītājs',
-            3 => 'Nodaļas vadītājs',
-            4 => 'Grāmatvedis'];
+        $roles = [ 0 => __('messages.Ordinary_user'),
+            1 => __('messages.Admin'),
+            2 => __('messages.Depot_director'),
+            3 => __('messages.Department_director'),
+            4 => __('messages.Accountant')];
 
         $user = DB::table('users')
             ->where('id', $id)
