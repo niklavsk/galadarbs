@@ -4,27 +4,27 @@
         <div class="col-4">
             <table>
                 <tr>
-                    <td>Persona</td>
+                    <td>{{ __('messages.pers_ID') }}</td>
                     <td>{{ $payroll->pers_kods }}</td>
                 </tr>
                 <tr>
-                    <td>Amats</td>
+                    <td>{{ __('messages.Position') }}</td>
                     <td>{{ $payroll->amats }}</td>
                 </tr>
                 <tr>
-                    <td>Likme</td>
+                    <td>{{ __('messages.Hourly_rate') }}</td>
                     <td>{{ $payroll->likme }}</td>
                 </tr>
                 <tr>
-                    <td>Izsniegšanas datums</td>
+                    <td>{{ __('messages.Issue_date') }}</td>
                     <td>{{ $payroll->izsniegsanas_datums }}</td>
                 </tr>
                 <tr>
-                    <td>Vecais stundu skaits</td>
+                    <td>{{ __('messages.Old_hours_worked') }}</td>
                     <td>{{ $payroll->stundu_sk }}</td>
                 </tr>
                 <tr>
-                    <td>Jaunais stundu skaits </td>
+                    <td>{{ __('messages.New_hours_worked') }}</td>
                     <td>
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                         <input type="hidden" id="pers_kods" name="pers_kods" value="{{ $payroll->pers_kods }}">
@@ -38,7 +38,7 @@
                     </td>
                 </tr>
             </table>
-            <input type="submit" value="Apstiprināt" class="btn">
+            <input type="submit" value="{{ __('messages.Confirm_changes') }}" class="btn">
         </div>
     </form>
 @endsection

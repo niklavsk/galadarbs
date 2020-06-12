@@ -4,12 +4,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <h4 class="card-header">Izveidot algu maksājumus</h4>
+                <h4 class="card-header">{{ __('messages.Create_payroll') }}</h4>
                 <div class="card-body">
 
                     @if($error == true)
                         <div class="container-md text-md-center col-md-10">
-                            <p class="alert alert-danger"><strong>Datu ievades kļūda!</strong></p>
+                            <p class="alert alert-danger"><strong>{{ __('alerts.Incorrect_data_error') }}</strong></p>
                         </div>
                     @endif
 
@@ -18,12 +18,12 @@
 
                         <table width="100%" class="table table-striped text-md-center">
                             <tr>
-                                <th>Amats</th>
-                                <th>Nodaļa</th>
-                                <th>Depo</th>
-                                <th>Darbinieks</th>
-                                <th>Amata stundas likme</th>
-                                <th>Stundu skaits</th>
+                                <th>{{ __('messages.Position') }}</th>
+                                <th>{{ __('messages.Department') }}</th>
+                                <th>{{ __('messages.Depot') }}</th>
+                                <th>{{ __('messages.Employee') }}</th>
+                                <th>{{ __('messages.Hourly_rate') }}</th>
+                                <th>{{ __('messages.Hours_worked') }}</th>
                             </tr>
 
                         @for($i = 0; $i < count($employees); $i++)
@@ -49,7 +49,7 @@
 
                         </table>
 
-                        <input type="submit" value="Izveidot" class="btn btn-primary btn-block col-md-4 mx-md-auto">
+                        <input type="submit" value="{{ __('messages.Create') }}" class="btn btn-primary btn-block col-md-4 mx-md-auto">
 
                     </form>
                 </div>
