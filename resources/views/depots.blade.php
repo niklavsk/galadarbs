@@ -11,16 +11,14 @@
 
                 <div class="card-body">
 
-
                     @if(count($depots) == 0)
-
                         <h5 class="text-md-center alert alert-warning">{{ __('alerts.No_depot') }}</h5>
 
                     @else
-                        <div class="btn-group-vertical mx-md-auto d-md-block col-md-8 h4">
+                        <div class="btn-group-vertical mx-md-auto d-md-block col-md-10 h4">
                             @foreach ($depots as $depot)
-                                <a class="btn btn-light"
-                                       href="{{ url('depot', $depot->id) }}"><span class="h5">{{ $depot->id }}</span></a>
+                                <a class="btn btn-light text-md-left"
+                                       href="{{ url('depot', $depot->id) }}"><span class="h5">{{ $depot->id }} - {{ $depot->apraksts }}</span></a>
                             @endforeach
                         </div>
                     @endif

@@ -89,9 +89,19 @@ class DepotController extends Controller
      */
     public function show($id)
     {
-        $depot = DB::table('depo')->where('id', $id)->first();
+        $depot = DB::table('depo')
+            ->join('darbinieki', 'depo.depo_vaditajs', '=', 'darbinieki.id')
+            ->select('*', 'depo.epasts as depo_epasts', 'depo.id as depot_id')
+            ->where('depo.id', $id)
+            ->first();
 
-        return view('depot', array('depot' => $depot));
+        $address = DB::table('depo')
+            ->join('adrese', 'depo.atrasanas_vieta', '=', 'adrese.id')
+            ->select('adrese.*')
+            ->where('depo.id', $id)
+            ->first();
+
+        return view('depot', array('depot' => $depot, 'address' => $address));
     }
 
     /**

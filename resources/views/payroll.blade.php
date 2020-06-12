@@ -44,8 +44,8 @@
 
                 </div>
                 <div class="card-footer text-center p-md-3">
-                    <a href="{{ url('edit/payroll', $payroll->id) }}" class="btn btn-primary">{{ __('messages.Edit_payment') }}</a>
-                    <a href="{{ url('destroy/payroll', $payroll->id) }}" class="btn btn-secondary">{{ __('messages.Delete_payment') }}</a>
+                    <a href="{{ url('edit/payroll', $payroll->pay_id) }}" class="btn btn-primary">{{ __('messages.Edit_payment') }}</a>
+                    <a href="{{ url('destroy/payroll', $payroll->pay_id) }}" class="btn btn-secondary">{{ __('messages.Delete_payment') }}</a>
                 </div>
             </div>
         </div>

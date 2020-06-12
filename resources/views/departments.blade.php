@@ -11,16 +11,14 @@
 
                 <div class="card-body">
 
-
                     @if(count($departments) == 0)
-
                         <h5 class="text-md-center alert alert-warning">{{ __('alerts.No_departments') }}</h5>
 
                     @else
                         <div class="btn-group-vertical mx-md-auto d-md-block col-md-8 h4">
                             @foreach ($departments as $department)
-                                <a class="btn btn-light"
-                                   href="{{ url('department', $department->id) }}"><span class="h5">{{ $department->apraksts }}</span></a>
+                                <a class="btn btn-light text-md-left"
+                                   href="{{ url('department', $department->id) }}"><span class="h5">{{ $department->id }} - {{ $department->apraksts }}</span></a>
                             @endforeach
                         </div>
                     @endif

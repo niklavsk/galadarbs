@@ -81,7 +81,11 @@
                                 @foreach($jobs as $job)
                                     <tr>
                                         <td>{{$job->nosaukums}}</td>
-                                        <td>{{$job->nodala}}</td>
+                                        <td>
+                                            @foreach($nodalas as $nodala)
+                                                @if($nodala->id == $job->nodala){{ $nodala->apraksts }}@endif
+                                            @endforeach
+                                        </td>
                                         <td>{{$job->depo}}</td>
                                         <td>
                                             @if ( App::getLocale() == 'lv')

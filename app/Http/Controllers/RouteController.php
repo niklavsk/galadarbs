@@ -43,7 +43,9 @@ class RouteController extends Controller
             $request->session()->put('kartasNr', $kartasNr);
         }
 
-        return view('route_create', array('stops' => $stops, 'kartasNr' => $kartasNr, 'empty' => false, 'duplicate' => false));
+        $pieturas = DB::table('pietura')->get();
+
+        return view('route_create', array('stops' => $stops, 'kartasNr' => $kartasNr, 'empty' => false, 'duplicate' => false, 'pieturas' => $pieturas));
     }
 
     /**
@@ -58,6 +60,7 @@ class RouteController extends Controller
         $stops = DB::table('pietura')->get();
         $empty = false;
         $duplicate = false;
+        $pieturas = DB::table('pietura')->get();
 
         for($i = 1; $i <= $kartasNr; $i++){
             if($request->$i == NULL){
@@ -79,9 +82,9 @@ class RouteController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return view('route_create', array('stops' => $stops, 'kartasNr' => $kartasNr, 'empty' => $empty, 'duplicate' => $duplicate, 'errors' => $validator->messages()));
+            return view('route_create', array('stops' => $stops, 'kartasNr' => $kartasNr, 'empty' => $empty, 'duplicate' => $duplicate, 'errors' => $validator->messages(), 'pieturas' => $pieturas));
         } else if ($empty == true || $duplicate == true) {
-            return view('route_create', array('stops' => $stops, 'kartasNr' => $kartasNr, 'empty' => $empty, 'duplicate' => $duplicate));
+            return view('route_create', array('stops' => $stops, 'kartasNr' => $kartasNr, 'empty' => $empty, 'duplicate' => $duplicate, 'pieturas' => $pieturas));
         }
 
         $route = new Marsruti();
@@ -127,6 +130,8 @@ class RouteController extends Controller
         $route = DB::table('marsruti')->where('id', $id)->first();
         $stops = DB::table('marsruta_pieturas')->where('marsruta_id', $id)->orderBy('pieturas_kartas_nr', 'asc')->get();
 
+        $pieturas = DB::table('pietura')->get();
+
         $times = DB::table('pienaksanas_laiki')
             ->whereIn('marsruta_pietura', DB::table('marsruta_pieturas')->where('marsruta_id', $id)->pluck('id'))
             ->orderBy('laiks')
@@ -140,7 +145,7 @@ class RouteController extends Controller
             ->orderBy('laiks')
             ->get();
 
-        return view('route', array('route' => $route, 'stops' => $stops, 'times' => $times, 'delete' => $delete));
+        return view('route', array('route' => $route, 'stops' => $stops, 'times' => $times, 'delete' => $delete, 'pieturas' => $pieturas));
     }
 
     /**
@@ -359,7 +364,9 @@ class RouteController extends Controller
     {
         $stops = DB::table('marsruta_pieturas')->where('marsruta_id', $id)->orderBy('pieturas_kartas_nr', 'asc')->get();
 
-        return view('timetable_create', array('stops' => $stops, 'empty' => false, 'duplicate' => false, 'wrongOrder' => false));
+        $pieturas = DB::table('pietura')->get();
+
+        return view('timetable_create', array('stops' => $stops, 'empty' => false, 'duplicate' => false, 'wrongOrder' => false, 'pieturas' => $pieturas));
     }
 
     /**

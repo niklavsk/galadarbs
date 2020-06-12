@@ -91,10 +91,12 @@ class PayController extends Controller
             ->orWhereBetween('amats.darba_beigsanas_datums', [$start_date, $end_date])
             ->count();
 
+        $nodalas = DB::table('nodala')->get();
+
         $request->session()->put('employees', $employees);
         $request->session()->put('employeesCount', $employeesCount);
 
-        return view('payroll_create', array('employees' => $employees, 'error' => false));
+        return view('payroll_create', array('employees' => $employees, 'error' => false, 'nodalas' => $nodalas));
     }
 
     /**
@@ -108,6 +110,7 @@ class PayController extends Controller
         date_default_timezone_set('Europe/Riga');
         $employees = $request->session()->get('employees');
         $employeesCount = $request->session()->get('employeesCount');
+        $nodalas = DB::table('nodala')->get();
 
         $error = false;
 
@@ -126,7 +129,7 @@ class PayController extends Controller
         }
 
         if ($error) {
-            return view('payroll_create', array('employees' => $employees,'error' => $error));
+            return view('payroll_create', array('employees' => $employees,'error' => $error, 'nodalas' => $nodalas));
         }
 
         $request->session()->forget('employees');

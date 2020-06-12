@@ -18,8 +18,8 @@
                     @else
                         <div class="btn-group-vertical mx-md-auto d-md-block col-md-8 h4">
                             @foreach ($stops as $stop)
-                                <a class="btn btn-light"
-                                   href="{{ url('stop', $stop->id) }}"><span class="h5">{{ $stop->nosaukums }}</span></a>
+                                <a class="btn btn-light text-md-left"
+                                   href="{{ url('stop', $stop->id) }}"><span class="h5">{{ $stop->nosaukums }} - {{ $stop->iela }} {{ $stop->majas_nr }} </span></a>
                             @endforeach
                         </div>
                     @endif

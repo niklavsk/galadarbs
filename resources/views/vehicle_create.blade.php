@@ -84,7 +84,7 @@
                                     id="marsruta_id">
                                 <option value=""></option>
                                 @foreach($routes as $route)
-                                    <option value="{{ $route->id }}">{{ $route->nosaukums }}</option>
+                                    <option value="{{ $route->id }}">{{ $route->id }} | {{ $route->nosaukums }}</option>
                                 @endforeach
                             </select>
 

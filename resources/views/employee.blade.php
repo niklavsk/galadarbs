@@ -67,9 +67,17 @@
                                     @foreach($jobs as $job)
                                         <tr>
                                             <td>{{$job->nosaukums}}</td>
-                                            <td>{{$job->nodala}}</td>
-                                            <td>{{$job->depo}}</td>
-                                            <td>{{$job->stundas_likme}}</td>
+                                            <td>
+                                                @foreach($nodalas as $nodala)
+                                                    @if($nodala->id == $job->nodala){{ $nodala->apraksts }}@endif
+                                                @endforeach
+                                            </td>
+                                            <td>{{ $job->depo }}</td>
+                                            <td>
+                                                @if ( App::getLocale() == 'lv')&euro;{{ number_format ($job->stundas_likme, 2, ',', ' ') }}
+                                                @elseif ( App::getLocale() == 'en')&euro;{{ number_format ($job->stundas_likme, 2, '.', ',') }}
+                                                @endif
+                                            </td>
                                             <td>
                                                 @if ( App::getLocale() == 'lv')
                                                     {{ date('d.m.Y', strtotime($job->darba_uzsaksanas_datums)) }}
@@ -78,9 +86,9 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ( App::getLocale() == 'lv')
+                                                @if ( App::getLocale() == 'lv' && $job->darba_beigsanas_datums != "")
                                                     {{ date('d.m.Y', strtotime($job->darba_beigsanas_datums)) }}
-                                                @elseif ( App::getLocale() == 'en')
+                                                @elseif ( App::getLocale() == 'en' && $job->darba_beigsanas_datums != "")
                                                     {{ date('m/d/Y', strtotime($job->darba_beigsanas_datums)) }}
                                                 @endif
                                             </td>

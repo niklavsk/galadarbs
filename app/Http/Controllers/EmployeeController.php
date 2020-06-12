@@ -107,7 +107,9 @@ class EmployeeController extends Controller
 
         $jobs = DB::table('amats')->where('darba_pilditajs', $id)->get();
 
-        return view('employee', array('employee' => $employee, 'jobs' => $jobs, 'jobCount' => $jobCount));
+        $nodalas = DB::table('nodala')->get();
+
+        return view('employee', array('employee' => $employee, 'jobs' => $jobs, 'jobCount' => $jobCount, 'nodalas' => $nodalas));
     }
 
     /**

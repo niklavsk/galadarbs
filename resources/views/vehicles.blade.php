@@ -18,7 +18,11 @@
                             <a class="list-group-item list-group-item-action" href="{{ url('vehicle', $vehicle->id) }}">
                                 <h5 class="d-inline-block mr-1"><span class="badge badge-pill badge-light">{{ $vehicle->id }}</span></h5>
                                 <strong>{{ $vehicle->razotajs }}</strong> {{ __('messages.Depot') }}: {{ $vehicle->depo_nr }}
-                                {{ __('messages.Route') }}: {{ $vehicle->marsruta_id }}</a>
+                                {{ __('messages.Route') }}:
+                                @foreach($marsruti as $marsruts)
+                                    @if($marsruts->id == $vehicle->marsruta_id){{ $marsruts->id }} | {{ $marsruts->apraksts }}@endif
+                                @endforeach
+                            </a>
                         @endforeach
                     </div>
                 @endif
