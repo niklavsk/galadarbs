@@ -90,6 +90,19 @@ return [
     'Add_vehicle' => 'Pievienot transportlīdzekļi',
     'All_vehicles_list' => 'Saraksts ar visiem transportlīdzekļiem',
 
+    'All_processed_payments_list' => 'Saraksts ar visiem veiktajiem maksājumiem',
+    'Add_payment' => 'Pievienot maksājumu',
+    'Old_hours_worked' => 'Vecais stundu skaits',
+    'New_hours_worked' => 'Jaunais stundu skaits',
+
+    'Create_payroll' => 'Izveidot algu maksājumus',
+
+    'Add_position_for_employee' => 'Pievienot amatu darbiniekam',
+    'Add' => 'Pievienot',
+
+    'Edit_employee' => 'Rediģēt darbinieku',
+    'Delete_positions' => 'Atskaitīt darbinieku no amatiem',
+
     'Employees' => 'Darbinieki',
     'Payroll' => 'Maksājumi',
     'Vehicles' => 'Transportlīdzekļi',

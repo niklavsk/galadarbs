@@ -99,5 +99,17 @@ return [
     'Extras' => 'Extras',
     'Stations' => 'Stations',
     'Profile' => 'Profile',
-    'Dropdown_info' => 'You Are Logged In'
+    'Dropdown_info' => 'You Are Logged In',
+
+    'All_processed_payments_list' => 'All Processed Payments List',
+    'Add_payment' => 'Add Payment',
+    'Old_hours_worked' => 'Previous Amount of Hours Worked',
+    'New_hours_worked' => 'New Amount of Hours Worked',
+
+    'Create_payroll' => 'Create Payroll',
+
+    'Add_position_for_employee' => 'Add Position for Employee',
+    'Add' => 'Add',
+    'Edit_employee' => 'Edit Employee',
+    'Delete_positions' => 'Delete Positions',
 ];

@@ -93,8 +93,8 @@
                                                 @endif
                                             </td>
                                             <td>@if($job->darba_beigsanas_datums == "")
-                                                <a href="{{ url('remove/job/employee', [$employee->empid, $job->id]) }}" class="btn btn-secondary">Atskaitīt no amata</a>
-                                                    @else <button type="button" class="btn btn-secondary" disabled>Atskaitīt no amata</button>
+                                                <a href="{{ url('remove/job/employee', [$employee->empid, $job->id]) }}" class="btn btn-secondary">{{ __('messages.Delete_position') }}</a>
+                                                    @else <button type="button" class="btn btn-secondary" disabled>{{ __('messages.Delete_position') }}</button>
                                                 @endif
                                             </td>
                                         </tr>
@@ -107,10 +107,10 @@
                 </div>
 
                 <div class="card-footer text-center p-md-3">
-                    <a href="{{ url('edit/employee', $employee->empid) }}" class=" btn btn-primary">Rediģēt darbinieku</a>
+                    <a href="{{ url('edit/employee', $employee->empid) }}" class=" btn btn-primary">{{ __('messages.Edit_employee') }}</a>
                     @if($jobCount != 0)
-                        <a href="{{ url('destroy/employee', $employee->empid) }}" class="btn btn-secondary">Atskaitīt darbinieku no amatiem</a>
-                    @else <button type="button" class="btn btn-secondary" disabled>Atskaitīt darbinieku no amatiem</button>
+                        <a href="{{ url('destroy/employee', $employee->empid) }}" class="btn btn-secondary">{{ __('messages.Delete_positions') }}</a>
+                    @else <button type="button" class="btn btn-secondary" disabled>{{ __('messages.Delete_positions') }}</button>
                     @endif
 
                 </div>

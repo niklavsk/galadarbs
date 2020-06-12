@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <h4 class="card-header">Rediģēt algu maksājumu: {{ $payroll->id }}</h4>
+                <h4 class="card-header">{{ __('messages.Edit_payment') }}: {{ $payroll->id }}</h4>
                 <div class="card-body">
 
                     <form action="{{ action('PayController@update', ['id' => $payroll->id]) }}" method="post">
