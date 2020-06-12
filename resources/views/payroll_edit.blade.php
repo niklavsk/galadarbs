@@ -11,8 +11,8 @@
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 
                         <div class="form-group row">
-                            <label for="pk" class="text-md-right col-md-4">{{ __('messages.pers_ID') }}</label>
-                            <input class="col-md-6" name="pk" type="text" id="pk" value="{{ $payroll->pk }}" disabled>
+                            <label for="darbinieks" class="text-md-right col-md-4">{{ __('messages.Employee') }}</label>
+                            <input class="col-md-6" name="darbinieks" type="text" id="darbinieks" value="{{ $payroll->vards }} {{ $payroll->uzvards }}" disabled>
                         </div>
 
                         <div class="form-group row">
@@ -47,7 +47,7 @@
                             @endif
                         </div>
 
-                        <input type="submit" value="Rediģēt" class="btn btn-primary btn-block col-md-4 mx-md-auto">
+                        <input type="submit" value="{{ __('messages.Edit') }}" class="btn btn-primary btn-block col-md-4 mx-md-auto">
 
                     </form>
                 </div>
