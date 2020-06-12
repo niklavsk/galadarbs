@@ -22,6 +22,7 @@ class UserController extends Controller
     {
         $users = DB::table('users')
             ->join('darbinieki', 'users.id', '=', 'darbinieki.user_id')
+            ->select('*', 'users.id as u_id')
             ->orderBy('users.id')
             ->get();
 
