@@ -31,7 +31,8 @@
                                             @if($employee->novads != ""){{ $employee->novads }}, @endif
                                             @if($employee->pagasts != ""){{ $employee->pagasts }}, @endif
                                             {{ $employee->valsts }},
-                                            {{ $employee->pasta_indekss }}</td>
+                                            {{ $employee->pasta_indekss }}
+                                        </td>
 
                                     </tr>
                                     <tr>
@@ -69,8 +70,20 @@
                                             <td>{{$job->nodala}}</td>
                                             <td>{{$job->depo}}</td>
                                             <td>{{$job->stundas_likme}}</td>
-                                            <td>{{$job->darba_uzsaksanas_datums}}</td>
-                                            <td>{{$job->darba_beigsanas_datums}}</td>
+                                            <td>
+                                                @if ( App::getLocale() == 'lv')
+                                                    {{ date('d.m.Y', strtotime($job->darba_uzsaksanas_datums)) }}
+                                                @elseif ( App::getLocale() == 'en')
+                                                    {{ date('m/d/Y', strtotime($job->darba_uzsaksanas_datums)) }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ( App::getLocale() == 'lv')
+                                                    {{ date('d.m.Y', strtotime($job->darba_beigsanas_datums)) }}
+                                                @elseif ( App::getLocale() == 'en')
+                                                    {{ date('m/d/Y', strtotime($job->darba_beigsanas_datums)) }}
+                                                @endif
+                                            </td>
                                             <td>@if($job->darba_beigsanas_datums == "")
                                                 <a href="{{ url('remove/job/employee', [$employee->empid, $job->id]) }}" class="btn btn-secondary">Atskaitīt no amata</a>
                                                     @else <button type="button" class="btn btn-secondary" disabled>Atskaitīt no amata</button>

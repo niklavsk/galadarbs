@@ -33,6 +33,7 @@ return [
     'Address' => 'Address',
     'Position' => 'Position',
     'Hourly_rate' => 'Hourly Rate',
+    'Salary' => 'Salary',
     'Job_start_date' => 'Job Start Date',
     'Job_end_date' => 'Job End Date',
     'Add_employee' => 'Add Employee',
