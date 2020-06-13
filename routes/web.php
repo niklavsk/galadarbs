@@ -42,7 +42,7 @@ Route::get('/destroy/employee/{id}', 'EmployeeController@destroy')->name('employ
 Route::get('/add/job/employee/{id}', 'EmployeeController@addJob_add')->middleware('auth');
 Route::post('/add/job/employee/{id}', 'EmployeeController@addJob_store')->middleware('auth');
 Route::get('/remove/job/employee/{id}/{job}', 'EmployeeController@removeJob')->middleware('auth');
-Route::post('employee/search', 'EmployeeController@postSearch')->name('employee.search')->middleware('auth');
+Route::post('employees/search', 'EmployeeController@postSearch')->name('employee.search')->middleware('auth');
 
 
 Route::get('/mail','EmployeeController@sendMail')->middleware('auth');
@@ -103,6 +103,7 @@ Route::post('/create/department', 'DepController@store')->middleware('auth');
 Route::get('/edit/department/{id}', 'DepController@edit')->name('department.edit')->middleware('auth');
 Route::post('/edit/department/{id}', 'DepController@update')->middleware('auth');
 Route::get('/destroy/department/{id}', 'DepController@destroy')->name('department.destroy')->middleware('auth');
+Route::post('/departments/search', 'DepController@postSearch')->name('department.search')->middleware('auth');
 
 
 Route::resource('stops', 'StopController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete']])->middleware('auth');

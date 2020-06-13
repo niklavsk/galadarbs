@@ -7,7 +7,7 @@
                 let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     type: 'POST',
-                    url: "employee/search",
+                    url: "{{ route('employee.search') }}",
                     data: {
                         _token: CSRF_TOKEN,
                         search: $("#search").val()
@@ -37,7 +37,8 @@
                                    placeholder="{{ __('messages.Search') }}">
                         </div>
                         <a href="{{ url('create/employee') }}"
-                           class="btn btn-primary float-right">{{ __('messages.Add_employee') }}</a></div>
+                           class="btn btn-primary float-right">{{ __('messages.Add_employee') }}</a>
+                    </div>
                 </div>
 
                     @if(count($employees) == 0)
