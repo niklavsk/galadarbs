@@ -51,9 +51,12 @@ class StopController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = $rules = array(
-            'nosaukums' => 'required|string|min:2|max:100',
-            'atrasanas_vieta' => 'required|numeric|min:1',
+        $rules = array(
+            'nosaukums' => 'required|string|min:2|max:100|unique:pietura,nosaukums',
+            'atrasanas_vieta' => [
+                'required|numeric|min:1',
+                Rule::in(DB::table('adrese')->pluck('id'))
+            ]
         );
 
         $this->validate($request, $rules);
