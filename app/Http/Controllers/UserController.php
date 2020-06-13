@@ -205,7 +205,8 @@ class UserController extends Controller
 
 //        $to_email = $user->epasts; //izkomentēts, lai varētu pārbaudīt, ka strādā, izmantojot nākošo līniju
         $to_email = 'rimsislv@gmail.com';
-        $data = array('name'=> $to_name, 'body' => "Test mail");
+
+        $data = array('name'=> $to_name, 'body' => "Error, mail body missing");
 
         Mail::send('emails/testMail', $data, function($message) use ($to_name, $to_email) {
             $message->to($to_email, $to_name)
