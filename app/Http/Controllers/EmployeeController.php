@@ -231,11 +231,17 @@ class EmployeeController extends Controller
 
         $files = Storage::files('\public\uploads');
         $found=false;
+        $count=0;
+        $test = $user->id . '-profileImage.png';
         foreach ($files as $file)
         {
-            if ($file == $user->id . '-profileImage.png')
+            $count = 1;
+            if ($file == $test)
             {
                 $found = true;
+                $image = 'uploads/'  . $user->id . '-profileImage.png';
+                return view('employee', array('employee' => $employee, 'jobs' => $jobs, 'jobCount' => $jobCount, 'nodalas' => $nodalas, 'image' => $image, 'user' => $count));
+                break;
             }
         }
         if($found == false)//lietotājs nav uzstādījis profile pic
@@ -247,7 +253,7 @@ class EmployeeController extends Controller
             $image = 'uploads/'  . $user->id . '-profileImage.png';
         }
 
-        return view('employee', array('employee' => $employee, 'jobs' => $jobs, 'jobCount' => $jobCount, 'nodalas' => $nodalas, 'image' => $image));
+        return view('employee', array('employee' => $employee, 'jobs' => $jobs, 'jobCount' => $jobCount, 'nodalas' => $nodalas, 'image' => $image, 'user' => $count));
     }
 
     /**
@@ -331,6 +337,6 @@ class EmployeeController extends Controller
 
         }
 
-        return $this->showProfile();
+        return view('imageUpload');
     }
 }
