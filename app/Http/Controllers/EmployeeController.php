@@ -325,4 +325,13 @@ class EmployeeController extends Controller
 
         return redirect('/employee');
     }
+
+    public function postSearch(Request $request)
+    {
+        return DB::table('darbinieki')
+            ->where('pk', 'LIKE', '%'.$request->get('search').'%')
+            ->orWhere('vards', 'LIKE', '%'.$request->get('search').'%')
+            ->orWhere('uzvards', 'LIKE', '%'.$request->get('search').'%')
+            ->get();
+    }
 }
