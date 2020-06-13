@@ -84,7 +84,7 @@ class UserController extends Controller
                 'user_id' => $user->id
             ]);
 
-        return $this->sendMail();
+        return $this->sendMail($user->id);
 //        return redirect()->route('user.show', ['id' => $user->id]);
     }
 
@@ -190,10 +190,11 @@ class UserController extends Controller
         return redirect()->route('allUsers');
     }
 
-    public function sendMail()
+    public function sendMail($id)
     {
-        $login_id = Auth::id();
-        $user = DB::table('darbinieki')->where('user_id', $login_id)->first();
+//        $login_id = Auth::id();
+//        $user = DB::table('darbinieki')->where('user_id', $login_id)->first();
+        $user = DB::table('darbinieki')->where('user_id', $id)->first();
 
         if($user->otrais_vards != NULL)
         {
@@ -203,7 +204,7 @@ class UserController extends Controller
         }
 
 //        $to_email = $user->epasts; //izkomentēts, lai varētu pārbaudīt, ka strādā, izmantojot nākošo līniju
-        $to_email = 'anitra.beinare@gmail.com';
+        $to_email = 'rimsislv@gmail.com';
         $data = array('name'=> $to_name, 'body' => "Test mail");
 
         Mail::send('emails/testMail', $data, function($message) use ($to_name, $to_email) {
@@ -212,6 +213,6 @@ class UserController extends Controller
             $message->from('rimsislv@gmail.com','RiMSIS Administrators');
         });
 
-        return redirect()->route('user.show', ['id' => $user->id]);
+        return redirect()->route('user.show', ['id' => $id]);
     }
 }
