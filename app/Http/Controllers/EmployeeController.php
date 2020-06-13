@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Darbinieki;
 use Illuminate\Http\Request;
+use Illuminate\Http\File;
+use Illuminate\Http\UploadedFile;
 
 class EmployeeController extends Controller
 {
@@ -229,31 +231,23 @@ class EmployeeController extends Controller
         $nodalas = DB::table('nodala')->get();
 
 
-        $files = Storage::files('\public\uploads');
-        $found=false;
-        $count=0;
-        $test = $user->id . '-profileImage.png';
-        foreach ($files as $file)
+        $testImage = 'storage/' . $user->id . '-profileImage.png';
+        $defaultImage = 'storage/white-and-black-art-png-clip-art-thumbnail.png';
+        $test = asset($testImage);
+        $default = asset($defaultImage);
+
+        $exists = Storage::disk('local')->exists('public/' . $user->id . '-profileImage.png');
+
+        if($exists)
         {
-            $count = 1;
-            if ($file == $test)
-            {
-                $found = true;
-                $image = 'uploads/'  . $user->id . '-profileImage.png';
-                return view('employee', array('employee' => $employee, 'jobs' => $jobs, 'jobCount' => $jobCount, 'nodalas' => $nodalas, 'image' => $image, 'user' => $count));
-                break;
-            }
+            $image = $test;
         }
-        if($found == false)//lietotājs nav uzstādījis profile pic
+        else
         {
-            $image = 'uploads/white-and-black-art-png-clip-art-thumbnail.png';
-        }
-        else //lietotājs nav uzstādījis profile pic
-        {
-            $image = 'uploads/'  . $user->id . '-profileImage.png';
+            $image = $default;
         }
 
-        return view('employee', array('employee' => $employee, 'jobs' => $jobs, 'jobCount' => $jobCount, 'nodalas' => $nodalas, 'image' => $image, 'user' => $count));
+        return view('employee', array('employee' => $employee, 'jobs' => $jobs, 'jobCount' => $jobCount, 'nodalas' => $nodalas, 'image' => $image));
     }
 
     /**
@@ -312,31 +306,23 @@ class EmployeeController extends Controller
 
     public function uploadImage()
     {
+        $login_id = Auth::id();
+        $user = DB::table('darbinieki')->where('user_id', $login_id)->first();
+
+        return view('imageUpload', ['user' => $user]);
+    }
+
+    public function storeImage(Request $request)
+    {
         request()->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
         ]);
 
         $login_id = Auth::id();
         $user = DB::table('darbinieki')->where('user_id', $login_id)->first();
 
-        $found = false;
-        $files = Storage::files('\public\uploads');
-        foreach ($files as $file)
-        {
-            if ($file == $user->id . '-profileImage.png')
-            {
-                $found = true;
-            }
-        }
-        if ($found)
-        {
+        Storage::disk('local')->putFileAs('public', $request->file('image'), $user->id . '-profileImage.png');
 
-        }
-        else
-        {
-
-        }
-
-        return view('imageUpload');
+        return redirect('/employee');
     }
 }

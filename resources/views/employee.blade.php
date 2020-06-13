@@ -13,8 +13,9 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <img class="img-thumbnail img-fluid" src="{{ url($image) }}">
-                                <p>{{ $user }}</p>
-{{--                                <a class="btn btn-primary" href="{{ action('EmployeeController@uploadImage') }}">Pievienot profila bildi</a>--}}
+                                @if ($image == asset('storage/white-and-black-art-png-clip-art-thumbnail.png'))
+                                    <a class="btn btn-primary" href="{{ action('EmployeeController@uploadImage') }}">Uzstādīt profila bildi</a>
+                                @endif
                             </div>
 
                             <div class="col-md-9">
