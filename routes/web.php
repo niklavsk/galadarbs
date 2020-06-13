@@ -66,6 +66,7 @@ Route::post('/create/vehicle', 'VehicleController@store')->middleware('auth');
 Route::get('/edit/vehicle/{id}', 'VehicleController@edit')->name('vehicle.edit')->middleware('auth');
 Route::post('/edit/vehicle/{id}', 'VehicleController@update')->middleware('auth');
 Route::get('/destroy/vehicle/{id}', 'VehicleController@destroy')->name('vehicle.destroy')->middleware('auth');
+Route::post('/vehicles/search', 'VehicleController@postSearch')->name('vehicle.search')->middleware('auth');
 
 
 Route::resource('depots', 'DepotController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete']])->middleware('auth');
