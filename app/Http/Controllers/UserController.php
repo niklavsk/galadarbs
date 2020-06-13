@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +26,10 @@ class UserController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->role != 1){
+            return redirect()->route('home');
+        }
+
         $users = DB::table('users')
             ->join('darbinieki', 'users.id', '=', 'darbinieki.user_id')
             ->select('*', 'users.id as u_id')
@@ -36,6 +46,10 @@ class UserController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->role != 1){
+            return redirect()->route('home');
+        }
+
         $employees = DB::table('darbinieki')
             ->whereNull('user_id')
             ->orderBy('id')
@@ -58,6 +72,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::user()->role != 1){
+            return redirect()->route('home');
+        }
+
         $rules = $rules = array(
             'darbinieks' => 'required|numeric|min:1',
             'email' => 'required|string|min:2|max:50',
@@ -96,6 +114,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        if (Auth::user()->role != 1){
+            return redirect()->route('home');
+        }
+
         $user = DB::table('users')
             ->join('darbinieki', 'users.id', '=', 'darbinieki.user_id')
             ->where('users.id', $id)
@@ -121,6 +143,10 @@ class UserController extends Controller
      */
     public function edit(Request $request, $id)
     {
+        if (Auth::user()->role != 1){
+            return redirect()->route('home');
+        }
+
         $employee = DB::table('darbinieki')
             ->where('user_id', $id)
             ->first();
@@ -149,6 +175,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (Auth::user()->role != 1){
+            return redirect()->route('home');
+        }
+
         $rules = $rules = array(
             'email' => 'required|string|min:2|max:50',
             'password' => 'required|string|min:2|max:50',
@@ -179,6 +209,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        if (Auth::user()->role != 1){
+            return redirect()->route('home');
+        }
+
         DB::table('darbinieki')
             ->where('user_id', $id)
             ->update([
@@ -192,6 +226,10 @@ class UserController extends Controller
 
     public function sendMail()
     {
+        if (Auth::user()->role != 1){
+            return redirect()->route('home');
+        }
+
         $login_id = Auth::id();
         $user = DB::table('darbinieki')->where('user_id', $login_id)->first();
 

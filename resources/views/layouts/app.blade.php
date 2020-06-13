@@ -35,41 +35,48 @@
                     <ul class="navbar-nav mr-auto">
                         @guest
                         @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allEmployees') }}">{{ __('messages.Employees') }}</a>
-                            </li>
+                            @if(Auth::user()->role == 1 || Auth::user()->role == 2 || Auth::user()->role == 3)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('allEmployees') }}">{{ __('messages.Employees') }}</a>
+                                </li>
+                            @endif
 
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('allPayrolls') }}">{{ __('messages.Payroll') }}</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allVehicles') }}">{{ __('messages.Vehicles') }}</a>
-                            </li>
+                            @if(Auth::user()->role == 1 || Auth::user()->role == 2 || Auth::user()->role == 3)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('allVehicles') }}">{{ __('messages.Vehicles') }}</a>
+                                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allDepots') }}">{{ __('messages.Depots') }}</a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('allDepots') }}">{{ __('messages.Depots') }}</a>
+                                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allDepartments') }}">{{ __('messages.Departments') }}</a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('allDepartments') }}">{{ __('messages.Departments') }}</a>
+                                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allRoutes') }}">{{ __('messages.Routes') }}</a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('allRoutes') }}">{{ __('messages.Routes') }}</a>
+                                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allStops') }}">{{ __('messages.Stations') }}</a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('allStops') }}">{{ __('messages.Stations') }}</a>
+                                </li>
+                            @endif
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allUsers') }}">{{ __('messages.Users') }}</a>
-                            </li>
+                            @if(Auth::user()->role == 1)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('allUsers') }}">{{ __('messages.Users') }}</a>
+                                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('allExtras') }}">{{ __('messages.Extras') }}</a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('allExtras') }}">{{ __('messages.Extras') }}</a>
+                                </li>
+                            @endif
+
                         @endguest
                     </ul>
 

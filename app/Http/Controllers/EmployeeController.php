@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +23,41 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = DB::table('darbinieki')->orderBy('id')->get();
+        $user = DB::table('darbinieki')
+            ->join('users', 'darbinieki.user_id', '=', 'users.id')
+            ->select('*', 'darbinieki.id as d_id')
+            ->where('user_id', Auth::user()->id)
+            ->first();
+
+        if ($user->role == 1) //admin
+        {
+            $employees = DB::table('darbinieki')->orderBy('id')->get();
+        }
+
+        elseif ($user->role == 2 || $user->role == 4) //depot main or accountaint
+        {
+            $depoNum = DB::table('amats')->where('pers_kods', '=', $user->d_id)->pluck('depo');
+            $usersUnder = DB::table('darbinieki')->where('depo', '=', $depoNum)->pluck('id')->toArray();
+
+            $employees = DB::table('darbinieki')
+                ->select('darbinieki.*')
+                ->whereIn('maksajumu_vesture.pers_kods', $usersUnder)
+                ->orderBy('maksajumu_vesture.id')
+                ->get();
+        }
+        elseif ($user->role == 3) //department main
+        {
+            $nodNum = DB::table('amats')->where('pers_kods', '=', $user->id)->pluck('nodala');;
+            $usersUnder = DB::table('darbinieki')->where('depo', '=', $nodNum)->pluck('id')->toArray();
+
+            $payrolls = DB::table('maksajumu_vesture')
+                ->join('darbinieki', 'maksajumu_vesture.pers_kods', '=', 'darbinieki.id')
+                ->select('*', 'maksajumu_vesture.id as pay_id')
+                ->whereIn('maksajumu_vesture.pers_kods', $usersUnder)
+                ->orderBy('maksajumu_vesture.id')
+                ->get();
+        }
+
 
         return view('employees', array('employees' => $employees));
     }
