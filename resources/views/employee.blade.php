@@ -13,6 +13,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <img class="img-thumbnail img-fluid" src="{{ url('uploads/white-and-black-art-png-clip-art-thumbnail.png') }}">
+                                <p>test</p>
                             </div>
 
                             <div class="col-md-9">
