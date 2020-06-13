@@ -4,15 +4,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h4 class="d-inline-block">Saraksts ar visiem veiktajiem maksājumiem</h4>
+                <div class="card-header"><h4 class="d-inline-block">{{ __('messages.All_processed_payments_list') }}</h4>
 
                 @if($role == 4 || $role == 1)
-                    <a href="{{ url('create/payroll') }}" class="btn btn-primary float-right">Izveidot maksājumu</a></div>
+                    <a href="{{ url('create/payroll') }}" class="btn btn-primary float-right">{{ __('messages.Add_payment') }}</a></div>
                 @endif
 
                 @if(count($payrolls) == 0)
 
-                    <h5 class="text-md-center alert alert-warning">Veikto maksājumu nav!</h5>
+                    <h5 class="text-md-center alert alert-warning">{{ __('alerts.No_processed_payments') }}</h5>
 
                 @else
                     <div class="list-group list-group-flush">

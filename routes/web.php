@@ -19,6 +19,9 @@ Route::get('/home', 'HomeController@redirect');
 
 Auth::routes();
 
+Route::get('/register', 'HomeController@redirect');
+
+
 Route::get('/extras', 'ExtraController@index')->name('allExtras')->middleware('auth');
 
 Route::get('/create/address', 'ExtraController@createAddress')->name('address.create')->middleware('auth');

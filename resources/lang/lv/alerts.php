@@ -13,5 +13,8 @@ return [
     'Station_cannot_repeat_itself' => 'Pietura nedrīkst atkārtoties!',
     'Do_not_leave_empty_times' => 'Nedrīkst atstāt tukšus laikus!',
     'Arrival_times_cannot_repeat_themselves' => 'Ievadītie laiki nedrīkst atkārtoties!',
-    'Sequence_of_times_entered_is_not_correct' => 'Ievadīto laiku secība ir nepareiza!'
+    'Sequence_of_times_entered_is_not_correct' => 'Ievadīto laiku secība ir nepareiza!',
+
+    'No_processed_payments' => 'Veikto maksājumu nav!',
+    'Incorrect_data_error' => 'Datu ievades kļūda!'
 ];
