@@ -42,7 +42,7 @@ Route::get('/destroy/employee/{id}', 'EmployeeController@destroy')->name('employ
 Route::get('/add/job/employee/{id}', 'EmployeeController@addJob_add')->middleware('auth');
 Route::post('/add/job/employee/{id}', 'EmployeeController@addJob_store')->middleware('auth');
 Route::get('/remove/job/employee/{id}/{job}', 'EmployeeController@removeJob')->middleware('auth');
-Route::post('employees/search', 'EmployeeController@postSearch')->name('employee.search')->middleware('auth');
+Route::post('/employees/search', 'EmployeeController@postSearch')->name('employee.search')->middleware('auth');
 
 
 Route::get('/mail','EmployeeController@sendMail')->middleware('auth');
@@ -55,6 +55,7 @@ Route::post('/create/payroll', 'PayController@store')->name('payroll.store')->mi
 Route::get('/edit/payroll/{id}','PayController@edit')->name('payroll.edit')->middleware('auth');
 Route::post('/edit/payroll/{id}', 'PayController@update')->middleware('auth');
 Route::get('/destroy/payroll/{id}', 'PayController@destroy')->name('payroll.destroy')->middleware('auth');
+Route::post('/payroll/search', 'PayController@postSearch')->name('payroll.search')->middleware('auth');
 
 
 Route::resource('vehicles', 'VehicleController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete']])->middleware('auth');
@@ -75,6 +76,7 @@ Route::post('/create/depot', 'DepotController@store')->middleware('auth');
 Route::get('/edit/depot/{id}', 'DepotController@edit')->name('depot.edit')->middleware('auth');
 Route::post('/edit/depot/{id}', 'DepotController@update')->middleware('auth');
 Route::get('/destroy/depot/{id}', 'DepotController@destroy')->name('depot.destroy')->middleware('auth');
+Route::post('/depots/search', 'DepotController@postSearch')->name('depot.search')->middleware('auth');
 
 
 Route::resource('routes', 'RouteController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete']])->middleware('auth');
