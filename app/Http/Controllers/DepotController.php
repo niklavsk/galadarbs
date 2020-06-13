@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Depo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DepotController extends Controller
@@ -15,9 +16,15 @@ class DepotController extends Controller
      */
     public function index()
     {
-        $depots = DB::table('depo')->orderBy('id')->get();
+        if(Auth::user()->role == 1 || Auth::user()->role == 2){
+            $depots = DB::table('depo')->orderBy('id')->get();
 
-        return view('depots', array('depots' => $depots));
+            return view('depots', array('depots' => $depots));
+
+        } else {
+            return redirect()->route('home');
+
+        }
     }
 
     /**
@@ -27,6 +34,8 @@ class DepotController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         $addresses = DB::table('adrese')
             ->whereNotIn('id', DB::table('darbinieki')->pluck('adrese'))
             ->whereNotIn('id', DB::table('pietura')->pluck('atrasanas_vieta'))
@@ -89,19 +98,25 @@ class DepotController extends Controller
      */
     public function show($id)
     {
-        $depot = DB::table('depo')
-            ->join('darbinieki', 'depo.depo_vaditajs', '=', 'darbinieki.id')
-            ->select('*', 'depo.epasts as depo_epasts', 'depo.id as depot_id')
-            ->where('depo.id', $id)
-            ->first();
+        if(Auth::user()->role == 1 || Auth::user()->role == 2){
+            $depot = DB::table('depo')
+                ->join('darbinieki', 'depo.depo_vaditajs', '=', 'darbinieki.id')
+                ->select('*', 'depo.epasts as depo_epasts', 'depo.id as depot_id')
+                ->where('depo.id', $id)
+                ->first();
 
-        $address = DB::table('depo')
-            ->join('adrese', 'depo.atrasanas_vieta', '=', 'adrese.id')
-            ->select('adrese.*')
-            ->where('depo.id', $id)
-            ->first();
+            $address = DB::table('depo')
+                ->join('adrese', 'depo.atrasanas_vieta', '=', 'adrese.id')
+                ->select('adrese.*')
+                ->where('depo.id', $id)
+                ->first();
 
-        return view('depot', array('depot' => $depot, 'address' => $address));
+            return view('depot', array('depot' => $depot, 'address' => $address));
+
+        } else {
+            return redirect()->route('home');
+
+        }
     }
 
     /**
@@ -112,6 +127,8 @@ class DepotController extends Controller
      */
     public function edit($id)
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         $addresses = DB::table('adrese')
             ->whereNotIn('id', DB::table('darbinieki')->pluck('adrese'))
             ->whereNotIn('id', DB::table('pietura')->pluck('atrasanas_vieta'))
@@ -202,6 +219,8 @@ class DepotController extends Controller
      */
     public function destroy($id)
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         date_default_timezone_set('Europe/Riga');
 
         $depo = DB::table('depo')->where('id', $id)->first();

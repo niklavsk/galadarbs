@@ -23,8 +23,10 @@
 
                 </div>
                 <div class="card-footer text-center p-md-3">
-                    <a href="{{ url('edit/stop', $stop->id) }}" class="btn btn-primary">{{ __('messages.Edit_station') }}</a>
-                    <a href="{{ url('destroy/stop', $stop->id) }}" class="btn btn-secondary">{{ __('messages.Delete_station') }}</a>
+                    @if(Auth::user()->role == 1)
+                        <a href="{{ url('edit/stop', $stop->id) }}" class="btn btn-primary">{{ __('messages.Edit_station') }}</a>
+                        <a href="{{ url('destroy/stop', $stop->id) }}" class="btn btn-secondary">{{ __('messages.Delete_station') }}</a>
+                    @endif
                 </div>
             </div>
         </div>

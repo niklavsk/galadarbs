@@ -6,7 +6,9 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="d-inline-block">{{ __('messages.All_stations_list') }}</h4>
-                    <a href="{{ url('create/stop') }}" class="btn btn-primary float-right">{{ __('messages.Add_station') }}</a>
+                    @if(Auth::user()->role == 1)
+                        <a href="{{ url('create/stop') }}" class="btn btn-primary float-right">{{ __('messages.Add_station') }}</a>
+                    @endif
                 </div>
 
                 <div class="card-body">

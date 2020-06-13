@@ -45,7 +45,7 @@
                                 <a class="nav-link" href="{{ route('allPayrolls') }}">{{ __('messages.Payroll') }}</a>
                             </li>
 
-                            @if(Auth::user()->role == 1 || Auth::user()->role == 2 || Auth::user()->role == 3)
+                            @if(Auth::user()->role == 1 || Auth::user()->role == 2)
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('allVehicles') }}">{{ __('messages.Vehicles') }}</a>
                                 </li>
@@ -53,11 +53,15 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('allDepots') }}">{{ __('messages.Depots') }}</a>
                                 </li>
+                            @endif
 
+                            @if(Auth::user()->role == 1 || Auth::user()->role == 3)
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('allDepartments') }}">{{ __('messages.Departments') }}</a>
                                 </li>
+                            @endif
 
+                            @if(Auth::user()->role == 1 || Auth::user()->role == 2)
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('allRoutes') }}">{{ __('messages.Routes') }}</a>
                                 </li>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\MarsrutaPieturas;
 use App\Marsruti;
 use App\PienaksanasLaiki;
+use Illuminate\Support\Facades\Auth;
 use Session;
 
 use Illuminate\Http\Request;
@@ -19,11 +20,17 @@ class RouteController extends Controller
      */
     public function index()
     {
-        session()->forget('kartasNr');
+        if(Auth::user()->role == 1 || Auth::user()->role == 2){
+            session()->forget('kartasNr');
 
-        $routes = DB::table('marsruti')->orderBy('id')->get();
+            $routes = DB::table('marsruti')->orderBy('id')->get();
 
-        return view('routes', array('routes' => $routes));
+            return view('routes', array('routes' => $routes));
+
+        } else {
+            return redirect()->route('home');
+
+        }
     }
 
     /**
@@ -34,6 +41,8 @@ class RouteController extends Controller
      */
     public function create(Request $request)
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         $stops = DB::table('pietura')->get();
 
         if($request->session()->has('kartasNr')){
@@ -125,27 +134,33 @@ class RouteController extends Controller
      */
     public function show($id)
     {
-        session()->forget('kartasNr');
+        if(Auth::user()->role == 1 || Auth::user()->role == 2){
+            session()->forget('kartasNr');
 
-        $route = DB::table('marsruti')->where('id', $id)->first();
-        $stops = DB::table('marsruta_pieturas')->where('marsruta_id', $id)->orderBy('pieturas_kartas_nr', 'asc')->get();
+            $route = DB::table('marsruti')->where('id', $id)->first();
+            $stops = DB::table('marsruta_pieturas')->where('marsruta_id', $id)->orderBy('pieturas_kartas_nr', 'asc')->get();
 
-        $pieturas = DB::table('pietura')->get();
+            $pieturas = DB::table('pietura')->get();
 
-        $times = DB::table('pienaksanas_laiki')
-            ->whereIn('marsruta_pietura', DB::table('marsruta_pieturas')->where('marsruta_id', $id)->pluck('id'))
-            ->orderBy('laiks')
-            ->get();
+            $times = DB::table('pienaksanas_laiki')
+                ->whereIn('marsruta_pietura', DB::table('marsruta_pieturas')->where('marsruta_id', $id)->pluck('id'))
+                ->orderBy('laiks')
+                ->get();
 
-        $delete = DB::table('pienaksanas_laiki')
-            ->join('marsruta_pieturas', 'pienaksanas_laiki.marsruta_pietura', '=', 'marsruta_pieturas.id')
-            ->select('*', 'pienaksanas_laiki.id as time_id')
-            ->whereIn('pienaksanas_laiki.marsruta_pietura', DB::table('marsruta_pieturas')->where('marsruta_id', $id)->pluck('id'))
-            ->where('marsruta_pieturas.pieturas_kartas_nr', '=', 1)
-            ->orderBy('laiks')
-            ->get();
+            $delete = DB::table('pienaksanas_laiki')
+                ->join('marsruta_pieturas', 'pienaksanas_laiki.marsruta_pietura', '=', 'marsruta_pieturas.id')
+                ->select('*', 'pienaksanas_laiki.id as time_id')
+                ->whereIn('pienaksanas_laiki.marsruta_pietura', DB::table('marsruta_pieturas')->where('marsruta_id', $id)->pluck('id'))
+                ->where('marsruta_pieturas.pieturas_kartas_nr', '=', 1)
+                ->orderBy('laiks')
+                ->get();
 
-        return view('route', array('route' => $route, 'stops' => $stops, 'times' => $times, 'delete' => $delete, 'pieturas' => $pieturas));
+            return view('route', array('route' => $route, 'stops' => $stops, 'times' => $times, 'delete' => $delete, 'pieturas' => $pieturas));
+
+        } else {
+            return redirect()->route('home');
+
+        }
     }
 
     /**
@@ -157,6 +172,8 @@ class RouteController extends Controller
      */
     public function edit(Request $request, $id)
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         $stops = DB::table('pietura')->get();
 
         $route = DB::table('marsruti')->where('id', $id)->first();
@@ -260,6 +277,8 @@ class RouteController extends Controller
      */
     public function destroy($id)
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         DB::table('transportlidzeklis')
             ->where('marsruta_id', $id)
             ->update([
@@ -284,6 +303,8 @@ class RouteController extends Controller
      */
     public function addStop(Request $request)
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         $kartasNr = session()->get('kartasNr');
         session()->forget('kartasNr');
 
@@ -301,6 +322,8 @@ class RouteController extends Controller
      */
     public function removeStop(Request $request)
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         $kartasNr = session()->get('kartasNr');
 
         if($kartasNr != 1){
@@ -322,6 +345,7 @@ class RouteController extends Controller
      */
     public function addStop_edit(Request $request, $id)
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
 
         $kartasNr = session()->get('kartasNr');
         session()->forget('kartasNr');
@@ -341,6 +365,7 @@ class RouteController extends Controller
      */
     public function removeStop_edit(Request $request, $id)
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
 
         $kartasNr = session()->get('kartasNr');
 
@@ -362,6 +387,8 @@ class RouteController extends Controller
      */
     public function createTimetable($id)
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         $stops = DB::table('marsruta_pieturas')->where('marsruta_id', $id)->orderBy('pieturas_kartas_nr', 'asc')->get();
 
         $pieturas = DB::table('pietura')->get();
@@ -378,6 +405,7 @@ class RouteController extends Controller
      */
     public function storeTimetable(Request $request, $id)
     {
+
         $stopCount = DB::table('marsruta_pieturas')->where('marsruta_id', $id)->count();
         $stops = DB::table('marsruta_pieturas')->where('marsruta_id', $id)->orderBy('pieturas_kartas_nr', 'asc')->get();
 
@@ -435,6 +463,8 @@ class RouteController extends Controller
      */
     public function destroyTimetable(Request $request, $id)
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         $stopCount = DB::table('marsruta_pieturas')->where('marsruta_id', $id)->count();
         $start_id = $request->toDelete;
         $end_id = $start_id + $stopCount;

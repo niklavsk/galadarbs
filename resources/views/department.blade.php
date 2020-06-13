@@ -31,8 +31,10 @@
 
                 </div>
                 <div class="card-footer text-center p-md-3">
-                    <a href="{{ url('edit/department', $department->dep_id) }}" class=" btn btn-primary">{{ __('messages.Edit_department') }}</a>
-                    <a href="{{ url('destroy/department', $department->dep_id) }}" class="btn btn-secondary">{{ __('messages.Delete_department') }}</a>
+                    @if(Auth::user()->role == 1)
+                        <a href="{{ url('edit/department', $department->dep_id) }}" class=" btn btn-primary">{{ __('messages.Edit_department') }}</a>
+                        <a href="{{ url('destroy/department', $department->dep_id) }}" class="btn btn-secondary">{{ __('messages.Delete_department') }}</a>
+                    @endif
                 </div>
             </div>
         </div>
