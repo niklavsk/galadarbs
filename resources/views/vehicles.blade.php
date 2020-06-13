@@ -13,7 +13,6 @@
                         search: $("#search").val()
                     },
                     success: function (data) {
-                        console.log(data);
                         $("#vehicle-list").html('');
                         $.each(data, function (i, vehicle) {
                             let c = '<a class="list-group-item list-group-item-action" href="/vehicle/' +
