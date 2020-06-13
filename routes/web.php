@@ -23,6 +23,8 @@ Route::get('/register', 'HomeController@redirect');
 
 
 Route::get('/extras', 'ExtraController@index')->name('allExtras')->middleware('auth');
+Route::post('/extras/search/address', 'ExtraController@postSearchAddress')->name('extra.searchAddress')->middleware('auth');
+Route::post('/extras/search/position', 'ExtraController@postSearchPosition')->name('extra.searchPosition')->middleware('auth');
 
 Route::get('/create/address', 'ExtraController@createAddress')->name('address.create')->middleware('auth');
 Route::post('/create/address', 'ExtraController@storeAddress')->middleware('auth');
@@ -45,6 +47,7 @@ Route::get('/destroy/employee/{id}', 'EmployeeController@destroy')->name('employ
 Route::get('/add/job/employee/{id}', 'EmployeeController@addJob_add')->middleware('auth');
 Route::post('/add/job/employee/{id}', 'EmployeeController@addJob_store')->middleware('auth');
 Route::get('/remove/job/employee/{id}/{job}', 'EmployeeController@removeJob')->middleware('auth');
+Route::post('/employees/search', 'EmployeeController@postSearch')->name('employee.search')->middleware('auth');
 
 
 Route::get('/mail','EmployeeController@sendMail')->middleware('auth');
@@ -57,6 +60,7 @@ Route::post('/create/payroll', 'PayController@store')->name('payroll.store')->mi
 Route::get('/edit/payroll/{id}','PayController@edit')->name('payroll.edit')->middleware('auth');
 Route::post('/edit/payroll/{id}', 'PayController@update')->middleware('auth');
 Route::get('/destroy/payroll/{id}', 'PayController@destroy')->name('payroll.destroy')->middleware('auth');
+Route::post('/payroll/search', 'PayController@postSearch')->name('payroll.search')->middleware('auth');
 
 
 Route::resource('vehicles', 'VehicleController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete']])->middleware('auth');
@@ -67,6 +71,7 @@ Route::post('/create/vehicle', 'VehicleController@store')->middleware('auth');
 Route::get('/edit/vehicle/{id}', 'VehicleController@edit')->name('vehicle.edit')->middleware('auth');
 Route::post('/edit/vehicle/{id}', 'VehicleController@update')->middleware('auth');
 Route::get('/destroy/vehicle/{id}', 'VehicleController@destroy')->name('vehicle.destroy')->middleware('auth');
+Route::post('/vehicles/search', 'VehicleController@postSearch')->name('vehicle.search')->middleware('auth');
 
 
 Route::resource('depots', 'DepotController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete']])->middleware('auth');
@@ -77,6 +82,7 @@ Route::post('/create/depot', 'DepotController@store')->middleware('auth');
 Route::get('/edit/depot/{id}', 'DepotController@edit')->name('depot.edit')->middleware('auth');
 Route::post('/edit/depot/{id}', 'DepotController@update')->middleware('auth');
 Route::get('/destroy/depot/{id}', 'DepotController@destroy')->name('depot.destroy')->middleware('auth');
+Route::post('/depots/search', 'DepotController@postSearch')->name('depot.search')->middleware('auth');
 
 
 Route::resource('routes', 'RouteController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete']])->middleware('auth');
@@ -91,6 +97,7 @@ Route::get('/create/route/add', 'RouteController@addStop')->middleware('auth');
 Route::get('/create/route/remove', 'RouteController@removeStop')->middleware('auth');
 Route::get('/edit/route/add/{id}', 'RouteController@addStop_edit')->middleware('auth');
 Route::get('/edit/route/remove/{id}', 'RouteController@removeStop_edit')->middleware('auth');
+Route::post('/routes/search', 'RouteController@postSearch')->name('route.search')->middleware('auth');
 
 Route::get('/create/timetable/{id}', 'RouteController@createTimetable')->middleware('auth');
 Route::post('/create/timetable/{id}', 'RouteController@storeTimetable')->middleware('auth');
@@ -105,6 +112,7 @@ Route::post('/create/department', 'DepController@store')->middleware('auth');
 Route::get('/edit/department/{id}', 'DepController@edit')->name('department.edit')->middleware('auth');
 Route::post('/edit/department/{id}', 'DepController@update')->middleware('auth');
 Route::get('/destroy/department/{id}', 'DepController@destroy')->name('department.destroy')->middleware('auth');
+Route::post('/departments/search', 'DepController@postSearch')->name('department.search')->middleware('auth');
 
 
 Route::resource('stops', 'StopController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete']])->middleware('auth');
@@ -115,6 +123,7 @@ Route::post('/create/stop', 'StopController@store')->middleware('auth');
 Route::get('/edit/stop/{id}', 'StopController@edit')->name('stop.edit')->middleware('auth');
 Route::post('/edit/stop/{id}', 'StopController@update')->middleware('auth');
 Route::get('/destroy/stop/{id}', 'StopController@destroy')->name('stop.destroy')->middleware('auth');
+Route::post('/stops/search', 'StopController@postSearch')->name('stop.search')->middleware('auth');
 
 
 Route::resource('users', 'UserController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete']])->middleware('auth');
@@ -125,6 +134,7 @@ Route::post('/create/user', 'UserController@store')->middleware('auth');
 Route::get('/edit/user/{id}', 'UserController@edit')->name('user.edit')->middleware('auth');
 Route::post('/edit/user/{id}', 'UserController@update')->middleware('auth');
 Route::get('/destroy/user/{id}', 'UserController@destroy')->name('user.destroy')->middleware('auth');
+Route::post('/users/search', 'UserController@postSearch')->name('user.search')->middleware('auth');
 
 Route::get('lang/{locale}', 'LanguageController');
 

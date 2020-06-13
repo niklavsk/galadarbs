@@ -112,4 +112,5 @@ return [
     'Add' => 'Add',
     'Edit_employee' => 'Edit Employee',
     'Delete_positions' => 'Delete Positions',
+    'Search' => 'Search'
 ];

@@ -224,4 +224,12 @@ class DepotController extends Controller
 
         return redirect()->route('allDepots');
     }
+
+    public function postSearch(Request $request)
+    {
+        return DB::table('depo')
+            ->where('id', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('apraksts', 'LIKE', '%'. $request->get('search') .'%')
+            ->get();
+    }
 }

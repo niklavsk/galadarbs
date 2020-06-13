@@ -447,4 +447,13 @@ class RouteController extends Controller
 
         return redirect()->route('route.show', ['id' => $id]);
     }
+
+    public function postSearch(Request $request)
+    {
+        return DB::table('marsruti')
+            ->where('id', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('nosaukums', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('apraksts', 'LIKE', '%'. $request->get('search') .'%')
+            ->get();
+    }
 }

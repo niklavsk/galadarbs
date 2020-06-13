@@ -160,4 +160,18 @@ class StopController extends Controller
 
         return redirect()->route('allStops');
     }
+
+    public function postSearch(Request $request)
+    {
+        return DB::table('pietura')
+            ->leftJoin('adrese', 'pietura.atrasanas_vieta','=','adrese.id')
+            ->where('pietura.id', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('pietura.nosaukums', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('adrese.valsts', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('adrese.pilseta', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('adrese.iela', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('adrese.majas_nr', 'LIKE', '%'. $request->get('search') .'%')
+            ->select('pietura.id as id', 'pietura.nosaukums as nosaukums', 'adrese.iela as iela', 'adrese.majas_nr as majas_nr')
+            ->get();
+    }
 }
