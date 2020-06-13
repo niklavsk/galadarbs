@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pietura;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class StopController extends Controller
 {
@@ -120,7 +121,21 @@ class StopController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'nosaukums' => 'required|string|min:2|max:100|unique:pietura,nosaukums',
+            'atrasanas_vieta' => [
+                'required',
+                Rule::in(DB::table('adrese')->pluck('id'))
+            ]
+        ];
+
+        $this->validate($request, $rules);
+
+        DB::table('pietura')->where('id',$id)
+            ->update([
+                'nosaukums' => $request->nosaukums,
+                'atrasanas_vieta' => $request->atrasanas_vieta
+            ]);
     }
 
     /**
