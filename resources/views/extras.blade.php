@@ -98,12 +98,11 @@
                         <h4 class="d-inline-block">{{ __('messages.Unused_addresses') }}</h4>
 
                         <div class="float-right">
-                            <div class="my-auto d-inline-block mr-5">
+                            <div class="d-inline-block my-auto">
                                 <input class="form-control" type="text" id="search-address"
-                                       placeholder="{{ __('messages.Search') }}">
-                            </div>
+                                        placeholder="{{ __('messages.Search') }}"></div>
                             <a href="{{ url('create/address') }}"
-                               class="btn btn-primary float-right col-md-3">{{ __('messages.Add_address') }}</a>
+                               class="btn btn-primary">{{ __('messages.Add_address') }}</a>
                         </div>
 
                     </div>
@@ -151,12 +150,12 @@
                         <h4 class="d-inline-block">{{ __('messages.Vacancies') }}</h4>
 
                         <div class="float-right">
-                            <div class="my-auto d-inline-block mr-3">
+                            <div class="my-auto d-inline-block">
                                 <input class="form-control" type="text" id="search-position"
                                        placeholder="{{ __('messages.Search') }}">
                             </div>
                             <a href="{{ url('create/job') }}"
-                               class="btn btn-primary float-right col-md-3">{{ __('messages.Add_position') }}</a>
+                               class="btn btn-primary">{{ __('messages.Add_position') }}</a>
                         </div>
 
                     </div>
