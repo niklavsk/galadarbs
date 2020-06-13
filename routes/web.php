@@ -49,7 +49,10 @@ Route::post('/add/job/employee/{id}', 'EmployeeController@addJob_store')->middle
 Route::get('/remove/job/employee/{id}/{job}', 'EmployeeController@removeJob')->middleware('auth');
 Route::post('/employees/search', 'EmployeeController@postSearch')->name('employee.search')->middleware('auth');
 
-
+Route::get('/upload/ProfileImage', 'EmployeeController@uploadImage')->middleware('auth');
+Route::post('/upload/ProfileImage', 'EmployeeController@uploadImage')->middleware('auth');
+Route::get('/store/ProfileImage', 'EmployeeController@storeImage')->middleware('auth');
+Route::post('/store/ProfileImage', 'EmployeeController@storeImage')->middleware('auth');
 Route::get('/mail','EmployeeController@sendMail')->middleware('auth');
 
 Route::resource('payroll', 'PayController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete']])->middleware('auth');
