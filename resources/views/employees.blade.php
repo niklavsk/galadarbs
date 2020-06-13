@@ -7,7 +7,9 @@
 
                 <div class="card-header">
                     <h4 class="d-inline-block">{{ __('messages.All_employee_list') }}</h4>
-                    <a href="{{ url('create/employee') }}" class="btn btn-primary float-right">{{ __('messages.Add_employee') }}</a>
+                    @if(Auth::user()->role == 1)
+                        <a href="{{ url('create/employee') }}" class="btn btn-primary float-right">{{ __('messages.Add_employee') }}</a>
+                    @endif
                 </div>
 
                     @if(count($employees) == 0)

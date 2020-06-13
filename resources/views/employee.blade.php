@@ -60,7 +60,10 @@
                                         <th>{{ __('messages.Hourly_rate') }}</th>
                                         <th>{{ __('messages.Job_start_date') }}</th>
                                         <th>{{ __('messages.Job_end_date') }}</th>
-                                        <th><a href="{{ url('add/job/employee', $employee->empid) }}" class="btn btn-primary">{{ __('messages.Add_position') }}</a></th>
+                                        <th>@if(Auth::user()->role == 1)
+                                                <a href="{{ url('add/job/employee', $employee->empid) }}" class="btn btn-primary">{{ __('messages.Add_position') }}</a>
+                                            @endif
+                                        </th>
 
                                     </tr>
 
@@ -92,9 +95,12 @@
                                                     {{ date('m/d/Y', strtotime($job->darba_beigsanas_datums)) }}
                                                 @endif
                                             </td>
-                                            <td>@if($job->darba_beigsanas_datums == "")
-                                                <a href="{{ url('remove/job/employee', [$employee->empid, $job->id]) }}" class="btn btn-secondary">{{ __('messages.Delete_position') }}</a>
-                                                    @else <button type="button" class="btn btn-secondary" disabled>{{ __('messages.Delete_position') }}</button>
+                                            <td>
+                                                @if(Auth::user()->role == 1)
+                                                    @if($job->darba_beigsanas_datums == "")
+                                                    <a href="{{ url('remove/job/employee', [$employee->empid, $job->id]) }}" class="btn btn-secondary">{{ __('messages.Delete_position') }}</a>
+                                                        @else <button type="button" class="btn btn-secondary" disabled>{{ __('messages.Delete_position') }}</button>
+                                                    @endif
                                                 @endif
                                             </td>
                                         </tr>
@@ -108,9 +114,12 @@
 
                 <div class="card-footer text-center p-md-3">
                     <a href="{{ url('edit/employee', $employee->empid) }}" class=" btn btn-primary">{{ __('messages.Edit_employee') }}</a>
-                    @if($jobCount != 0)
-                        <a href="{{ url('destroy/employee', $employee->empid) }}" class="btn btn-secondary">{{ __('messages.Delete_positions') }}</a>
-                    @else <button type="button" class="btn btn-secondary" disabled>{{ __('messages.Delete_positions') }}</button>
+
+                    @if(Auth::user()->role == 1)
+                        @if($jobCount != 0)
+                            <a href="{{ url('destroy/employee', $employee->empid) }}" class="btn btn-secondary">{{ __('messages.Delete_positions') }}</a>
+                        @else <button type="button" class="btn btn-secondary" disabled>{{ __('messages.Delete_positions') }}</button>
+                        @endif
                     @endif
 
                 </div>

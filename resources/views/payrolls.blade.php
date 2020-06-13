@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header"><h4 class="d-inline-block">{{ __('messages.All_processed_payments_list') }}</h4>
 
-                @if($role == 4 || $role == 1)
+                @if(Auth::user()->role == 4 || Auth::user()->role == 1)
                     <a href="{{ url('create/payroll') }}" class="btn btn-primary float-right">{{ __('messages.Add_payment') }}</a></div>
                 @endif
 

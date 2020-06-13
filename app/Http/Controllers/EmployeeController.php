@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,41 +24,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $user = DB::table('darbinieki')
-            ->join('users', 'darbinieki.user_id', '=', 'users.id')
-            ->select('*', 'darbinieki.id as d_id')
-            ->where('user_id', Auth::user()->id)
-            ->first();
-
-        if ($user->role == 1) //admin
-        {
-            $employees = DB::table('darbinieki')->orderBy('id')->get();
-        }
-
-        elseif ($user->role == 2 || $user->role == 4) //depot main or accountaint
-        {
-            $depoNum = DB::table('amats')->where('pers_kods', '=', $user->d_id)->pluck('depo');
-            $usersUnder = DB::table('darbinieki')->where('depo', '=', $depoNum)->pluck('id')->toArray();
-
-            $employees = DB::table('darbinieki')
-                ->select('darbinieki.*')
-                ->whereIn('maksajumu_vesture.pers_kods', $usersUnder)
-                ->orderBy('maksajumu_vesture.id')
-                ->get();
-        }
-        elseif ($user->role == 3) //department main
-        {
-            $nodNum = DB::table('amats')->where('pers_kods', '=', $user->id)->pluck('nodala');;
-            $usersUnder = DB::table('darbinieki')->where('depo', '=', $nodNum)->pluck('id')->toArray();
-
-            $payrolls = DB::table('maksajumu_vesture')
-                ->join('darbinieki', 'maksajumu_vesture.pers_kods', '=', 'darbinieki.id')
-                ->select('*', 'maksajumu_vesture.id as pay_id')
-                ->whereIn('maksajumu_vesture.pers_kods', $usersUnder)
-                ->orderBy('maksajumu_vesture.id')
-                ->get();
-        }
-
+        $employees = $this->getEmployees();
 
         return view('employees', array('employees' => $employees));
     }
@@ -69,6 +36,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         return view('employee_create');
     }
 
@@ -133,22 +102,31 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        $employee = DB::table('darbinieki')
-            ->join('adrese', 'darbinieki.adrese', '=', 'adrese.id')
-            ->where('darbinieki.id', $id)
-            ->select('*', 'darbinieki.id as empid')
-            ->first();
+        $employees = $this->getEmployees();
 
-        $jobCount = DB::table('amats')
-            ->where('darba_pilditajs', $id)
-            ->whereNull('darba_beigsanas_datums')
-            ->count();
+        foreach ($employees as $emp){
 
-        $jobs = DB::table('amats')->where('darba_pilditajs', $id)->get();
+            if($emp->id == $id){
+                $employee = DB::table('darbinieki')
+                    ->join('adrese', 'darbinieki.adrese', '=', 'adrese.id')
+                    ->where('darbinieki.id', $id)
+                    ->select('*', 'darbinieki.id as empid')
+                    ->first();
 
-        $nodalas = DB::table('nodala')->get();
+                $jobCount = DB::table('amats')
+                    ->where('darba_pilditajs', $id)
+                    ->whereNull('darba_beigsanas_datums')
+                    ->count();
 
-        return view('employee', array('employee' => $employee, 'jobs' => $jobs, 'jobCount' => $jobCount, 'nodalas' => $nodalas));
+                $jobs = DB::table('amats')->where('darba_pilditajs', $id)->get();
+
+                $nodalas = DB::table('nodala')->get();
+
+                return view('employee', array('employee' => $employee, 'jobs' => $jobs, 'jobCount' => $jobCount, 'nodalas' => $nodalas));
+            }
+        }
+
+        return redirect()->route('home');
     }
 
     /**
@@ -159,12 +137,21 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        $employee = DB::table('darbinieki')
-            ->join('adrese', 'darbinieki.adrese', '=', 'adrese.id')
-            ->where('darbinieki.id', $id)
-            ->first();
+        $employees = $this->getEmployees();
 
-        return view('employee_edit', array('employee' => $employee));
+        foreach ($employees as $emp){
+
+            if($emp->id == $id){
+                $employee = DB::table('darbinieki')
+                    ->join('adrese', 'darbinieki.adrese', '=', 'adrese.id')
+                    ->where('darbinieki.id', $id)
+                    ->first();
+
+                return view('employee_edit', array('employee' => $employee));
+            }
+        }
+
+        return redirect()->route('home');
     }
 
     /**
@@ -235,6 +222,8 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         DB::table('amats')
             ->where('darba_pilditajs', $id)
             ->whereNull('darba_beigsanas_datums')
@@ -278,6 +267,8 @@ class EmployeeController extends Controller
 
     public function addJob_add($id){
 
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         $employee = DB::table('darbinieki')->where('id', $id)->first();
         $jobs = DB::table('amats')->whereNull('darba_pilditajs')->get();
 
@@ -314,6 +305,8 @@ class EmployeeController extends Controller
 
     public function removeJob($id, $job){
 
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         DB::table('amats')
             ->where('id', $job)
             ->update([
@@ -321,5 +314,69 @@ class EmployeeController extends Controller
             ]);
 
         return redirect()->route('employee.show', ['id' => $id]);
+    }
+
+    protected function getEmployees(){
+        $user = DB::table('darbinieki')
+            ->join('users', 'darbinieki.user_id', '=', 'users.id')
+            ->select('*', 'darbinieki.id as d_id')
+            ->where('user_id', Auth::user()->id)
+            ->first();
+
+        if ($user->role == 1) //admin
+        {
+            $employees = DB::table('darbinieki')->orderBy('id')->get();
+        }
+
+        elseif ($user->role == 2) { //depot main
+
+            $depoNum = DB::table('amats')
+                ->where('darba_pilditajs', '=', $user->d_id)
+                ->where('nosaukums', '=', 'Depo Vaditajs')
+                ->whereNull('darba_beigsanas_datums')
+                ->pluck('depo');
+
+            $usersUnder = DB::table('amats')
+                ->where('depo', '=', $depoNum)
+                ->pluck('darba_pilditajs');
+
+            $employees = DB::table('darbinieki')
+                ->whereIn('id', $usersUnder)
+                ->get();
+
+        } elseif ($user->role == 4) { //accountant
+
+            $depoNum = DB::table('amats')
+                ->where('darba_pilditajs', '=', $user->d_id)
+                ->where('nosaukums', '=', 'Gramatvedis')
+                ->whereNull('darba_beigsanas_datums')
+                ->pluck('depo');
+
+            $usersUnder = DB::table('amats')
+                ->where('depo', '=', $depoNum)
+                ->pluck('darba_pilditajs');
+
+            $employees = DB::table('darbinieki')
+                ->whereIn('id', $usersUnder)
+                ->get();
+
+        } elseif ($user->role == 3) { //department main
+
+            $nodNum = DB::table('amats')
+                ->where('darba_pilditajs', '=', $user->d_id)
+                ->where('nosaukums', 'like', '%nodalas vaditajs')
+                ->whereNull('darba_beigsanas_datums')
+                ->pluck('nodala');
+
+            $usersUnder = DB::table('amats')
+                ->where('nodala', '=', $nodNum)
+                ->pluck('darba_pilditajs');
+
+            $employees = DB::table('darbinieki')
+                ->whereIn('id', $usersUnder)
+                ->get();
+        }
+
+        return $employees;
     }
 }

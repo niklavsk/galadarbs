@@ -6,7 +6,9 @@
             <div class="card">
                 <div class="card-header"><h4 class="d-inline-block">{{ __('messages.All_vehicles_list') }}</h4>
 
-                    <a href="{{ url('create/vehicle') }}" class="btn btn-primary float-right">{{ __('messages.Add_vehicle') }}</a></div>
+                    @if(Auth::user()->role == 1)
+                        <a href="{{ url('create/vehicle') }}" class="btn btn-primary float-right">{{ __('messages.Add_vehicle') }}</a></div>
+                    @endif
 
                 @if(count($vehicles) == 0)
 

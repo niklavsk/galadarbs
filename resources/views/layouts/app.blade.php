@@ -35,7 +35,7 @@
                     <ul class="navbar-nav mr-auto">
                         @guest
                         @else
-                            @if(Auth::user()->role == 1 || Auth::user()->role == 2 || Auth::user()->role == 3)
+                            @if(Auth::user()->role != 0)
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('allEmployees') }}">{{ __('messages.Employees') }}</a>
                                 </li>

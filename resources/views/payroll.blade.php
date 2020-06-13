@@ -44,8 +44,10 @@
 
                 </div>
                 <div class="card-footer text-center p-md-3">
-                    <a href="{{ url('edit/payroll', $payroll->pay_id) }}" class="btn btn-primary">{{ __('messages.Edit_payment') }}</a>
-                    <a href="{{ url('destroy/payroll', $payroll->pay_id) }}" class="btn btn-secondary">{{ __('messages.Delete_payment') }}</a>
+                    @if(Auth::user()->role == 1 || Auth::user()->role == 4)
+                        <a href="{{ url('edit/payroll', $payroll->pay_id) }}" class="btn btn-primary">{{ __('messages.Edit_payment') }}</a>
+                        <a href="{{ url('destroy/payroll', $payroll->pay_id) }}" class="btn btn-secondary">{{ __('messages.Delete_payment') }}</a>
+                    @endif
                 </div>
             </div>
         </div>
