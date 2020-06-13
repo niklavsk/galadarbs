@@ -129,6 +129,7 @@ Route::post('/create/user', 'UserController@store')->middleware('auth');
 Route::get('/edit/user/{id}', 'UserController@edit')->name('user.edit')->middleware('auth');
 Route::post('/edit/user/{id}', 'UserController@update')->middleware('auth');
 Route::get('/destroy/user/{id}', 'UserController@destroy')->name('user.destroy')->middleware('auth');
+Route::post('/users/search', 'UserController@postSearch')->name('user.search')->middleware('auth');
 
 Route::get('lang/{locale}', 'LanguageController');
 

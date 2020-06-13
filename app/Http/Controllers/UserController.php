@@ -214,4 +214,15 @@ class UserController extends Controller
 
         return redirect()->route('user.show', ['id' => $user->id]);
     }
+
+    public function postSearch(Request $request)
+    {
+        return DB::table('users')
+            ->join('darbinieki', 'users.id', '=', 'darbinieki.user_id')
+            ->where('users.email', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('darbinieki.vards', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('darbinieki.uzvards', 'LIKE', '%'. $request->get('search') .'%')
+            ->select('darbinieki.vards as vards', 'darbinieki.uzvards as uzvards', 'users.email as email', 'users.id as id')
+            ->get();
+    }
 }
