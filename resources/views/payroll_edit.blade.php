@@ -47,7 +47,7 @@
                             @endif
                         </div>
 
-                        <input type="submit" value="{{ __('Confirm_changes') }}" class="btn btn-primary btn-block col-md-4 mx-md-auto">
+                        <input type="submit" value="{{ __('messages.Confirm_changes') }}" class="btn btn-primary btn-block col-md-4 mx-md-auto">
 
                     </form>
                 </div>

@@ -42,6 +42,7 @@ Route::get('/destroy/employee/{id}', 'EmployeeController@destroy')->name('employ
 Route::get('/add/job/employee/{id}', 'EmployeeController@addJob_add')->middleware('auth');
 Route::post('/add/job/employee/{id}', 'EmployeeController@addJob_store')->middleware('auth');
 Route::get('/remove/job/employee/{id}/{job}', 'EmployeeController@removeJob')->middleware('auth');
+Route::post('employee/search', 'EmployeeController@postSearch')->name('employee.search')->middleware('auth');
 
 
 Route::get('/mail','EmployeeController@sendMail')->middleware('auth');

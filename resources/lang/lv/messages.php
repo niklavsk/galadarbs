@@ -116,5 +116,7 @@ return [
     'Dropdown_info' => 'Jūs esat sistēmā',
     'Logout' => 'Izrakstīties',
     'Login' => 'Ienākt',
-    'Register' => 'Reģistrēties'
+    'Register' => 'Reģistrēties',
+
+    'Search' => 'Meklēt'
 ];
