@@ -20,6 +20,8 @@ Route::get('/home', 'HomeController@redirect');
 Auth::routes();
 
 Route::get('/extras', 'ExtraController@index')->name('allExtras')->middleware('auth');
+Route::post('/extras/search/address', 'ExtraController@postSearchAddress')->name('extra.searchAddress')->middleware('auth');
+Route::post('/extras/search/position', 'ExtraController@postSearchPosition')->name('extra.searchPosition')->middleware('auth');
 
 Route::get('/create/address', 'ExtraController@createAddress')->name('address.create')->middleware('auth');
 Route::post('/create/address', 'ExtraController@storeAddress')->middleware('auth');
