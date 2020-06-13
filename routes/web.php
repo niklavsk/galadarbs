@@ -92,6 +92,7 @@ Route::get('/create/route/add', 'RouteController@addStop')->middleware('auth');
 Route::get('/create/route/remove', 'RouteController@removeStop')->middleware('auth');
 Route::get('/edit/route/add/{id}', 'RouteController@addStop_edit')->middleware('auth');
 Route::get('/edit/route/remove/{id}', 'RouteController@removeStop_edit')->middleware('auth');
+Route::post('/routes/search', 'RouteController@postSearch')->name('route.search')->middleware('auth');
 
 Route::get('/create/timetable/{id}', 'RouteController@createTimetable')->middleware('auth');
 Route::post('/create/timetable/{id}', 'RouteController@storeTimetable')->middleware('auth');
