@@ -118,6 +118,7 @@ Route::post('/create/stop', 'StopController@store')->middleware('auth');
 Route::get('/edit/stop/{id}', 'StopController@edit')->name('stop.edit')->middleware('auth');
 Route::post('/edit/stop/{id}', 'StopController@update')->middleware('auth');
 Route::get('/destroy/stop/{id}', 'StopController@destroy')->name('stop.destroy')->middleware('auth');
+Route::post('/stops/search', 'StopController@postSearch')->name('stop.search')->middleware('auth');
 
 
 Route::resource('users', 'UserController', ['except' => ['index', 'show', 'store', 'create', 'edit', 'update', 'delete']])->middleware('auth');
