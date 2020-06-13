@@ -5,6 +5,7 @@ use App\Adrese;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 use App\Darbinieki;
 use Illuminate\Http\Request;
@@ -227,7 +228,26 @@ class EmployeeController extends Controller
 
         $nodalas = DB::table('nodala')->get();
 
-        return view('employee', array('employee' => $employee, 'jobs' => $jobs, 'jobCount' => $jobCount, 'nodalas' => $nodalas));
+
+        $files = Storage::files('\public\uploads');
+        $found=false;
+        foreach ($files as $file)
+        {
+            if ($file == $user->id . '-profileImage.png')
+            {
+                $found = true;
+            }
+        }
+        if($found == false)//lietotājs nav uzstādījis profile pic
+        {
+            $image = 'uploads/white-and-black-art-png-clip-art-thumbnail.png';
+        }
+        else //lietotājs nav uzstādījis profile pic
+        {
+            $image = 'uploads/'  . $user->id . '-profileImage.png';
+        }
+
+        return view('employee', array('employee' => $employee, 'jobs' => $jobs, 'jobCount' => $jobCount, 'nodalas' => $nodalas, 'image' => $image));
     }
 
     /**
@@ -282,5 +302,35 @@ class EmployeeController extends Controller
             ]);
 
         return redirect()->route('employee.show', ['id' => $id]);
+    }
+
+    public function uploadImage()
+    {
+        request()->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $login_id = Auth::id();
+        $user = DB::table('darbinieki')->where('user_id', $login_id)->first();
+
+        $found = false;
+        $files = Storage::files('\public\uploads');
+        foreach ($files as $file)
+        {
+            if ($file == $user->id . '-profileImage.png')
+            {
+                $found = true;
+            }
+        }
+        if ($found)
+        {
+
+        }
+        else
+        {
+
+        }
+
+        return $this->showProfile();
     }
 }

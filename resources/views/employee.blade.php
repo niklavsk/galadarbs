@@ -12,8 +12,8 @@
                     <div class="container-md">
                         <div class="row">
                             <div class="col-md-3">
-                                <img class="img-thumbnail img-fluid" src="{{ url('uploads/white-and-black-art-png-clip-art-thumbnail.png') }}">
-                                <p>test</p>
+                                <img class="img-thumbnail img-fluid" src="{{ url($image) }}">
+                                <a class="btn btn-primary" href="{{ action('EmployeeController@uploadImage') }}">Pievienot profila bildi</a>
                             </div>
 
                             <div class="col-md-9">
