@@ -484,6 +484,7 @@ class RouteController extends Controller
             ->where('id', 'LIKE', '%'. $request->get('search') .'%')
             ->orWhere('nosaukums', 'LIKE', '%'. $request->get('search') .'%')
             ->orWhere('apraksts', 'LIKE', '%'. $request->get('search') .'%')
+            ->orderBy('id')
             ->get();
     }
 }

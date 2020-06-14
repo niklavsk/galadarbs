@@ -249,6 +249,7 @@ class DepotController extends Controller
         return DB::table('depo')
             ->where('id', 'LIKE', '%'. $request->get('search') .'%')
             ->orWhere('apraksts', 'LIKE', '%'. $request->get('search') .'%')
+            ->orderBy('id')
             ->get();
     }
 }

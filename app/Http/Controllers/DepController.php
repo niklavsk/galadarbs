@@ -214,6 +214,8 @@ class DepController extends Controller
     {
         return DB::table('nodala')
             ->where('id', 'LIKE', '%'.$request->get('search').'%')
-            ->orWhere('apraksts', 'LIKE', '%'.$request->get('search').'%')->get();
+            ->orWhere('apraksts', 'LIKE', '%'.$request->get('search').'%')
+            ->orderBy('id')
+            ->get();
     }
 }

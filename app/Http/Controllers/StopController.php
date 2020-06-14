@@ -209,6 +209,7 @@ class StopController extends Controller
             ->orWhere('adrese.iela', 'LIKE', '%'. $request->get('search') .'%')
             ->orWhere('adrese.majas_nr', 'LIKE', '%'. $request->get('search') .'%')
             ->select('pietura.id as id', 'pietura.nosaukums as nosaukums', 'adrese.iela as iela', 'adrese.majas_nr as majas_nr')
+            ->orderBy('pietura.id')
             ->get();
     }
 }

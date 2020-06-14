@@ -191,6 +191,7 @@ class ExtraController extends Controller
             ->orWhere('iela', 'LIKE', '%'. $request->get('search') .'%')
             ->orWhere('majas_nr', 'LIKE', '%'. $request->get('search') .'%')
             ->orWhere('pasta_indekss', 'LIKE', '%'. $request->get('search') .'%')
+            ->orderBy('id')
             ->get();
     }
 
@@ -203,6 +204,7 @@ class ExtraController extends Controller
             ->orWhere('nodala.apraksts', 'LIKE', '%'. $request->get('search') .'%')
             ->select('nodala.apraksts as nodala', 'amats.stundas_likme as stundas_likme',
                 'amats.nosaukums as nosaukums', 'amats.depo as depo', 'amats.id as id')
+            ->orderBy('amats.id')
             ->get();
     }
 }

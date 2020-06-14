@@ -260,6 +260,7 @@ class UserController extends Controller
             ->orWhere('darbinieki.vards', 'LIKE', '%'. $request->get('search') .'%')
             ->orWhere('darbinieki.uzvards', 'LIKE', '%'. $request->get('search') .'%')
             ->select('darbinieki.vards as vards', 'darbinieki.uzvards as uzvards', 'users.email as email', 'users.id as id')
+            ->orderBy('users.id')
             ->get();
     }
 }

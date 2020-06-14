@@ -226,6 +226,7 @@ class VehicleController extends Controller
             ->orWhere('marsruti.apraksts', 'LIKE', '%'. $request->get('search') .'%')
             ->select('transportlidzeklis.id as id', 'marsruti.id as marsruta_id', 'transportlidzeklis.razotajs as razotajs',
                 'transportlidzeklis.depo_nr as depo_nr', 'marsruti.apraksts as apraksts')
+            ->orderBy('transportlidzeklis.id')
             ->get();
     }
 }

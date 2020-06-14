@@ -353,7 +353,7 @@ class EmployeeController extends Controller
 
         return redirect()->route('employee.show', ['id' => $id]);
     }
- 
+
     public function uploadImage()
     {
         $login_id = Auth::id();
@@ -382,10 +382,11 @@ class EmployeeController extends Controller
             ->where('pk', 'LIKE', '%'.$request->get('search').'%')
             ->orWhere('vards', 'LIKE', '%'.$request->get('search').'%')
             ->orWhere('uzvards', 'LIKE', '%'.$request->get('search').'%')
+            ->orderBy('id')
             ->get();
     }
-  
-  
+
+
   protected function getEmployees(){
         $user = DB::table('darbinieki')
             ->join('users', 'darbinieki.user_id', '=', 'users.id')
@@ -450,5 +451,5 @@ class EmployeeController extends Controller
 
         return $employees;
     }
-  
+
 }

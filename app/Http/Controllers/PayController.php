@@ -402,6 +402,7 @@ class PayController extends Controller
                 ->select('darbinieki.vards as vards', 'darbinieki.uzvards as uzvards', 'darbinieki.pk as pk',
                     'maksajumu_vesture.id as pay_id', 'maksajumu_vesture.likme as likme',
                     'maksajumu_vesture.stundu_sk as stundu_sk', 'maksajumu_vesture.izsniegsanas_datums as izsniegsanas_datums')
+                ->orderBy('maksajumu_vesture.id')
                 ->get();
         }
         elseif ($lietotajs->role == 4) // accountaint
@@ -418,6 +419,7 @@ class PayController extends Controller
                 ->select('darbinieki.vards as vards', 'darbinieki.uzvards as uzvards', 'darbinieki.id as pk',
                     'maksajumu_vesture.id as pay_id', 'maksajumu_vesture.likme as likme',
                     'maksajumu_vesture.stundu_sk as stundu_sk', 'maksajumu_vesture.izsniegsanas_datums as izsniegsanas_datums')
+                ->orderBy('maksajumu_vesture.id')
                 ->get();
         }
 
