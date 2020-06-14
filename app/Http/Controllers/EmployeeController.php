@@ -125,7 +125,27 @@ class EmployeeController extends Controller
 
                 $nodalas = DB::table('nodala')->get();
 
-                return view('employee', array('employee' => $employee, 'jobs' => $jobs, 'jobCount' => $jobCount, 'nodalas' => $nodalas));
+
+                $user = DB::table('darbinieki')->where('user_id', Auth::id())->first();
+
+                $testImage = 'storage/' . $user->id . '-profileImage.png';
+                $defaultImage = 'storage/white-and-black-art-png-clip-art-thumbnail.png';
+                $test = asset($testImage);
+                $default = asset($defaultImage);
+
+                $exists = Storage::disk('local')->exists('public/' . $user->id . '-profileImage.png');
+
+                if($exists)
+                {
+                    $image = $test;
+                }
+                else
+                {
+                    $image = $default;
+                }
+
+
+                return view('employee', array('employee' => $employee, 'jobs' => $jobs, 'jobCount' => $jobCount, 'nodalas' => $nodalas, 'image' => $image));
             }
         }
 
