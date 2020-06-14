@@ -118,5 +118,8 @@ return [
     'Login' => 'Ienākt',
     'Register' => 'Reģistrēties',
 
-    'Search' => 'Meklēt'
+    'Search' => 'Meklēt',
+    'Choose_picture' => 'Izvēlieties attēlu',
+    'Upload' => 'Augšupielādēt',
+    'Set_profile_pic' => 'Uzstādīt profila bildi'
 ];
