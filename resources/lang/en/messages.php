@@ -115,5 +115,8 @@ return [
     'Search' => 'Search',
     'Choose_picture' => 'Choose picture',
     'Upload' => 'Upload',
-    'Set_profile_pic' => 'Set Profile Picture'
+    'Set_profile_pic' => 'Set Profile Picture',
+    'Forgot_your_password' => 'Forgot your password?',
+    'Remember_me' => 'Remember me',
+    'Login' => 'Login'
 ];
