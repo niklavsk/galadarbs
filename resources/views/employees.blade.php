@@ -31,14 +31,17 @@
 
                 <div class="card-header">
                     <h4 class="d-inline-block">{{ __('messages.All_employee_list') }}</h4>
+
                     <div class="d-inline-block float-right">
                         <div class="my-auto d-inline-block mr-3">
                             <input class="form-control" type="text" id="search"
                                    placeholder="{{ __('messages.Search') }}">
                         </div>
-                        <a href="{{ url('create/employee') }}"
-                           class="btn btn-primary float-right">{{ __('messages.Add_employee') }}</a>
+                        @if(Auth::user()->role == 1)
+                            <a href="{{ url('create/employee') }}" class="btn btn-primary float-right">{{ __('messages.Add_employee') }}</a>
+                        @endif
                     </div>
+
                 </div>
 
                     @if(count($employees) == 0)

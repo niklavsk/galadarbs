@@ -30,14 +30,17 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="d-inline-block">{{ __('messages.All_depot_list') }}</h4>
+
                     <div class="float-right">
                         <div class="my-auto d-inline-block mr-3">
                             <input class="form-control" type="text" id="search"
                                    placeholder="{{ __('messages.Search') }}">
                         </div>
-                        <a href="{{ url('create/depot') }}"
-                           class="btn btn-primary float-right">{{ __('messages.Add_depot') }}</a>
+                        @if(Auth::user()->role == 1)
+                            <a href="{{ url('create/depot') }}" class="btn btn-primary float-right">{{ __('messages.Add_depot') }}</a>
+                        @endif
                     </div>
+
                 </div>
 
                 <div class="card-body">

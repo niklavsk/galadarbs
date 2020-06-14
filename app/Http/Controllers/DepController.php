@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Nodala;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DepController extends Controller
@@ -13,11 +14,17 @@ class DepController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $departments = DB::table('nodala')->orderBy('id')->get();
+    public function index(){
 
-        return view('departments', array('departments' => $departments));
+        if(Auth::user()->role == 1 || Auth::user()->role == 3){
+            $departments = DB::table('nodala')->orderBy('id')->get();
+
+            return view('departments', array('departments' => $departments));
+
+        } else {
+            return redirect()->route('home');
+
+        }
     }
 
     /**
@@ -25,8 +32,10 @@ class DepController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
+
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         $addresses = DB::table('adrese')
             ->whereNotIn('id', DB::table('darbinieki')->pluck('adrese'))
             ->whereNotIn('id', DB::table('pietura')->pluck('atrasanas_vieta'))
@@ -48,8 +57,8 @@ class DepController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+
         $rules = $rules = array(
             'apraksts' => 'required|string|min:2|max:50',
             'nodalas_vaditajs' => 'numeric|min:1|nullable',
@@ -77,21 +86,27 @@ class DepController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $department = DB::table('nodala')
-            ->join('darbinieki', 'nodala.nodalas_vaditajs', '=', 'darbinieki.id')
-            ->select('*', 'nodala.epasts as nod_epasts', 'nodala.id as dep_id')
-            ->where('nodala.id', $id)
-            ->first();
+    public function show($id){
 
-        $address = DB::table('nodala')
-            ->join('adrese', 'nodala.atrasanas_vieta', '=', 'adrese.id')
-            ->select('adrese.*')
-            ->where('nodala.id', $id)
-            ->first();
+        if(Auth::user()->role == 1 || Auth::user()->role == 3){
+            $department = DB::table('nodala')
+                ->join('darbinieki', 'nodala.nodalas_vaditajs', '=', 'darbinieki.id')
+                ->select('*', 'nodala.epasts as nod_epasts', 'nodala.id as dep_id')
+                ->where('nodala.id', $id)
+                ->first();
 
-        return view('department', array('department' => $department, 'address' => $address));
+            $address = DB::table('nodala')
+                ->join('adrese', 'nodala.atrasanas_vieta', '=', 'adrese.id')
+                ->select('adrese.*')
+                ->where('nodala.id', $id)
+                ->first();
+
+            return view('department', array('department' => $department, 'address' => $address));
+
+        } else {
+            return redirect()->route('home');
+
+        }
     }
 
     /**
@@ -100,8 +115,10 @@ class DepController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
+
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         $addresses = DB::table('adrese')
             ->whereNotIn('id', DB::table('darbinieki')->pluck('adrese'))
             ->whereNotIn('id', DB::table('pietura')->pluck('atrasanas_vieta'))
@@ -173,8 +190,10 @@ class DepController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
+
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         date_default_timezone_set('Europe/Riga');
 
         $nodala = DB::table('nodala')->where('id', $id)->first();

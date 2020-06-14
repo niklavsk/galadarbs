@@ -54,8 +54,13 @@
                 </div>
 
                 <div class="card-footer text-md-center">
-                    <a href="{{ url('edit/vehicle', $vehicle->id) }}" class="btn btn-primary">{{ __('messages.Edit_vehicle') }}</a>
-                    <a href="{{ url('destroy/vehicle', $vehicle->id) }}" class="btn btn-secondary">{{ __('messages.Delete_vehicle') }}</a>
+                    @if(Auth::user()->role == 1 || Auth::user()->role == 2)
+                        <a href="{{ url('edit/vehicle', $vehicle->id) }}" class="btn btn-primary">{{ __('messages.Edit_vehicle') }}</a>
+                    @endif
+
+                    @if(Auth::user()->role == 1)
+                        <a href="{{ url('destroy/vehicle', $vehicle->id) }}" class="btn btn-secondary">{{ __('messages.Delete_vehicle') }}</a>
+                    @endif
                 </div>
             </div>
         </div>

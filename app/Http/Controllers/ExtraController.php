@@ -5,10 +5,16 @@ namespace App\Http\Controllers;
 use App\Adrese;
 use App\Amats;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ExtraController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Display a listing of the resource.
@@ -17,6 +23,10 @@ class ExtraController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->role != 1){
+            return redirect()->route('home');
+        }
+
         $addresses = DB::table('adrese')
             ->whereNotIn('id', DB::table('darbinieki')->pluck('adrese'))
             ->whereNotIn('id', DB::table('pietura')->pluck('atrasanas_vieta'))
@@ -42,6 +52,10 @@ class ExtraController extends Controller
      */
     public function createAddress()
     {
+        if (Auth::user()->role != 1){
+            return redirect()->route('home');
+        }
+
         return view('address_create');
     }
 
@@ -53,6 +67,10 @@ class ExtraController extends Controller
      */
     public function storeAddress(Request $request)
     {
+        if (Auth::user()->role != 1){
+            return redirect()->route('home');
+        }
+
         $rules = $rules = array(
             'valsts' => 'required|string|min:2|max:20',
             'novads' => 'nullable|string|min:2|max:20',
@@ -88,6 +106,10 @@ class ExtraController extends Controller
      */
     public function destroyAddress($id)
     {
+        if (Auth::user()->role != 1){
+            return redirect()->route('home');
+        }
+
         DB::table('adrese')->where('id', $id)->delete();
 
         return redirect()->route('allExtras');
@@ -100,6 +122,10 @@ class ExtraController extends Controller
      */
     public function createJob()
     {
+        if (Auth::user()->role != 1){
+            return redirect()->route('home');
+        }
+
         $departments = DB::table('nodala')->get();
         $depots = DB::table('depo')->get();
 
@@ -114,6 +140,10 @@ class ExtraController extends Controller
      */
     public function storeJob(Request $request)
     {
+        if (Auth::user()->role != 1){
+            return redirect()->route('home');
+        }
+
         $rules = $rules = array(
             'nosaukums' => 'required|string|min:2|max:50',
             'nodala' => 'required|numeric|min:1',
@@ -144,6 +174,10 @@ class ExtraController extends Controller
      */
     public function destroyJob($id)
     {
+        if (Auth::user()->role != 1){
+            return redirect()->route('home');
+        }
+
         DB::table('amats')->where('id', $id)->delete();
 
         return redirect()->route('allExtras');

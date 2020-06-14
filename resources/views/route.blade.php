@@ -40,36 +40,38 @@
                 </div>
 
                 <div class="card-footer row">
-                    <div class="text-md-left col-md-8">
+                    @if(Auth::user()->role == 1)
+                        <div class="text-md-left col-md-8">
 
-                        <div class="col-sm-6 float-left">
-                            <a class="btn btn-primary" href="{{ url('create/timetable', $route->id) }}">{{ __('messages.Add_arrival_times') }}</a>
+                            <div class="col-sm-6 float-left">
+                                <a class="btn btn-primary" href="{{ url('create/timetable', $route->id) }}">{{ __('messages.Add_arrival_times') }}</a>
+                            </div>
+
+                            <div class="col-sm-6 float-right">
+                                <form action="{{action('RouteController@destroyTimetable', ['id' => $route->id])}}" method="post">
+                                    <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+
+                                    <div class="form-group">
+
+                                        <select name="toDelete" size="1" class="col-md-4" id="toDelete">
+                                            <option value=""></option>
+                                            @foreach($delete as $d)
+                                                <option value="{{ $d->time_id }}">{{ date('H:i', strtotime($d->laiks)) }}</option>
+                                            @endforeach
+                                        </select>
+
+                                        <input type="submit" value="{{ __('messages.Delete_from') }}" class="btn btn-secondary">
+                                    </div>
+                                </form>
+                            </div>
+
                         </div>
 
-                        <div class="col-sm-6 float-right">
-                            <form action="{{action('RouteController@destroyTimetable', ['id' => $route->id])}}" method="post">
-                                <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
-
-                                <div class="form-group">
-
-                                    <select name="toDelete" size="1" class="col-md-4" id="toDelete">
-                                        <option value=""></option>
-                                        @foreach($delete as $d)
-                                            <option value="{{ $d->time_id }}">{{ date('H:i', strtotime($d->laiks)) }}</option>
-                                        @endforeach
-                                    </select>
-
-                                    <input type="submit" value="{{ __('messages.Delete_from') }}" class="btn btn-secondary">
-                                </div>
-                            </form>
+                        <div class="text-md-right col">
+                            <a class="btn btn-primary" href="{{ url('edit/route', $route->id) }}">{{ __('messages.Edit_route') }}</a>
+                            <a class="btn btn-secondary" href="{{ url('destroy/route', $route->id) }}">{{ __('messages.Delete_route') }}</a>
                         </div>
-
-                    </div>
-
-                    <div class="text-md-right col">
-                        <a class="btn btn-primary" href="{{ url('edit/route', $route->id) }}">{{ __('messages.Edit_route') }}</a>
-                        <a class="btn btn-secondary" href="{{ url('destroy/route', $route->id) }}">{{ __('messages.Delete_route') }}</a>
-                    </div>
+                    @endif
                 </div>
 
             </div>

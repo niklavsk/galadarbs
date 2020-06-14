@@ -43,16 +43,16 @@
             <div class="card">
                 <div class="card-header"><h4 class="d-inline-block">{{ __('messages.All_processed_payments_list') }}</h4>
 
-                    @if($role == 4 || $role == 1)
                         <div class="float-right">
                             <div class="my-auto d-inline-block mr-3">
                                 <input class="form-control" type="text" id="search"
                                        placeholder="{{ __('messages.Search') }}">
                             </div>
-                            <a href="{{ url('create/payroll') }}"
-                               class="btn btn-primary float-right">{{ __('messages.Add_payment') }}</a>
+                            @if(Auth::user()->role == 4 || Auth::user()->role == 1)
+                              <a href="{{ url('create/payroll') }}" class="btn btn-primary float-right">{{ __('messages.Add_payment') }}</a>
+                            @endif
                         </div>
-                    @endif
+
                 </div>
 
                 @if(count($payrolls) == 0)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pietura;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
@@ -16,13 +17,19 @@ class StopController extends Controller
      */
     public function index()
     {
-        $stops = DB::table('pietura')
-            ->join('adrese', 'pietura.atrasanas_vieta', '=', 'adrese.id')
-            ->select('pietura.*', 'adrese.iela', 'adrese.majas_nr')
-            ->orderBy('id')
-            ->get();
+        if(Auth::user()->role == 1 || Auth::user()->role == 2){
+            $stops = DB::table('pietura')
+                ->join('adrese', 'pietura.atrasanas_vieta', '=', 'adrese.id')
+                ->select('pietura.*', 'adrese.iela', 'adrese.majas_nr')
+                ->orderBy('id')
+                ->get();
 
-        return view('stops', array('stops' => $stops));
+            return view('stops', array('stops' => $stops));
+
+        } else {
+            return redirect()->route('home');
+
+        }
     }
 
     /**
@@ -32,6 +39,8 @@ class StopController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         $addresses = DB::table('adrese')
             ->whereNotIn('id', DB::table('darbinieki')->pluck('adrese'))
             ->whereNotIn('id', DB::table('pietura')->pluck('atrasanas_vieta'))
@@ -77,15 +86,21 @@ class StopController extends Controller
      */
     public function show($id)
     {
-        $stop = DB::table('pietura')->where('id', $id)->first();
+        if(Auth::user()->role == 1 || Auth::user()->role == 2){
+            $stop = DB::table('pietura')->where('id', $id)->first();
 
-        $address = DB::table('pietura')
-            ->join('adrese', 'pietura.atrasanas_vieta', '=', 'adrese.id')
-            ->select('adrese.*')
-            ->where('pietura.id', $id)
-            ->first();
+            $address = DB::table('pietura')
+                ->join('adrese', 'pietura.atrasanas_vieta', '=', 'adrese.id')
+                ->select('adrese.*')
+                ->where('pietura.id', $id)
+                ->first();
 
-        return view('stop', array('stop' => $stop, 'address' => $address));
+            return view('stop', array('stop' => $stop, 'address' => $address));
+
+        } else {
+            return redirect()->route('home');
+
+        }
     }
 
     /**
@@ -96,6 +111,8 @@ class StopController extends Controller
      */
     public function edit($id)
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         $pietura = DB::table('Pietura')->where('id', $id)->first();
 
         $addresses = DB::table('adrese')
@@ -149,6 +166,8 @@ class StopController extends Controller
      */
     public function destroy($id)
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         DB::table('pienaksanas_laiki')
             ->whereIn('marsruta_pietura', DB::table('marsruta_pieturas')->where('pietura', $id)->pluck('id'))
             ->delete();

@@ -31,14 +31,17 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="d-inline-block">{{ __('messages.All_routes_list') }}</h4>
+                    
                     <div class="float-right">
                         <div class="my-auto d-inline-block mr-3">
                             <input class="form-control" type="text" id="search"
                                    placeholder="{{ __('messages.Search') }}">
                         </div>
-                        <a href="{{ url('create/route') }}"
-                           class="btn btn-primary float-right">{{ __('messages.Add_route') }}</a>
+                        @if(Auth::user()->role == 1)
+                            <a href="{{ url('create/route') }}" class="btn btn-primary float-right">{{ __('messages.Add_route') }}</a>
+                        @endif
                     </div>
+
                 </div>
 
                     @if(count($routes) == 0)

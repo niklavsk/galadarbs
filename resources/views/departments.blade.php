@@ -30,13 +30,20 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="d-inline-block">{{ __('messages.All_department_list') }}</h4>
+
+
+                    
+
                     <div class="float-right">
                         <div class="my-auto d-inline-block mr-3">
                             <input class="form-control" type="text" id="search"
                                    placeholder="{{ __('messages.Search') }}">
-                        </div>
-                        <a href="{{ url('create/department') }}"
-                          class="btn btn-primary float-right">{{ __('messages.Add_department') }}</a></div>
+                                   
+                    @if(Auth::user()->role == 1)
+                        <a href="{{ url('create/department') }}" class="btn btn-primary float-right">{{ __('messages.Add_department') }}</a>
+                    @endif
+                          
+
                 </div>
 
                 <div class="card-body">

@@ -9,10 +9,14 @@
                 <div class="card-body">
 
                     <ul class="list-group">
-                        @if($department->nodalas_vaditajs != "")
+                        @if($department->nodalas_vaditajs != "" && Auth::User()->role == 1)
                             <a class="list-group-item list-group-item-primary list-group-item-action"
                                href="{{ url('employee', $department->nodalas_vaditajs) }}">
                                 <strong>{{ __('messages.Department_director') }}</strong>: {{ $department->vards }} {{ $department->uzvards }}</a>
+
+                        @elseif($department->nodalas_vaditajs != "" && Auth::User()->role == 3)
+                            <li class="list-group-item list-group-item-primary"><strong>{{ __('messages.Department_director') }}</strong>:
+                                {{ $department->vards }} {{ $department->uzvards }}</li>
                         @else <li class="list-group-item list-group-item-primary"><strong>{{ __('messages.Department_director') }}</strong>:</li>
                         @endif
                         <li class="list-group-item"><strong>{{ __('messages.Description') }}</strong>: {{ $department->apraksts }}</li>
@@ -31,8 +35,10 @@
 
                 </div>
                 <div class="card-footer text-center p-md-3">
-                    <a href="{{ url('edit/department', $department->dep_id) }}" class=" btn btn-primary">{{ __('messages.Edit_department') }}</a>
-                    <a href="{{ url('destroy/department', $department->dep_id) }}" class="btn btn-secondary">{{ __('messages.Delete_department') }}</a>
+                    @if(Auth::user()->role == 1)
+                        <a href="{{ url('edit/department', $department->dep_id) }}" class=" btn btn-primary">{{ __('messages.Edit_department') }}</a>
+                        <a href="{{ url('destroy/department', $department->dep_id) }}" class="btn btn-secondary">{{ __('messages.Delete_department') }}</a>
+                    @endif
                 </div>
             </div>
         </div>

@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class VehicleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +21,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicles = DB::table('transportlidzeklis')->orderBy('id')->get();
+        $vehicles = $this->getVehicles();
 
         $marsruti = DB::table('marsruti')->get();
 
@@ -28,8 +33,10 @@ class VehicleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
+
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         $depots = DB::table('depo')->get();
         $routes = DB::table('marsruti')->get();
 
@@ -42,8 +49,8 @@ class VehicleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+
         $rules = $rules = array(
             'tehniskas_parbaudes_termins' => 'required|date|date_format:Y-m-d|after:today',
             'pedeja_remonta_datums' => 'nullable|date|date_format:Y-m-d|before:tomorrow|after:razosanas_datums',
@@ -75,11 +82,26 @@ class VehicleController extends Controller
      */
     public function show($id)
     {
-        $vehicle = DB::table('transportlidzeklis')->where('id', $id)->first();
+        if(Auth::user()->role == 1 || Auth::user()->role == 2){
 
-        $marsruti = DB::table('marsruti')->get();
+            $vehicles = $this->getVehicles();
 
-        return view('vehicle', array('vehicle' => $vehicle, 'marsruti' => $marsruti));
+            foreach ($vehicles as $vehi){
+
+                if($vehi->id == $id){
+                    $vehicle = DB::table('transportlidzeklis')->where('id', $id)->first();
+                    $marsruti = DB::table('marsruti')->get();
+
+                    return view('vehicle', array('vehicle' => $vehicle, 'marsruti' => $marsruti));
+                }
+            }
+
+            return redirect()->route('home');
+
+        } else {
+            return redirect()->route('home');
+
+        }
     }
 
     /**
@@ -88,13 +110,30 @@ class VehicleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $vehicle = DB::table('transportlidzeklis')->where('id', $id)->first();
-        $depots = DB::table('depo')->get();
-        $routes = DB::table('marsruti')->get();
+    public function edit($id){
 
-        return view('vehicle_edit', array('vehicle' => $vehicle, 'depots' => $depots, 'routes' => $routes));
+        if(Auth::user()->role == 1 || Auth::user()->role == 2){
+            $vehicles = $this->getVehicles();
+
+            foreach ($vehicles as $vehi){
+
+                if($vehi->id == $id){
+                    $vehicle = DB::table('transportlidzeklis')->where('id', $id)->first();
+                    $depots = DB::table('depo')->get();
+                    $routes = DB::table('marsruti')->get();
+
+                    return view('vehicle_edit', array('vehicle' => $vehicle, 'depots' => $depots, 'routes' => $routes));
+                }
+            }
+
+            return redirect()->route('home');
+
+        } else {
+            return redirect()->route('home');
+
+        }
+
+
     }
 
     /**
@@ -139,9 +178,41 @@ class VehicleController extends Controller
      */
     public function destroy($id)
     {
+        if(Auth::user()->role != 1) return redirect()->route('home');
+
         DB::table('transportlidzeklis')->where('id', $id)->delete();
 
         return redirect()->route('allVehicles');
+    }
+
+    protected function getVehicles(){
+        $user = DB::table('darbinieki')
+            ->join('users', 'darbinieki.user_id', '=', 'users.id')
+            ->select('*', 'darbinieki.id as d_id')
+            ->where('user_id', Auth::user()->id)
+            ->first();
+
+        if ($user->role == 1){ //admin
+
+            $vehicles = DB::table('transportlidzeklis')->orderBy('id')->get();
+        }
+
+        elseif ($user->role == 2) { //depot main
+
+            $depoNum = DB::table('amats')
+                ->where('darba_pilditajs', '=', $user->d_id)
+                ->where('nosaukums', '=', 'Depo Vaditajs')
+                ->whereNull('darba_beigsanas_datums')
+                ->pluck('depo');
+
+            $vehicles = DB::table('transportlidzeklis')
+                ->where('depo_nr', '=', $depoNum)
+                ->orderBy('id')
+                ->get();
+
+        }
+
+        return $vehicles;
     }
 
     public function postSearch(Request $request)

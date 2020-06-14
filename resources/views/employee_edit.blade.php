@@ -8,7 +8,7 @@
                     <h4>{{ __('messages.Edit_employee') }}</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{action('EmployeeController@update', ['id' => $employee->id])}}" method="post">
+                    <form action="{{action('EmployeeController@update', ['id' => $employee->emp_id])}}" method="post">
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 
                         <div class="form-group row {{ $errors->has('pk') ? 'has-error' : ''}}">
