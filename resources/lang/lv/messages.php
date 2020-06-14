@@ -121,5 +121,7 @@ return [
     'Search' => 'Meklēt',
     'Choose_picture' => 'Izvēlieties attēlu',
     'Upload' => 'Augšupielādēt',
-    'Set_profile_pic' => 'Uzstādīt profila bildi'
+    'Set_profile_pic' => 'Uzstādīt profila bildi',
+    'Forgot_your_password' => 'Aizmirsi savu paroli?',
+    'Remember_me' => 'Atcerēties mani'
 ];
