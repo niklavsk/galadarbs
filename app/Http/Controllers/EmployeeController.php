@@ -126,7 +126,7 @@ class EmployeeController extends Controller
                 $nodalas = DB::table('nodala')->get();
 
 
-                $user = DB::table('darbinieki')->where('user_id', Auth::id())->first();
+                $user = DB::table('darbinieki')->where('id', $id)->first();
 
                 $testImage = 'storage/' . $user->id . '-profileImage.png';
                 $defaultImage = 'storage/white-and-black-art-png-clip-art-thumbnail.png';
