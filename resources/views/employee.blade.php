@@ -14,7 +14,7 @@
                             <div class="col-md-3">
                                 <img class="img-thumbnail img-fluid" src="{{ url($image) }}">
                                 @if ($image == asset('storage/white-and-black-art-png-clip-art-thumbnail.png'))
-                                    <a class="btn btn-primary" href="{{ action('EmployeeController@uploadImage') }}">Uzstādīt profila bildi</a>
+                                    <a class="btn btn-primary" href="{{ action('EmployeeController@uploadImage') }}">{{ __('messages.Set_profile_pic') }}</a>
                                 @endif
                             </div>
 

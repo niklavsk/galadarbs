@@ -112,5 +112,8 @@ return [
     'Add' => 'Add',
     'Edit_employee' => 'Edit Employee',
     'Delete_positions' => 'Delete Positions',
-    'Search' => 'Search'
+    'Search' => 'Search',
+    'Choose_picture' => 'Choose picture',
+    'Upload' => 'Upload',
+    'Set_profile_pic' => 'Set Profile Picture'
 ];
