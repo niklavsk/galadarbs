@@ -4,10 +4,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <h4 class="card-header">{{ __('messages.Edit_payment') }}: {{ $payroll->id }}</h4>
+                <h4 class="card-header">{{ __('messages.Edit_payment') }}: {{ $payroll->pay_id }}</h4>
                 <div class="card-body">
 
-                    <form action="{{ action('PayController@update', ['id' => $payroll->id]) }}" method="post">
+                    <form action="{{ action('PayController@update', ['id' => $payroll->pay_id]) }}" method="post">
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 
                         <div class="form-group row">
@@ -47,7 +47,7 @@
                             @endif
                         </div>
 
-                        <input type="submit" value="{{ __('Confirm_changes') }}" class="btn btn-primary btn-block col-md-4 mx-md-auto">
+                        <input type="submit" value="{{ __('messages.Confirm_changes') }}" class="btn btn-primary btn-block col-md-4 mx-md-auto">
 
                     </form>
                 </div>

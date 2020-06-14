@@ -135,9 +135,24 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
+
         $employees = $this->getEmployees();
+
+        if(Auth::user()->role == 0){
+            if($id == $employees->id){
+                $employee = DB::table('darbinieki')
+                    ->join('adrese', 'darbinieki.adrese', '=', 'adrese.id')
+                    ->where('darbinieki.id', $id)
+                    ->select('*', 'darbinieki.id as emp_id')
+                    ->first();
+
+                return view('employee_edit', array('employee' => $employee));
+
+            } else {
+                return redirect()->route('home');
+            }
+        }
 
         foreach ($employees as $emp){
 
@@ -145,6 +160,7 @@ class EmployeeController extends Controller
                 $employee = DB::table('darbinieki')
                     ->join('adrese', 'darbinieki.adrese', '=', 'adrese.id')
                     ->where('darbinieki.id', $id)
+                    ->select('*', 'darbinieki.id as emp_id')
                     ->first();
 
                 return view('employee_edit', array('employee' => $employee));
@@ -210,6 +226,8 @@ class EmployeeController extends Controller
                 'majas_nosaukums' => $request->majas_nosaukums,
                 'pasta_indekss' => $request->pasta_indekss,
             ]);
+
+        if(Auth::user()->role == 0) return redirect()->route('viewProfile');
 
         return redirect()->route('employee.show', ['id' => $id]);
     }
@@ -323,12 +341,13 @@ class EmployeeController extends Controller
             ->where('user_id', Auth::user()->id)
             ->first();
 
-        if ($user->role == 1) //admin
-        {
-            $employees = DB::table('darbinieki')->orderBy('id')->get();
-        }
+        if($user->role == 0) {
+            $employees = DB::table('darbinieki')->where('id', '=', $user->d_id)->first();
 
-        elseif ($user->role == 2) { //depot main
+        } elseif ($user->role == 1){ //admin
+            $employees = DB::table('darbinieki')->orderBy('id')->get();
+
+        } elseif ($user->role == 2) { //depot main
 
             $depoNum = DB::table('amats')
                 ->where('darba_pilditajs', '=', $user->d_id)

@@ -30,7 +30,7 @@ class PayController extends Controller
      */
     public function create(Request $request){
 
-        if(Auth::user()->role == 1 || Auth::user()->role != 4){
+        if(Auth::user()->role == 1) {
             $start_date = date('Y-m-d', strtotime('first day of previous month'));
             $end_date = date('Y-m-d', strtotime('last day of previous month'));
 
@@ -46,6 +46,83 @@ class PayController extends Controller
                 ->join('amats', 'darbinieki.id', '=', 'amats.darba_pilditajs')
                 ->whereNull('amats.darba_beigsanas_datums')
                 ->orWhereBetween('amats.darba_beigsanas_datums', [$start_date, $end_date])
+                ->count();
+
+            $nodalas = DB::table('nodala')->get();
+
+            $request->session()->put('employees', $employees);
+            $request->session()->put('employeesCount', $employeesCount);
+
+            return view('payroll_create', array('employees' => $employees, 'error' => false, 'nodalas' => $nodalas));
+
+        } elseif(Auth::user()->role == 4){
+
+            $user = DB::table('darbinieki')
+                ->join('users', 'darbinieki.user_id', '=', 'users.id')
+                ->select('*', 'darbinieki.id as d_id')
+                ->where('user_id', Auth::user()->id)
+                ->first();
+
+            $depoNum = DB::table('amats')
+                ->where('darba_pilditajs', '=', $user->d_id)
+                ->where('nosaukums', '=', 'Gramatvedis')
+                ->whereNull('darba_beigsanas_datums')
+                ->pluck('depo');
+
+            $start_date = date('Y-m-d', strtotime('first day of previous month'));
+            $end_date = date('Y-m-d', strtotime('last day of previous month'));
+
+            $this_start_date = date('Y-m-d', strtotime('first day of this month'));
+            $this_end_date = date('Y-m-d', strtotime('last day of this month'));
+
+            $employees = DB::table('darbinieki')
+                ->join('amats', 'darbinieki.id', '=', 'amats.darba_pilditajs')
+                ->where(function ($query) use ($depoNum, $this_start_date, $this_end_date) {
+                    $query->whereNull('amats.darba_beigsanas_datums')
+                        ->where('amats.depo', '=', $depoNum)
+                        ->whereNotIn('darbinieki.id',
+                            DB::table('maksajumu_vesture')
+                                ->whereBetween('izsniegsanas_datums', [$this_start_date, $this_end_date])
+                                ->pluck('maksajumu_vesture.pers_kods')
+                        );
+
+                })->orWhere(function ($query) use ($start_date, $end_date, $depoNum, $this_start_date, $this_end_date) {
+                    $query->orWhereBetween('amats.darba_beigsanas_datums', [$start_date, $end_date])
+                        ->where('amats.depo', '=', $depoNum)
+                        ->whereNotIn('darbinieki.id',
+                            DB::table('maksajumu_vesture')
+                                ->whereBetween('maksajumu_vesture.izsniegsanas_datums', [$this_start_date, $this_end_date])
+                                ->pluck('maksajumu_vesture.pers_kods')
+                        );
+                })
+
+                ->select('*', 'amats.id as job_id', 'darbinieki.id as emp_id')
+                ->orderBy('darbinieki.id')
+                ->get();
+
+            $employeesCount = DB::table('darbinieki')
+                ->join('amats', 'darbinieki.id', '=', 'amats.darba_pilditajs')
+                ->where(function ($query) use ($depoNum, $this_start_date, $this_end_date) {
+                    $query->whereNull('amats.darba_beigsanas_datums')
+                        ->where('amats.depo', '=', $depoNum)
+                        ->whereNotIn('darbinieki.id',
+                            DB::table('maksajumu_vesture')
+                                ->whereBetween('izsniegsanas_datums', [$this_start_date, $this_end_date])
+                                ->pluck('maksajumu_vesture.pers_kods')
+                        );
+
+                })->orWhere(function ($query) use ($start_date, $end_date, $depoNum, $this_start_date, $this_end_date) {
+                    $query->orWhereBetween('amats.darba_beigsanas_datums', [$start_date, $end_date])
+                        ->where('amats.depo', '=', $depoNum)
+                        ->whereNotIn('darbinieki.id',
+                            DB::table('maksajumu_vesture')
+                                ->whereBetween('maksajumu_vesture.izsniegsanas_datums', [$this_start_date, $this_end_date])
+                                ->pluck('maksajumu_vesture.pers_kods')
+                        );
+                })
+
+                ->select('*', 'amats.id as job_id', 'darbinieki.id as emp_id')
+                ->orderBy('darbinieki.id')
                 ->count();
 
             $nodalas = DB::table('nodala')->get();
@@ -146,7 +223,7 @@ class PayController extends Controller
      */
     public function edit($id){
 
-        if(Auth::user()->role == 1 || Auth::user()->role != 4){
+        if(Auth::user()->role == 1 || Auth::user()->role == 4){
             $payrolls = $this->getPayrolls();
 
             foreach ($payrolls as $pay){
@@ -156,6 +233,7 @@ class PayController extends Controller
                         ->join('darbinieki', 'maksajumu_vesture.pers_kods', '=', 'darbinieki.id')
                         ->join('amats', 'maksajumu_vesture.amats', '=', 'amats.id')
                         ->where('maksajumu_vesture.id', $id)
+                        ->select('*', 'maksajumu_vesture.id as pay_id')
                         ->first();
 
                     return view('payroll_edit', array('payroll' => $payroll));
@@ -176,8 +254,8 @@ class PayController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
+
         $rules = $rules = array(
             'stundu_sk' => 'required|numeric|min:0',
         );
@@ -200,7 +278,7 @@ class PayController extends Controller
      */
     public function destroy($id){
 
-        if(Auth::user()->role == 1 || Auth::user()->role != 4){
+        if(Auth::user()->role == 1 || Auth::user()->role == 4){
             $payrolls = $this->getPayrolls();
 
             foreach ($payrolls as $pay){
@@ -260,6 +338,7 @@ class PayController extends Controller
                 ->join('darbinieki', 'maksajumu_vesture.pers_kods', '=', 'darbinieki.id')
                 ->select('*', 'maksajumu_vesture.id as pay_id')
                 ->whereIn('maksajumu_vesture.pers_kods', $usersUnder)
+                ->orWhere('maksajumu_vesture.pers_kods', '=', $user->d_id)
                 ->orderBy('maksajumu_vesture.id')
                 ->get();
 
@@ -279,6 +358,7 @@ class PayController extends Controller
                 ->join('darbinieki', 'maksajumu_vesture.pers_kods', '=', 'darbinieki.id')
                 ->select('*', 'maksajumu_vesture.id as pay_id')
                 ->whereIn('maksajumu_vesture.pers_kods', $usersUnder)
+                ->orWhere('maksajumu_vesture.pers_kods', '=', $user->d_id)
                 ->orderBy('maksajumu_vesture.id')
                 ->get();
 
@@ -298,6 +378,7 @@ class PayController extends Controller
                 ->join('darbinieki', 'maksajumu_vesture.pers_kods', '=', 'darbinieki.id')
                 ->select('*', 'maksajumu_vesture.id as pay_id')
                 ->whereIn('maksajumu_vesture.pers_kods', $usersUnder)
+                ->orWhere('maksajumu_vesture.pers_kods', '=', $user->d_id)
                 ->orderBy('maksajumu_vesture.id')
                 ->get();
         }
