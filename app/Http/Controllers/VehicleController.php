@@ -185,7 +185,6 @@ class VehicleController extends Controller
         return redirect()->route('allVehicles');
     }
 
-
     protected function getVehicles(){
         $user = DB::table('darbinieki')
             ->join('users', 'darbinieki.user_id', '=', 'users.id')
@@ -214,5 +213,19 @@ class VehicleController extends Controller
         }
 
         return $vehicles;
+    }
+
+    public function postSearch(Request $request)
+    {
+        return DB::table('transportlidzeklis')
+            ->leftJoin('marsruti', 'transportlidzeklis.marsruta_id', '=', 'marsruti.id')
+            ->where('transportlidzeklis.id', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('transportlidzeklis.razotajs', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('transportlidzeklis.depo_nr', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('transportlidzeklis.marsruta_id', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('marsruti.apraksts', 'LIKE', '%'. $request->get('search') .'%')
+            ->select('transportlidzeklis.id as id', 'marsruti.id as marsruta_id', 'transportlidzeklis.razotajs as razotajs',
+                'transportlidzeklis.depo_nr as depo_nr', 'marsruti.apraksts as apraksts')
+            ->get();
     }
 }

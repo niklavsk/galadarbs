@@ -6,6 +6,7 @@ use App\Pietura;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class StopController extends Controller
 {
@@ -59,9 +60,12 @@ class StopController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = $rules = array(
-            'nosaukums' => 'required|string|min:2|max:100',
-            'atrasanas_vieta' => 'required|numeric|min:1',
+        $rules = array(
+            'nosaukums' => 'required|string|min:2|max:100|unique:pietura,nosaukums',
+            'atrasanas_vieta' => [
+                'required|numeric|min:1',
+                Rule::in(DB::table('adrese')->pluck('id'))
+            ]
         );
 
         $this->validate($request, $rules);
@@ -137,7 +141,21 @@ class StopController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'nosaukums' => 'required|string|min:2|max:100|unique:pietura,nosaukums',
+            'atrasanas_vieta' => [
+                'required',
+                Rule::in(DB::table('adrese')->pluck('id'))
+            ]
+        ];
+
+        $this->validate($request, $rules);
+
+        DB::table('pietura')->where('id',$id)
+            ->update([
+                'nosaukums' => $request->nosaukums,
+                'atrasanas_vieta' => $request->atrasanas_vieta
+            ]);
     }
 
     /**
@@ -178,5 +196,19 @@ class StopController extends Controller
         DB::table('pietura')->where('id', $id)->delete();
 
         return redirect()->route('allStops');
+    }
+
+    public function postSearch(Request $request)
+    {
+        return DB::table('pietura')
+            ->leftJoin('adrese', 'pietura.atrasanas_vieta','=','adrese.id')
+            ->where('pietura.id', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('pietura.nosaukums', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('adrese.valsts', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('adrese.pilseta', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('adrese.iela', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('adrese.majas_nr', 'LIKE', '%'. $request->get('search') .'%')
+            ->select('pietura.id as id', 'pietura.nosaukums as nosaukums', 'adrese.iela as iela', 'adrese.majas_nr as majas_nr')
+            ->get();
     }
 }

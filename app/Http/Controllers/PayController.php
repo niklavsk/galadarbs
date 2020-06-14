@@ -385,4 +385,41 @@ class PayController extends Controller
 
         return $payrolls;
     }
+
+    public function postSearch(Request $request)
+    {
+        $login_id = Auth::id();
+        $user = DB::table('darbinieki')->where('user_id', $login_id)->first();
+        $lietotajs = DB::table('users')->where('id', $login_id)->first();
+
+        if ($lietotajs->role == 1) // admin
+        {
+            return DB::table('maksajumu_vesture')
+                ->join('darbinieki', 'maksajumu_vesture.pers_kods', '=', 'darbinieki.id')
+                ->where('darbinieki.vards', 'LIKE', '%'. $request->get('search') .'%')
+                ->orWhere('darbinieki.uzvards', 'LIKE', '%'. $request->get('search') .'%')
+                ->orWhere('darbinieki.id', 'LIKE', '%'. $request->get('search') .'%')
+                ->select('darbinieki.vards as vards', 'darbinieki.uzvards as uzvards', 'darbinieki.pk as pk',
+                    'maksajumu_vesture.id as pay_id', 'maksajumu_vesture.likme as likme',
+                    'maksajumu_vesture.stundu_sk as stundu_sk', 'maksajumu_vesture.izsniegsanas_datums as izsniegsanas_datums')
+                ->get();
+        }
+        elseif ($lietotajs->role == 4) // accountaint
+        {
+            $depoNum = DB::table('amats')->where('pers_kods', '=', $user->id)->pluck('depo');
+            $usersUnder = DB::table('darbinieki')->where('depo', '=', $depoNum)->pluck('id')->toArray();
+
+            return $payrolls = DB::table('maksajumu_vesture')
+                ->join('darbinieki', 'maksajumu_vesture.pers_kods', '=', 'darbinieki.id')
+                ->whereIn('maksajumu_vesture.pers_kods', $usersUnder)
+                ->where('darbinieki.vards', 'LIKE', '%'. $request->get('search') .'%')
+                ->orWhere('darbinieki.uzvards', 'LIKE', '%'. $request->get('search') .'%')
+                ->orWhere('darbinieki.id', 'LIKE', '%'. $request->get('search') .'%')
+                ->select('darbinieki.vards as vards', 'darbinieki.uzvards as uzvards', 'darbinieki.id as pk',
+                    'maksajumu_vesture.id as pay_id', 'maksajumu_vesture.likme as likme',
+                    'maksajumu_vesture.stundu_sk as stundu_sk', 'maksajumu_vesture.izsniegsanas_datums as izsniegsanas_datums')
+                ->get();
+        }
+
+    }
 }

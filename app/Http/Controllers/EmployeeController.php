@@ -5,9 +5,12 @@ use App\Adrese;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 use App\Darbinieki;
 use Illuminate\Http\Request;
+use Illuminate\Http\File;
+use Illuminate\Http\UploadedFile;
 
 class EmployeeController extends Controller
 {
@@ -273,7 +276,24 @@ class EmployeeController extends Controller
 
         $nodalas = DB::table('nodala')->get();
 
-        return view('employee', array('employee' => $employee, 'jobs' => $jobs, 'jobCount' => $jobCount, 'nodalas' => $nodalas));
+
+        $testImage = 'storage/' . $user->id . '-profileImage.png';
+        $defaultImage = 'storage/white-and-black-art-png-clip-art-thumbnail.png';
+        $test = asset($testImage);
+        $default = asset($defaultImage);
+
+        $exists = Storage::disk('local')->exists('public/' . $user->id . '-profileImage.png');
+
+        if($exists)
+        {
+            $image = $test;
+        }
+        else
+        {
+            $image = $default;
+        }
+
+        return view('employee', array('employee' => $employee, 'jobs' => $jobs, 'jobCount' => $jobCount, 'nodalas' => $nodalas, 'image' => $image));
     }
 
     /**
@@ -333,8 +353,40 @@ class EmployeeController extends Controller
 
         return redirect()->route('employee.show', ['id' => $id]);
     }
+ 
+    public function uploadImage()
+    {
+        $login_id = Auth::id();
+        $user = DB::table('darbinieki')->where('user_id', $login_id)->first();
 
-    protected function getEmployees(){
+        return view('imageUpload', ['user' => $user]);
+    }
+
+    public function storeImage(Request $request)
+    {
+        request()->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
+        ]);
+
+        $login_id = Auth::id();
+        $user = DB::table('darbinieki')->where('user_id', $login_id)->first();
+
+        Storage::disk('local')->putFileAs('public', $request->file('image'), $user->id . '-profileImage.png');
+
+        return redirect('/employee');
+    }
+
+    public function postSearch(Request $request)
+    {
+        return DB::table('darbinieki')
+            ->where('pk', 'LIKE', '%'.$request->get('search').'%')
+            ->orWhere('vards', 'LIKE', '%'.$request->get('search').'%')
+            ->orWhere('uzvards', 'LIKE', '%'.$request->get('search').'%')
+            ->get();
+    }
+  
+  
+  protected function getEmployees(){
         $user = DB::table('darbinieki')
             ->join('users', 'darbinieki.user_id', '=', 'users.id')
             ->select('*', 'darbinieki.id as d_id')
@@ -398,4 +450,5 @@ class EmployeeController extends Controller
 
         return $employees;
     }
+  
 }

@@ -5,7 +5,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4>{{ __('messages.Add_station') }}</h4>
+                    <h4>{{ __('messages.Edit_station') }}</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{action('StopController@update', $stop->id)}}" method="post">

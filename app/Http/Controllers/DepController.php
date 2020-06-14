@@ -209,4 +209,11 @@ class DepController extends Controller
 
         return redirect()->route('allDepartments');
     }
+
+    public function postSearch (Request $request)
+    {
+        return DB::table('nodala')
+            ->where('id', 'LIKE', '%'.$request->get('search').'%')
+            ->orWhere('apraksts', 'LIKE', '%'.$request->get('search').'%')->get();
+    }
 }

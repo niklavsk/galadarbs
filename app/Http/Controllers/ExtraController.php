@@ -182,4 +182,27 @@ class ExtraController extends Controller
 
         return redirect()->route('allExtras');
     }
+
+    public function postSearchAddress(Request $request)
+    {
+        return DB::table('adrese')
+            ->where('valsts', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('pilseta', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('iela', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('majas_nr', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('pasta_indekss', 'LIKE', '%'. $request->get('search') .'%')
+            ->get();
+    }
+
+    public function postSearchPosition(Request $request)
+    {
+        return DB::table('amats')
+            ->join('nodala','amats.nodala', '=', 'nodala.id')
+            ->where('amats.nosaukums', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('amats.stundas_likme', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('nodala.apraksts', 'LIKE', '%'. $request->get('search') .'%')
+            ->select('nodala.apraksts as nodala', 'amats.stundas_likme as stundas_likme',
+                'amats.nosaukums as nosaukums', 'amats.depo as depo', 'amats.id as id')
+            ->get();
+    }
 }

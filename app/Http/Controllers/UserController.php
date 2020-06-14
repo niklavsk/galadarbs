@@ -102,7 +102,7 @@ class UserController extends Controller
                 'user_id' => $user->id
             ]);
 
-        return $this->sendMail();
+        return $this->sendMail($user->id);
 //        return redirect()->route('user.show', ['id' => $user->id]);
     }
 
@@ -224,14 +224,12 @@ class UserController extends Controller
         return redirect()->route('allUsers');
     }
 
-    public function sendMail()
+    public function sendMail($id)
     {
-        if (Auth::user()->role != 1){
-            return redirect()->route('home');
-        }
 
-        $login_id = Auth::id();
-        $user = DB::table('darbinieki')->where('user_id', $login_id)->first();
+//        $login_id = Auth::id();
+//        $user = DB::table('darbinieki')->where('user_id', $login_id)->first();
+        $user = DB::table('darbinieki')->where('user_id', $id)->first();
 
         if($user->otrais_vards != NULL)
         {
@@ -241,8 +239,9 @@ class UserController extends Controller
         }
 
 //        $to_email = $user->epasts; //izkomentēts, lai varētu pārbaudīt, ka strādā, izmantojot nākošo līniju
-        $to_email = 'anitra.beinare@gmail.com';
-        $data = array('name'=> $to_name, 'body' => "Test mail");
+        $to_email = 'rimsislv@gmail.com';
+
+        $data = array('name'=> $to_name, 'body' => "Error, mail body missing");
 
         Mail::send('emails/testMail', $data, function($message) use ($to_name, $to_email) {
             $message->to($to_email, $to_name)
@@ -250,6 +249,17 @@ class UserController extends Controller
             $message->from('rimsislv@gmail.com','RiMSIS Administrators');
         });
 
-        return redirect()->route('user.show', ['id' => $user->id]);
+        return redirect()->route('user.show', ['id' => $id]);
+    }
+
+    public function postSearch(Request $request)
+    {
+        return DB::table('users')
+            ->join('darbinieki', 'users.id', '=', 'darbinieki.user_id')
+            ->where('users.email', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('darbinieki.vards', 'LIKE', '%'. $request->get('search') .'%')
+            ->orWhere('darbinieki.uzvards', 'LIKE', '%'. $request->get('search') .'%')
+            ->select('darbinieki.vards as vards', 'darbinieki.uzvards as uzvards', 'users.email as email', 'users.id as id')
+            ->get();
     }
 }
