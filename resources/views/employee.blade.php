@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <img class="img-thumbnail img-fluid" src="{{ url($image) }}">
-                                @if ($image == asset('storage/white-and-black-art-png-clip-art-thumbnail.png'))
+                                @if ($image == asset('storage/white-and-black-art-png-clip-art-thumbnail.png') && Auth::id() == $employee->user_id)
                                     <a class="btn btn-primary" href="{{ action('EmployeeController@uploadImage') }}">{{ __('messages.Set_profile_pic') }}</a>
                                 @endif
                             </div>

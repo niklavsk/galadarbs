@@ -144,7 +144,6 @@ class EmployeeController extends Controller
                     $image = $default;
                 }
 
-
                 return view('employee', array('employee' => $employee, 'jobs' => $jobs, 'jobCount' => $jobCount, 'nodalas' => $nodalas, 'image' => $image));
             }
         }
