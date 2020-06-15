@@ -113,7 +113,7 @@ class StopController extends Controller
     {
         if(Auth::user()->role != 1) return redirect()->route('home');
 
-        $pietura = DB::table('Pietura')->where('id', $id)->first();
+        $pietura = DB::table('pietura')->where('id', $id)->first();
 
         $addresses = DB::table('adrese')
             ->where(function($query){
